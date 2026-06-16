@@ -36,64 +36,69 @@ const lazyComingSoonPage = async () => {
   return { Component: ComingSoonPage };
 };
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    Component: Root,
-    children: [
-      {
-        index: true,
-        lazy: lazyHomePage,
-      },
-      {
-        path: "about",
-        lazy: lazyAboutPage,
-      },
-      ...(import.meta.env.DEV
-        ? [
+export const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      Component: Root,
+      children: [
+        {
+          index: true,
+          lazy: lazyHomePage,
+        },
+        {
+          path: "about",
+          lazy: lazyAboutPage,
+        },
+        ...(import.meta.env.DEV
+          ? [
+              {
+                path: "ep-library",
+                lazy: lazyEPLibraryPage,
+              },
+            ]
+          : []),
+        {
+          path: "cxp-design-system",
+          lazy: lazyCXPCaseStudyPage,
+        },
+        {
+          path: "time-tracking-agent",
+          lazy: lazyTimeTrackingPage,
+        },
+        {
+          path: "contextual-ai-workflows",
+          lazy: lazyComingSoonPage,
+        },
+        {
+          path: "work",
+          children: [
             {
-              path: "ep-library",
-              lazy: lazyEPLibraryPage,
+              index: true,
+              lazy: lazyWorkPage,
             },
-          ]
-        : []),
-      {
-        path: "cxp-design-system",
-        lazy: lazyCXPCaseStudyPage,
-      },
-      {
-        path: "time-tracking-agent",
-        lazy: lazyTimeTrackingPage,
-      },
-      {
-        path: "contextual-ai-workflows",
-        lazy: lazyComingSoonPage,
-      },
-      {
-        path: "work",
-        children: [
-          {
-            index: true,
-            lazy: lazyWorkPage,
-          },
-          {
-            path: "cxp-design-system",
-            lazy: lazyComingSoonPage,
-          },
-          {
-            path: "time-tracking-agent",
-            lazy: lazyComingSoonPage,
-          },
-          {
-            path: "contextual-ai-workflows",
-            lazy: lazyComingSoonPage,
-          },
-          {
-            path: "copilot-insight-driven-workflows-cai",
-            lazy: lazyComingSoonPage,
-          },
-        ],
-      },
-    ],
+            {
+              path: "cxp-design-system",
+              lazy: lazyComingSoonPage,
+            },
+            {
+              path: "time-tracking-agent",
+              lazy: lazyComingSoonPage,
+            },
+            {
+              path: "contextual-ai-workflows",
+              lazy: lazyComingSoonPage,
+            },
+            {
+              path: "copilot-insight-driven-workflows-cai",
+              lazy: lazyComingSoonPage,
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  {
+    basename: import.meta.env.BASE_URL,
   },
-]);
+);
