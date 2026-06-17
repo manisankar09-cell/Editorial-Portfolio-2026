@@ -45,8 +45,8 @@ const FLOW_STEPS = [
 
 function SectionLabel({ index, text }: { index: string; text: string }) {
   return (
-    <p style={{ fontSize: 11, letterSpacing: "0.18em", color: "var(--muted-foreground)", ...MONO, marginBottom: 20 }}>
-      {index} — {text}
+    <p className="tt-section-eyebrow" style={{ fontSize: 11, letterSpacing: "0.18em", color: "var(--muted-foreground)", ...MONO, marginBottom: 20 }}>
+      {text}
     </p>
   );
 }
@@ -175,9 +175,9 @@ function BeforeGrid() {
 
 function FlowDiagram() {
   return (
-    <div style={{ display: "flex", alignItems: "stretch", gap: 0 }}>
+    <div className="tt-flow-diagram" style={{ display: "flex", alignItems: "stretch", gap: 0 }}>
       {FLOW_STEPS.map((step, i) => (
-        <div key={step.n} style={{ display: "flex", alignItems: "stretch", flex: 1, minWidth: 0 }}>
+        <div key={step.n} className="tt-flow-segment" style={{ display: "flex", alignItems: "stretch", flex: 1, minWidth: 0 }}>
           <div style={{
             flex: 1, padding: "20px 16px", border: "1px solid var(--border)",
             borderRight: i < FLOW_STEPS.length - 1 ? "none" : "1px solid var(--border)",
@@ -188,7 +188,7 @@ function FlowDiagram() {
             <p style={{ fontSize: 11, color: "var(--muted-foreground)", ...SANS, lineHeight: 1.5 }}>{step.desc}</p>
           </div>
           {i < FLOW_STEPS.length - 1 && (
-            <div style={{ display: "flex", alignItems: "center", padding: "0 4px", background: "var(--border)", opacity: 0.5 }}>
+            <div className="tt-flow-arrow-wrap" style={{ display: "flex", alignItems: "center", padding: "0 4px", background: "var(--border)", opacity: 0.5 }}>
               <span style={{ fontSize: 10, color: "var(--muted-foreground)" }}>→</span>
             </div>
           )}
@@ -210,10 +210,10 @@ function ClassicView() {
       {/* 1. HERO */}
       <section style={{ paddingTop: 80, paddingBottom: 80, borderBottom: "1px solid var(--border)" }}>
         <div className="mx-auto px-8" style={{ maxWidth: MAX }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
-            <div>
-              <p style={{ fontSize: 10, letterSpacing: "0.2em", color: "var(--muted-foreground)", ...MONO, marginBottom: 16 }}>
-                03 — CASE STUDY
+          <div className="tt-hero-layout" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
+            <div className="tt-hero-copy">
+              <p className="tt-section-eyebrow" style={{ fontSize: 10, letterSpacing: "0.2em", color: "var(--muted-foreground)", ...MONO, marginBottom: 16 }}>
+                CASE STUDY
               </p>
               <h1 style={{ fontSize: "clamp(32px, 4vw, 54px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, ...SANS, marginBottom: 20 }}>
                 Time Tracking Agent
@@ -227,7 +227,7 @@ function ClassicView() {
                 ))}
               </div>
             </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div className="tt-hero-visual" style={{ display: "flex", justifyContent: "center" }}>
               <TeamsAgentMock />
             </div>
           </div>
@@ -237,13 +237,13 @@ function ClassicView() {
       {/* Impact strip */}
       <section style={{ borderBottom: "1px solid var(--border)", background: "var(--secondary)" }}>
         <div className="mx-auto px-8" style={{ maxWidth: MAX }}>
-          <div style={{ display: "grid", gridTemplateColumns: `repeat(${IMPACT.length}, 1fr)` }}>
+          <div className="tt-impact-grid">
             {IMPACT.map((m, i) => (
-              <div key={m.label} style={{
+              <div key={m.label} className="tt-impact-cell" style={{
                 padding: "28px 24px",
                 borderLeft: i > 0 ? "1px solid var(--border)" : "none",
               }}>
-                <p style={{ fontSize: "clamp(26px, 3vw, 38px)", fontWeight: 700, letterSpacing: "-0.04em", ...SANS, marginBottom: 4 }}>{m.stat}</p>
+                <p className="tt-impact-stat" style={{ fontWeight: 700, letterSpacing: "-0.04em", ...SANS, marginBottom: 4 }}>{m.stat}</p>
                 <p style={{ fontSize: 11, color: "var(--muted-foreground)", ...SANS }}>{m.label}</p>
               </div>
             ))}
@@ -251,16 +251,16 @@ function ClassicView() {
         </div>
       </section>
 
-      <div className="mx-auto px-8" style={{ maxWidth: MAX }}>
+      <div className="mx-auto px-8 tt-contained-sections" style={{ maxWidth: MAX }}>
 
         {/* 2. CONTEXT */}
         <section style={{ paddingTop: 80, paddingBottom: 80, borderBottom: "1px solid var(--border)" }}>
           <SectionLabel index="02" text="CONTEXT" />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 40 }}>
-            <div>
+          <div className="tt-context-layout" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 40 }}>
+            <div className="tt-context-copy">
               <h2 style={{ fontSize: 24, fontWeight: 600, letterSpacing: "-0.02em", ...SANS, marginBottom: 20 }}>What, who & why</h2>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 20 }}>
+            <div className="tt-context-cards" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 20 }}>
               {[
                 { label: "WHAT", text: "AI-powered time tracking assistant embedded in Microsoft Teams, delivering daily suggestions via Adaptive Cards." },
                 { label: "WHO",  text: "Customer Solution Architects (CSAs) at Microsoft — a high-impact role where time accuracy directly ties to revenue recognition." },
@@ -275,11 +275,28 @@ function ClassicView() {
           </div>
         </section>
 
+        {/* 12. MY ROLE */}
+        <section style={{ paddingTop: 80, paddingBottom: 80, borderBottom: "1px solid var(--border)" }}>
+          <SectionLabel index="12" text="MY ROLE" />
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+            {[
+              { role: "Lead UX", desc: "End-to-end product thinking — from research framing to final interaction design and delivery." },
+              { role: "Eng & DS Partnership", desc: "Collaborated with engineering on adaptive card schemas and with data science on AI confidence scoring." },
+              { role: "Design System Alignment", desc: "Drove alignment with CXP design system — all components reusable across the CEAI platform." },
+            ].map(r => (
+              <div key={r.role} style={{ padding: 24, border: "1px solid var(--border)", background: "var(--card)" }}>
+                <p style={{ fontSize: 8, ...MONO, color: "var(--accent)", letterSpacing: "0.14em", marginBottom: 10 }}>{r.role.toUpperCase()}</p>
+                <p style={{ fontSize: 13, lineHeight: 1.65, color: "var(--muted-foreground)", ...SANS }}>{r.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* 3. THE PROBLEM */}
         <section style={{ paddingTop: 80, paddingBottom: 80, borderBottom: "1px solid var(--border)" }}>
           <SectionLabel index="03" text="THE PROBLEM" />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "start" }}>
-            <div>
+          <div className="tt-problem-layout" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "start" }}>
+            <div className="tt-problem-copy">
               <h2 style={{ fontSize: "clamp(22px, 2.5vw, 32px)", fontWeight: 600, letterSpacing: "-0.02em", ...SANS, marginBottom: 24 }}>
                 Time tracking was mandatory but broken
               </h2>
@@ -313,7 +330,7 @@ function ClassicView() {
                 ))}
               </div>
             </div>
-            <div>
+            <div className="tt-problem-visual">
               <BeforeGrid />
             </div>
           </div>
@@ -400,8 +417,8 @@ function ClassicView() {
         {/* 8. DESIGNING TRUST */}
         <section style={{ paddingTop: 80, paddingBottom: 80, borderBottom: "1px solid var(--border)" }}>
           <SectionLabel index="08" text="DESIGNING TRUST" />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56 }}>
-            <div>
+          <div className="tt-trust-layout" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56 }}>
+            <div className="tt-trust-copy">
               <h2 style={{ fontSize: "clamp(22px, 2.5vw, 32px)", fontWeight: 600, letterSpacing: "-0.02em", ...SANS, marginBottom: 20 }}>
                 Skepticism is the first design problem
               </h2>
@@ -421,7 +438,7 @@ function ClassicView() {
               ))}
             </div>
             {/* Trust model visual */}
-            <div style={{ border: "1px solid var(--border)", padding: 28, background: "var(--card)" }}>
+            <div className="tt-trust-visual" style={{ border: "1px solid var(--border)", padding: 28, background: "var(--card)" }}>
               <p style={{ fontSize: 10, ...MONO, color: "var(--muted-foreground)", letterSpacing: "0.12em", marginBottom: 20 }}>TRUST MODEL</p>
               {[
                 { stage: "Week 1", desc: "Skeptical — edits every suggestion", bar: 20 },
@@ -480,13 +497,13 @@ function ClassicView() {
         {/* 11. IMPACT */}
         <section style={{ paddingTop: 80, paddingBottom: 80, borderBottom: "1px solid var(--border)" }}>
           <SectionLabel index="11" text="IMPACT" />
-          <div style={{ display: "grid", gridTemplateColumns: `repeat(${IMPACT.length}, 1fr)`, gap: 0 }}>
+          <div className="tt-impact-grid">
             {IMPACT.map((m, i) => (
-              <div key={m.label} style={{
+              <div key={m.label} className="tt-impact-cell" style={{
                 padding: "32px 24px",
                 borderLeft: i > 0 ? "1px solid var(--border)" : "none",
               }}>
-                <p style={{ fontSize: "clamp(32px, 3.5vw, 48px)", fontWeight: 700, letterSpacing: "-0.04em", ...SANS, marginBottom: 8 }}>{m.stat}</p>
+                <p className="tt-impact-stat" style={{ fontWeight: 700, letterSpacing: "-0.04em", ...SANS, marginBottom: 8 }}>{m.stat}</p>
                 <p style={{ fontSize: 12, color: "var(--muted-foreground)", ...SANS }}>{m.label}</p>
               </div>
             ))}
@@ -495,23 +512,6 @@ function ClassicView() {
             <p style={{ fontSize: 15, lineHeight: 1.75, ...SANS, fontStyle: "italic", color: "var(--muted-foreground)" }}>
               "Helped shift CSAs from dreading Friday entry to a lightweight daily habit — with measurably higher data quality."
             </p>
-          </div>
-        </section>
-
-        {/* 12. MY ROLE */}
-        <section style={{ paddingTop: 80, paddingBottom: 80, borderBottom: "1px solid var(--border)" }}>
-          <SectionLabel index="12" text="MY ROLE" />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-            {[
-              { role: "Lead UX", desc: "End-to-end product thinking — from research framing to final interaction design and delivery." },
-              { role: "Eng & DS Partnership", desc: "Collaborated with engineering on adaptive card schemas and with data science on AI confidence scoring." },
-              { role: "Design System Alignment", desc: "Drove alignment with CXP design system — all components reusable across the CEAI platform." },
-            ].map(r => (
-              <div key={r.role} style={{ padding: 24, border: "1px solid var(--border)", background: "var(--card)" }}>
-                <p style={{ fontSize: 8, ...MONO, color: "var(--accent)", letterSpacing: "0.14em", marginBottom: 10 }}>{r.role.toUpperCase()}</p>
-                <p style={{ fontSize: 13, lineHeight: 1.65, color: "var(--muted-foreground)", ...SANS }}>{r.desc}</p>
-              </div>
-            ))}
           </div>
         </section>
 
@@ -825,5 +825,5 @@ function FocusView() {
 // ══════════════════════════════════════════════════════════════════════════
 
 export function TimeTrackingPage() {
-  return <div style={{ ["--muted-foreground" as any]: "color-mix(in srgb, var(--foreground) 92%, var(--background))" }}><ClassicView /></div>;
+  return <div className="tt-page"><ClassicView /></div>;
 }

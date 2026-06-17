@@ -726,7 +726,7 @@ export function ContextualAIWorkflowsPage() {
         </div>
       </main>
 
-      <ProjectPagination currentSlug="contextual-ai-workflows" />
+      <ProjectPagination projectSlug="contextual-ai-workflows" />
       <SiteFooter />
     </div>
   );

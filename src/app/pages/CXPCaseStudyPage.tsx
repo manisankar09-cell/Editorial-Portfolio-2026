@@ -2,20 +2,26 @@ import { motion } from "motion/react";
 import { ProjectPagination } from "../components/CaseStudyNav";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteNav } from "../components/SiteNav";
+import adaptiveCardImage from "../../imports/Adaptive card.png";
+import copilotPatternsImage from "../../imports/Copilot patterns.png";
 
 const SLUG = "cxp-design-system";
 const CASE_STUDY_SURFACE = "var(--card)";
 const CASE_STUDY_SURFACE_ELEVATED = "color-mix(in srgb, #17181d 84%, var(--secondary) 16%)";
+const CXP_DIAGRAM_SURFACE = "color-mix(in srgb, var(--foreground) 10%, var(--card) 90%)";
+const CXP_DIAGRAM_BORDER = "color-mix(in srgb, var(--foreground) 24%, var(--border))";
 
 // ─── Shared primitives ────────────────────────────────────────────────────
 
 function SectionLabel({ index, text }: { index: string; text: string }) {
+  const label = index === "01" ? `${index} — ${text}` : text;
+
   return (
     <p
-      className="text-muted-foreground"
+      className="text-muted-foreground cxp-section-eyebrow"
       style={{ fontSize: 11, letterSpacing: "0.18em", fontFamily: "'DM Mono', monospace", marginBottom: 20 }}
     >
-      {index} — {text}
+      {label}
     </p>
   );
 }
@@ -118,18 +124,32 @@ function HeroVisual() {
           initial={{ opacity: 0, x: 12 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.34 }}
-          className="p-4"
-          style={{ background: CASE_STUDY_SURFACE_ELEVATED }}
+          className="p-4 border"
+          style={{ background: CXP_DIAGRAM_SURFACE, borderColor: CXP_DIAGRAM_BORDER }}
         >
           <div className="flex items-center gap-2 mb-3">
             <div style={{ width: 12, height: 12, borderRadius: "50%", background: "var(--accent)", opacity: 0.8 }} />
-            <p style={{ fontSize: 9, letterSpacing: "0.14em", fontFamily: "'DM Mono', monospace", color: "rgba(245,244,240,0.45)" }}>COPILOT SURFACE</p>
+            <p style={{ fontSize: 9, letterSpacing: "0.14em", fontFamily: "'DM Mono', monospace", color: "color-mix(in srgb, var(--foreground) 78%, var(--accent) 22%)" }}>COPILOT SURFACE</p>
           </div>
           {[72, 58, 44].map((w, i) => (
-            <div key={i} className="mb-1" style={{ width: `${w}%`, height: 7, background: `rgba(245,244,240,${0.22 - i * 0.05})` }} />
+            <div
+              key={i}
+              className="mb-1"
+              style={{ width: `${w}%`, height: 7, background: `color-mix(in srgb, var(--foreground) ${34 - i * 8}%, transparent)` }}
+            />
           ))}
           <div className="flex gap-2 mt-2">
-            <span style={{ fontSize: 9, padding: "3px 9px", border: "1px solid rgba(245,244,240,0.3)", color: "rgba(245,244,240,0.6)", fontFamily: "'DM Mono', monospace" }}>Generate →</span>
+            <span
+              style={{
+                fontSize: 9,
+                padding: "3px 9px",
+                border: "1px solid color-mix(in srgb, var(--foreground) 36%, var(--border))",
+                color: "color-mix(in srgb, var(--foreground) 88%, var(--accent) 12%)",
+                fontFamily: "'DM Mono', monospace",
+              }}
+            >
+              Generate →
+            </span>
           </div>
         </motion.div>
       </div>
@@ -243,9 +263,17 @@ function Transformation() {
               ))}
             </ul>
             {/* Scattered visual */}
-            <div className="relative overflow-hidden border border-border" style={{ height: 140, background: "rgba(17,17,16,0.02)" }}>
+            <div
+              className="relative overflow-hidden border border-border"
+              style={{
+                height: 140,
+                background: "color-mix(in srgb, var(--foreground) 8%, var(--card))",
+                borderColor: "color-mix(in srgb, var(--foreground) 24%, var(--border))",
+              }}
+            >
               <div className="absolute inset-0" style={{
-                backgroundImage: "linear-gradient(rgba(17,17,16,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(17,17,16,0.04) 1px, transparent 1px)",
+                backgroundImage:
+                  "linear-gradient(color-mix(in srgb, var(--foreground) 12%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--foreground) 12%, transparent) 1px, transparent 1px)",
                 backgroundSize: "20px 20px",
               }} />
               {scattered.map((lbl, i) => {
@@ -256,8 +284,9 @@ function Transformation() {
                     transform: `rotate(${rot}deg)`,
                     padding: "2px 7px", fontSize: 9,
                     fontFamily: "'DM Mono', monospace",
-                    color: lbl === "AI?" ? "var(--accent)" : "var(--muted-foreground)",
-                    borderColor: lbl === "AI?" ? "var(--accent)" : "var(--border)",
+                    background: "color-mix(in srgb, var(--card) 92%, var(--background) 8%)",
+                    color: lbl === "AI?" ? "color-mix(in srgb, var(--accent) 82%, var(--foreground) 18%)" : "color-mix(in srgb, var(--foreground) 84%, var(--accent) 16%)",
+                    borderColor: lbl === "AI?" ? "color-mix(in srgb, var(--accent) 58%, var(--border))" : "color-mix(in srgb, var(--foreground) 22%, var(--border))",
                     whiteSpace: "nowrap",
                   }}>{lbl}</div>
                 );
@@ -266,16 +295,16 @@ function Transformation() {
           </div>
 
           {/* Center */}
-          <div className="flex flex-col items-center justify-center gap-3" style={{ gridColumn: "6 / 8", paddingTop: 40 }}>
+          <div className="cxp-flow-rail flex flex-col items-center justify-center gap-3" style={{ gridColumn: "6 / 8" }}>
             {["Fragmentation", "Standardization", "Scale"].map((step, i, arr) => (
-              <div key={step} className="flex flex-col items-center gap-2">
+              <div key={step} className="cxp-flow-step flex flex-col items-center gap-2">
                 <p style={{
-                  fontSize: 8, letterSpacing: "0.12em", fontFamily: "'DM Mono', monospace",
+                  fontSize: "clamp(9px, 0.72vw, 12px)", letterSpacing: "0.12em", fontFamily: "'DM Mono', monospace",
                   color: "var(--accent)", writingMode: "vertical-lr",
-                  transform: "rotate(180deg)", opacity: 1 - i * 0.15
-                }}>{step}</p>
+                  transform: "rotate(180deg)"
+                }} className="cxp-flow-step-label">{step}</p>
                 {i < arr.length - 1 && (
-                  <svg width="8" height="12" viewBox="0 0 8 12" fill="none">
+                  <svg className="cxp-flow-arrow" width="8" height="12" viewBox="0 0 8 12" fill="none">
                     <path d="M4 0v8M1 6l3 4 3-4" stroke="var(--accent)" strokeWidth={0.9} strokeLinecap="round" strokeLinejoin="round" opacity={0.45} />
                   </svg>
                 )}
@@ -371,16 +400,19 @@ function Architecture() {
               {sysLayers.map((layer, i) => (
                 <div key={layer.label}>
                   <div
-                    className="border border-border flex items-center justify-between px-7 py-5"
-                    style={{ background: `rgba(17,17,16,${layer.shade})` }}
+                    className="border border-border flex items-center justify-between px-7 py-5 cxp-architecture-row"
+                    style={{
+                      background: `color-mix(in srgb, var(--foreground) ${6 + i * 4}%, var(--card))`,
+                      borderColor: CXP_DIAGRAM_BORDER,
+                    }}
                   >
-                    <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", fontFamily: "'DM Mono', monospace" }}>{layer.label}</span>
-                    <span style={{ fontSize: 12, color: "var(--muted-foreground)", fontFamily: "'Inter', sans-serif" }}>{layer.sub}</span>
+                    <span className="cxp-architecture-row__title" style={{ fontSize: 12, fontWeight: 600, letterSpacing: "0.1em", fontFamily: "'DM Mono', monospace" }}>{layer.label}</span>
+                    <span className="cxp-architecture-row__sub" style={{ fontSize: 12, color: "color-mix(in srgb, var(--foreground) 82%, var(--accent) 18%)", fontFamily: "'Inter', sans-serif" }}>{layer.sub}</span>
                   </div>
                   {i < sysLayers.length - 1 && (
                     <div className="flex justify-center py-2">
                       <svg width="12" height="14" viewBox="0 0 12 14" fill="none">
-                        <path d="M6 0v10M2 7l4 5 4-5" stroke="var(--foreground)" strokeWidth={0.8} strokeLinecap="round" strokeLinejoin="round" opacity={0.2} />
+                        <path d="M6 0v10M2 7l4 5 4-5" stroke="var(--accent)" strokeWidth={0.8} strokeLinecap="round" strokeLinejoin="round" opacity={0.34} />
                       </svg>
                     </div>
                   )}
@@ -400,12 +432,6 @@ const caseItems = [
   { label: "Challenge", body: "Adaptive card implementations were inconsistent across scenarios and lacked a reusable structure." },
   { label: "Approach", body: "Existing examples were audited, patterns were extracted, and standardized structures were created for scalable AI and agentic workflows." },
   { label: "Outcome", body: "A reusable adaptive card system enabled more consistent, implementation-ready, and dynamic workflow experiences." },
-];
-
-const adaptiveCards = [
-  { tag: "RECOMMENDATION", title: "Suggested workflow change", body: "Based on recent usage, consolidating two approval stages may reduce friction.", actions: ["Apply", "Dismiss"] },
-  { tag: "APPROVAL", title: "Design token update v2.4", body: "CXP token changes are staged and awaiting sign-off from the platform team.", actions: ["Approve", "Request Changes"], dark: true },
-  { tag: "ACTION REQUIRED", title: "Sprint review — Q3 roadmap", body: "3 items require your attention before the design review on Friday.", actions: ["Review", "Snooze"] },
 ];
 
 function AdaptiveCardsSection() {
@@ -435,29 +461,14 @@ function AdaptiveCardsSection() {
             </div>
           </div>
 
-          {/* Right — card examples */}
-          <div style={{ gridColumn: "7 / 13" }} className="flex flex-col gap-3 pt-14">
-            {adaptiveCards.map(card => (
-              <div
-                key={card.tag}
-                className="border border-border p-5 flex flex-col gap-3"
-                style={{ background: (card as any).dark ? CASE_STUDY_SURFACE_ELEVATED : CASE_STUDY_SURFACE }}
-              >
-                <p style={{ fontSize: 9, letterSpacing: "0.14em", fontFamily: "'DM Mono', monospace", color: (card as any).dark ? "rgba(245,244,240,0.4)" : "var(--muted-foreground)" }}>{card.tag}</p>
-                <p style={{ fontSize: 13, fontWeight: 600, fontFamily: "'Inter', sans-serif", lineHeight: 1.3, color: (card as any).dark ? "rgba(245,244,240,0.9)" : "var(--foreground)" }}>{card.title}</p>
-                <p style={{ fontSize: 12, lineHeight: 1.6, fontFamily: "'Inter', sans-serif", color: (card as any).dark ? "rgba(245,244,240,0.55)" : "var(--muted-foreground)" }}>{card.body}</p>
-                <div className="flex gap-2 pt-1">
-                  {card.actions.map((action, ai) => (
-                    <button key={action} style={{
-                      fontSize: 10, padding: "4px 12px", fontFamily: "'Inter', sans-serif",
-                      background: "transparent", cursor: "pointer",
-                      border: `1px solid ${(card as any).dark ? (ai === 0 ? "rgba(245,244,240,0.45)" : "rgba(245,244,240,0.15)") : (ai === 0 ? "var(--foreground)" : "var(--border)")}`,
-                      color: (card as any).dark ? (ai === 0 ? "rgba(245,244,240,0.85)" : "rgba(245,244,240,0.35)") : (ai === 0 ? "var(--foreground)" : "var(--muted-foreground)"),
-                    }}>{action}</button>
-                  ))}
-                </div>
-              </div>
-            ))}
+          {/* Right — adaptive card reference image */}
+          <div style={{ gridColumn: "7 / 13" }} className="pt-14">
+            <img
+              src={adaptiveCardImage}
+              alt="Adaptive card pattern examples"
+              className="border border-border"
+              style={{ display: "block", width: "100%", height: "auto", background: CASE_STUDY_SURFACE }}
+            />
           </div>
         </div>
       </div>
@@ -466,13 +477,6 @@ function AdaptiveCardsSection() {
 }
 
 // ─── SECTION 6: COPILOT SURFACE ───────────────────────────────────────────
-
-const copilotSuggestions = [
-  "Summarize open tasks from last sprint",
-  "Identify blockers in the current workflow",
-  "Generate a design review checklist",
-  "Highlight patterns across recent feedback",
-];
 
 function CopilotSection() {
   return (
@@ -490,47 +494,12 @@ function CopilotSection() {
 
         {/* Copilot panel — centered, prominent */}
         <div className="mx-auto" style={{ maxWidth: 760 }}>
-          <div className="border border-border" style={{ background: CASE_STUDY_SURFACE_ELEVATED, color: "rgba(240,236,230,0.92)" }}>
-            {/* Header */}
-            <div className="border-b flex items-center justify-between px-6 py-4" style={{ borderColor: "rgba(245,244,240,0.08)" }}>
-              <div className="flex items-center gap-2.5">
-                <div className="rounded-full flex items-center justify-center" style={{ width: 16, height: 16, background: "var(--accent)", opacity: 0.85, fontSize: 9, color: "#fff" }}>✦</div>
-                <span style={{ fontSize: 10, letterSpacing: "0.16em", fontFamily: "'DM Mono', monospace", color: "rgba(245,244,240,0.5)" }}>COPILOT</span>
-              </div>
-              <span style={{ fontSize: 9, fontFamily: "'DM Mono', monospace", color: "rgba(245,244,240,0.25)", letterSpacing: "0.1em" }}>ENTERPRISE SURFACE</span>
-            </div>
-
-            <div className="px-8 py-8 flex flex-col gap-6">
-              {/* Analysis block */}
-              <div>
-                <p style={{ fontSize: 9, letterSpacing: "0.14em", fontFamily: "'DM Mono', monospace", color: "rgba(245,244,240,0.3)", marginBottom: 10 }}>CONTEXTUAL INSIGHT</p>
-                {[100, 84, 66].map((w, i) => (
-                  <div key={i} className="mb-1.5" style={{ width: `${w}%`, height: 9, background: `rgba(245,244,240,${0.2 - i * 0.04})` }} />
-                ))}
-              </div>
-              <div style={{ height: 1, background: "rgba(245,244,240,0.07)" }} />
-
-              {/* Suggestions */}
-              <div>
-                <p style={{ fontSize: 9, letterSpacing: "0.14em", fontFamily: "'DM Mono', monospace", color: "rgba(245,244,240,0.3)", marginBottom: 10 }}>RECOMMENDED ACTIONS</p>
-                <div className="flex flex-col gap-2">
-                  {copilotSuggestions.map(s => (
-                    <div key={s} className="flex items-center gap-3" style={{ border: "1px solid rgba(245,244,240,0.08)", padding: "7px 12px" }}>
-                      <span style={{ width: 5, height: 5, background: "var(--accent)", display: "inline-block", flexShrink: 0, opacity: 0.65 }} />
-                      <span style={{ fontSize: 11, fontFamily: "'Inter', sans-serif", color: "rgba(245,244,240,0.6)" }}>{s}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div style={{ height: 1, background: "rgba(245,244,240,0.07)" }} />
-
-              {/* Input */}
-              <div className="flex items-center gap-3" style={{ border: "1px solid rgba(245,244,240,0.12)", padding: "9px 14px" }}>
-                <span style={{ flex: 1, fontSize: 12, fontFamily: "'Inter', sans-serif", color: "rgba(245,244,240,0.25)" }}>Ask Copilot something…</span>
-                <button style={{ fontSize: 10, fontFamily: "'DM Mono', monospace", color: "rgba(245,244,240,0.45)", background: "transparent", border: "1px solid rgba(245,244,240,0.18)", padding: "4px 12px", cursor: "pointer", letterSpacing: "0.08em" }}>SEND →</button>
-              </div>
-            </div>
-          </div>
+          <img
+            src={copilotPatternsImage}
+            alt="Copilot patterns reference panel"
+            className="border border-border"
+            style={{ display: "block", width: "100%", height: "auto", background: CASE_STUDY_SURFACE_ELEVATED }}
+          />
           <p className="text-center mt-8" style={{ fontSize: 13, lineHeight: 1.6, fontFamily: "'Inter', sans-serif", fontStyle: "italic", color: "var(--muted-foreground)" }}>
             "A reusable pattern for embedding AI into workflows without disrupting the primary task flow."
           </p>
@@ -670,12 +639,14 @@ function TileVisual({ type }: { type: string }) {
     </div>
   );
   if (type === "copilot") return (
-    <div className="p-3" style={{ background: CASE_STUDY_SURFACE_ELEVATED }}>
+    <div className="p-3 border" style={{ background: CXP_DIAGRAM_SURFACE, borderColor: CXP_DIAGRAM_BORDER }}>
       <div className="flex items-center gap-1.5 mb-2">
         <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent)", opacity: 0.7 }} />
-        <div style={{ height: 6, width: 60, background: "rgba(245,244,240,0.15)" }} />
+        <div style={{ height: 6, width: 60, background: "color-mix(in srgb, var(--foreground) 22%, transparent)" }} />
       </div>
-      {[90, 70, 50].map((w, i) => <div key={i} className="mb-1" style={{ width: `${w}%`, height: 6, background: `rgba(245,244,240,${0.15 - i * 0.03})` }} />)}
+      {[90, 70, 50].map((w, i) => (
+        <div key={i} className="mb-1" style={{ width: `${w}%`, height: 6, background: `color-mix(in srgb, var(--foreground) ${24 - i * 6}%, transparent)` }} />
+      ))}
     </div>
   );
   if (type === "template") return (
@@ -707,11 +678,11 @@ function SystemInAction() {
     <section id="system-in-action" className="border-b border-border" style={{ paddingTop: 80, paddingBottom: 80 }}>
       <div className="site-container">
         <SectionLabel index="08" text="SYSTEM IN ACTION" />
-        <div className="flex items-end justify-between mb-12">
+        <div className="flex flex-col gap-3 mb-9">
           <h2 style={{ fontSize: "clamp(20px, 2.2vw, 28px)", fontWeight: 600, letterSpacing: "-0.02em", fontFamily: "'Inter', sans-serif" }}>
             System in Action
           </h2>
-          <p style={{ fontSize: 13, lineHeight: 1.7, color: "var(--muted-foreground)", fontFamily: "'Inter', sans-serif", maxWidth: 380, textAlign: "right" }}>
+          <p style={{ fontSize: 13, lineHeight: 1.7, color: "var(--muted-foreground)", fontFamily: "'Inter', sans-serif", maxWidth: 540 }}>
             Reusable components, patterns, and AI-ready templates helped product teams design consistent enterprise workflows faster.
           </p>
         </div>
@@ -742,32 +713,44 @@ const impacts = [
   "Reduced design-to-engineering handoff friction",
 ];
 
+const impactPointMeta = ["FOUNDATION", "CONSISTENCY", "AI-READINESS", "EXECUTION"];
+
 function Impact() {
   return (
-    <section id="impact" className="border-b border-border" style={{ paddingTop: 80, paddingBottom: 80 }}>
+    <section
+      id="impact"
+      className="border-b border-border cxp-impact-section"
+      style={{
+        paddingTop: 80,
+        paddingBottom: 80,
+        background:
+          "radial-gradient(circle at 16% 22%, color-mix(in srgb, var(--accent) 10%, transparent) 0%, transparent 46%), radial-gradient(circle at 84% 78%, color-mix(in srgb, var(--secondary) 28%, transparent) 0%, transparent 42%), linear-gradient(120deg, color-mix(in srgb, var(--card) 92%, var(--background) 8%), color-mix(in srgb, var(--secondary) 16%, var(--card) 84%))",
+      }}
+    >
       <div className="site-container">
         <SectionLabel index="09" text="IMPACT" />
         <h2 style={{ fontSize: "clamp(20px, 2.2vw, 28px)", fontWeight: 600, letterSpacing: "-0.02em", fontFamily: "'Inter', sans-serif", marginBottom: 48 }}>
           Impact
         </h2>
-        <div className="editorial-grid" style={{ rowGap: 0 }}>
+        <div className="editorial-grid cxp-impact-grid" style={{ rowGap: 12 }}>
           {impacts.map((item, i) => (
             <div
               key={item}
-              className="flex flex-col justify-between py-8 px-6"
-              style={{ gridColumn: "span 3", borderLeft: i > 0 ? "1px solid var(--border)" : "none" }}
+              className="cxp-impact-point"
+              style={{ gridColumn: "span 3" }}
             >
-              <span style={{ fontSize: 11, fontFamily: "'DM Mono', monospace", letterSpacing: "0.1em", color: "var(--muted-foreground)", marginBottom: 16 }}>
-                {String(i + 1).padStart(2, "0")}
-              </span>
+              <div className="cxp-impact-point__meta">
+                <span className="cxp-impact-point__index">{String(i + 1).padStart(2, "0")}</span>
+                <span className="cxp-impact-point__tag">{impactPointMeta[i]}</span>
+              </div>
               <p style={{ fontSize: 14, fontWeight: 500, lineHeight: 1.55, fontFamily: "'Inter', sans-serif", color: "var(--foreground)" }}>
                 {item}
               </p>
             </div>
           ))}
         </div>
-        <div className="border-t border-border mt-12 pt-8">
-          <p style={{ fontSize: 15, lineHeight: 1.75, fontFamily: "'Inter', sans-serif", color: "var(--muted-foreground)", maxWidth: 680, fontStyle: "italic" }}>
+        <div className="cxp-impact-quote-wrap border-t border-border mt-12 pt-8">
+          <p style={{ fontSize: 15, lineHeight: 1.75, fontFamily: "'Inter', sans-serif", color: "var(--muted-foreground)", maxWidth: 760, fontStyle: "italic" }}>
             "Helped shift CXP from ad-hoc design execution toward a scalable, AI-native design operating model."
           </p>
         </div>
@@ -1028,12 +1011,12 @@ function BentoView() {
               {ARCH_LAYERS.map((layer, i) => (
                 <div key={layer.label} style={{
                   display: "flex", alignItems: "center", gap: 16, padding: "10px 14px",
-                  background: `rgba(17,17,16,${0.02 + i * 0.02})`,
-                  border: "1px solid var(--border)",
+                  background: `color-mix(in srgb, var(--foreground) ${6 + i * 4}%, var(--card))`,
+                  border: `1px solid ${CXP_DIAGRAM_BORDER}`,
                 }}>
                   <span style={{ fontSize: 8, ...MONO_S, letterSpacing: "0.1em", color: "var(--accent)", width: 90, flexShrink: 0 }}>{layer.label}</span>
                   <div style={{ flex: 1, height: 1, background: "var(--border)" }} />
-                  <span style={{ fontSize: 10, color: "var(--muted-foreground)", ...SANS_S }}>{layer.sub}</span>
+                  <span style={{ fontSize: 10, color: "color-mix(in srgb, var(--foreground) 82%, var(--accent) 18%)", ...SANS_S }}>{layer.sub}</span>
                 </div>
               ))}
             </div>
@@ -1251,5 +1234,5 @@ function FocusView() {
 // ─── PAGE — switches on layout mode ────────────────────────────────────────
 
 export function CXPCaseStudyPage() {
-  return <div style={{ ["--muted-foreground" as any]: "color-mix(in srgb, var(--foreground) 92%, var(--background))" }}><ClassicView /></div>;
+  return <div className="cxp-page"><ClassicView /></div>;
 }
