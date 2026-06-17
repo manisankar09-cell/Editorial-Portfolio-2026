@@ -117,10 +117,18 @@ const projects = [
 const MONO: React.CSSProperties = { fontFamily: "'DM Mono', monospace" };
 const SANS: React.CSSProperties = { fontFamily: "'Inter', sans-serif" };
 
+const PANEL: React.CSSProperties = {
+  background: "color-mix(in srgb, var(--card) 88%, white 12%)",
+  border: "1px solid color-mix(in srgb, var(--border) 92%, transparent)",
+};
+
+const META_TEXT = "color-mix(in srgb, var(--muted-foreground) 86%, var(--foreground) 14%)";
+const SOFT_TEXT = "color-mix(in srgb, var(--muted-foreground) 92%, var(--foreground) 8%)";
+
 function SectionLabel({ index, text }: { index: string; text: string }) {
   return (
     <p className="text-muted-foreground col-label"
-      style={{ fontSize: 11, letterSpacing: "0.18em", ...MONO, marginBottom: 20 }}>
+      style={{ fontSize: 11, letterSpacing: "0.18em", ...MONO, marginBottom: 20, color: META_TEXT }}>
       {index} — {text}
     </p>
   );
@@ -195,7 +203,7 @@ function ExperienceItem({ item, defaultOpen }: { item: typeof EXPERIENCE[0]; def
           >
             <div style={{ paddingBottom: 24, paddingLeft: 17 }}>
               {/* Location */}
-                  <p style={{ fontSize: 11, letterSpacing: "0.14em", color: "var(--foreground)", ...MONO, marginBottom: 16 }}>
+                  <p style={{ fontSize: 11, letterSpacing: "0.14em", color: META_TEXT, ...MONO, marginBottom: 16 }}>
                 {item.location}
               </p>
 
@@ -269,7 +277,7 @@ function NarrativeBlock() {
             <SectionLabel index="01" text="NARRATIVE" />
           </div>
           <div style={{ gridColumn: "4 / 10" }} className="col-content">
-            <p className="text-foreground" style={{ fontSize: 17, lineHeight: 1.8, ...SANS, marginBottom: 24 }}>
+            <p className="text-foreground" style={{ fontSize: 17, lineHeight: 1.8, ...SANS, marginBottom: 24, color: SOFT_TEXT }}>
               With 12+ years building enterprise and platform-scale products, I currently
               lead AI-first, agentic workflow design at Microsoft. I specialize in
               transforming fragmented, multi-tool ecosystems into cohesive, scalable
@@ -303,7 +311,13 @@ function HowIThinkBlock() {
             ].map((para, i) => (
               <p key={i}
                 className={i < 2 ? "text-foreground" : "text-muted-foreground"}
-                style={{ fontSize: 16, lineHeight: 1.8, ...SANS, marginBottom: i < 2 ? 20 : 0 }}>
+                style={{
+                  fontSize: 16,
+                  lineHeight: 1.8,
+                  ...SANS,
+                  marginBottom: i < 2 ? 20 : 0,
+                  color: i < 2 ? SOFT_TEXT : undefined,
+                }}>
                 {para}
               </p>
             ))}
@@ -325,12 +339,12 @@ function HowIWorkBlock() {
           <div style={{ gridColumn: "4 / 13" }} className="col-content">
             <div className="responsive-grid-2">
               {workPrinciples.map((p, i) => (
-                <div key={p.label} className="border border-border p-6">
-                  <span className="block" style={{ fontSize: 11, ...MONO, letterSpacing: "0.1em", marginBottom: 12, color: "color-mix(in srgb, var(--foreground) 72%, var(--background))" }}>
+                <div key={p.label} className="border border-border p-6" style={PANEL}>
+                  <span className="block" style={{ fontSize: 11, ...MONO, letterSpacing: "0.1em", marginBottom: 12, color: META_TEXT }}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <p className="text-foreground" style={{ fontSize: 14, fontWeight: 600, ...SANS, marginBottom: 8 }}>{p.label}</p>
-                  <p style={{ fontSize: 13, lineHeight: 1.65, ...SANS, color: "color-mix(in srgb, var(--foreground) 82%, var(--background))" }}>{p.desc}</p>
+                  <p style={{ fontSize: 13, lineHeight: 1.65, ...SANS, color: "var(--muted-foreground)" }}>{p.desc}</p>
                 </div>
               ))}
             </div>
@@ -352,10 +366,10 @@ function SelectedWorkBlock() {
           <div style={{ gridColumn: "4 / 13" }} className="col-content">
             {projects.map((project) => (
               <Link key={project.title} to={project.href} style={{ textDecoration: "none", display: "block" }}>
-                <div className="border border-border p-8 group transition-colors hover:border-foreground/30" style={{ cursor: "pointer" }}>
+                <div className="border border-border p-8 group transition-colors hover:border-foreground/30" style={{ ...PANEL, cursor: "pointer" }}>
                   <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 32 }}>
                     <div style={{ flex: 1 }}>
-                      <p style={{ fontSize: 11, letterSpacing: "0.14em", ...MONO, marginBottom: 10, color: "color-mix(in srgb, var(--foreground) 90%, var(--background))" }}>{project.label}</p>
+                      <p style={{ fontSize: 11, letterSpacing: "0.14em", ...MONO, marginBottom: 10, color: META_TEXT }}>{project.label}</p>
                       <h2 className="text-foreground" style={{ fontSize: 22, fontWeight: 600, letterSpacing: "-0.01em", ...SANS, marginBottom: 10 }}>{project.title}</h2>
                       <p className="text-muted-foreground" style={{ fontSize: 14, lineHeight: 1.7, ...SANS, maxWidth: 480, marginBottom: 20 }}>{project.desc}</p>
                       <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
@@ -432,7 +446,7 @@ function AchievementsBlock() {
                     <p className="text-foreground" style={{ fontSize: 15, fontWeight: 500, ...SANS, marginBottom: 3 }}>{a.title}</p>
                     <p className="text-muted-foreground" style={{ fontSize: 12, ...SANS }}>{a.detail}</p>
                   </div>
-                  <span style={{ fontSize: 11, ...MONO, letterSpacing: "0.12em", color: "var(--foreground)", flexShrink: 0, marginLeft: 24 }}>
+                  <span style={{ fontSize: 11, ...MONO, letterSpacing: "0.12em", color: META_TEXT, flexShrink: 0, marginLeft: 24 }}>
                     {a.award}
                   </span>
                 </div>
@@ -512,7 +526,7 @@ export function AboutPage() {
   return (
     <div
       className="min-h-screen bg-background text-foreground"
-      style={{ ...SANS, display: "flex", flexDirection: "column", ["--muted-foreground" as any]: "color-mix(in srgb, var(--foreground) 90%, var(--background))" }}
+      style={{ ...SANS, display: "flex", flexDirection: "column" }}
     >
       <SiteNav variant="page" />
       <main style={{ flex: 1 }}>
