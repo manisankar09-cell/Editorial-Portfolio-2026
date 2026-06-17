@@ -530,28 +530,42 @@ function PersonalBlock() {
       style={{
         paddingTop: 80,
         paddingBottom: 80,
+        backgroundColor: "#161513",
         backgroundImage: [
-          "radial-gradient(120% 88% at 18% 20%, color-mix(in srgb, var(--foreground) 6%, transparent) 0%, transparent 70%)",
-          "radial-gradient(92% 76% at 82% 74%, color-mix(in srgb, var(--foreground) 4.8%, transparent) 0%, transparent 72%)",
-          "repeating-linear-gradient(12deg, color-mix(in srgb, var(--foreground) 3.1%, transparent) 0px, color-mix(in srgb, var(--foreground) 3.1%, transparent) 1px, transparent 1px, transparent 8px)",
-          "repeating-linear-gradient(-16deg, color-mix(in srgb, var(--foreground) 2.4%, transparent) 0px, color-mix(in srgb, var(--foreground) 2.4%, transparent) 1px, transparent 1px, transparent 11px)",
-          "linear-gradient(180deg, color-mix(in srgb, var(--secondary) 20%, transparent) 0%, transparent 42%, color-mix(in srgb, var(--secondary) 14%, transparent) 100%)",
+          "radial-gradient(120% 90% at 18% 22%, rgba(255,255,255,0.06) 0%, transparent 72%)",
+          "radial-gradient(92% 78% at 84% 76%, rgba(255,255,255,0.045) 0%, transparent 74%)",
+          "repeating-linear-gradient(12deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 9px)",
+          "repeating-linear-gradient(-16deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 12px)",
+          "linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 45%, rgba(255,255,255,0.015) 100%)",
         ].join(", "),
         backgroundRepeat: "no-repeat",
         backgroundSize: "100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%",
+        borderTop: "1px solid rgba(255,255,255,0.06)",
+        borderBottom: "1px solid rgba(255,255,255,0.05)",
       }}
     >
       <div className="site-container">
         <div className="responsive-grid-12">
           <div style={{ gridColumn: "1 / 4" }}>
-            <SectionLabel index="07" text="OUTSIDE WORK" />
+            <p
+              className="col-label"
+              style={{
+                fontSize: 11,
+                letterSpacing: "0.18em",
+                ...MONO,
+                marginBottom: 20,
+                color: "rgba(236, 231, 223, 0.72)",
+              }}
+            >
+              <span style={{ color: "color-mix(in srgb, var(--accent) 70%, #fff 30%)" }}>07</span> — OUTSIDE WORK
+            </p>
           </div>
           <div style={{ gridColumn: "4 / 9" }} className="col-content">
-            <p className="text-foreground" style={{ fontSize: 15, lineHeight: 1.8, ...SANS, marginBottom: 16 }}>
+            <p style={{ fontSize: 15, lineHeight: 1.8, ...SANS, marginBottom: 16, color: "rgba(242, 238, 232, 0.92)" }}>
               Outside of work, I sketch, paint, and practice street photography —
               sharpening observation, composition, and craft.
             </p>
-            <p className="text-muted-foreground" style={{ fontSize: 15, lineHeight: 1.8, ...SANS }}>
+            <p style={{ fontSize: 15, lineHeight: 1.8, ...SANS, color: "rgba(212, 204, 194, 0.8)" }}>
               I bring that same curiosity into exploring food, culture, and everyday details.
             </p>
           </div>
