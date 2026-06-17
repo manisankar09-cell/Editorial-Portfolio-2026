@@ -6,6 +6,7 @@ import caiListDetailImage from "../../imports/slide-05.png";
 import caiFilteringImage from "../../imports/slide-06.png";
 import caiGridLayoutImage from "../../imports/Grid layout.png";
 import caiExistingImage from "../../imports/Existing.png";
+import caiDesignGuidelineImage from "../../imports/Design Guideline.png";
 import "../../styles/contextual-ai-case-study.css";
 
 const ROLE_COMPARISON = [
@@ -146,24 +147,11 @@ export function ContextualAIWorkflowsPage() {
                   prioritize, and act on AI-generated opportunities with more clarity and confidence.
                 </p>
 
-                <dl className="cai-hero__meta">
-                  <div>
-                    <dt>Role</dt>
-                    <dd>Lead Product Designer</dd>
-                  </div>
-                  <div>
-                    <dt>Product area</dt>
-                    <dd>CAI Homepage</dd>
-                  </div>
-                  <div>
-                    <dt>Focus</dt>
-                    <dd>Cross-sell / Upsell Recommendations</dd>
-                  </div>
-                  <div>
-                    <dt>System type</dt>
-                    <dd>AI-driven seller workflow</dd>
-                  </div>
-                </dl>
+                <div className="cai-hero__tags" aria-label="Project tags">
+                  <span className="ep-tag">Copilot</span>
+                  <span className="ep-tag">AI UX</span>
+                  <span className="ep-tag">Agentic Workflow</span>
+                </div>
 
               </article>
 
@@ -198,8 +186,113 @@ export function ContextualAIWorkflowsPage() {
 
                         <article className="cai-wireframe-panel" aria-hidden="true">
                           <div className="cai-wireframe-panel__head">
-                            <span className="cai-wireframe-panel__chevron">⌄</span>
-                            <span className="cai-wireframe-line cai-wireframe-line--sm" />
+                            <svg
+                              className="cai-wireframe-panel__copilot"
+                              width="16"
+                              height="16"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M11.6692 1.98972C11.4685 1.39807 10.9132 1 10.2885 1L9.38797 1C8.68687 1 8.08506 1.49905 7.95529 2.18803L7.02399 7.13282L7.48701 5.54883C7.66871 4.92722 8.23869 4.5 8.88631 4.5L11.7651 4.5L13.0096 6.12858L14.1176 4.5L13.5654 4.5C12.9406 4.5 12.3853 4.10193 12.1847 3.51027L11.6692 1.98972Z"
+                                fill="url(#paint0_radial_copilot_icon)"
+                              />
+                              <path
+                                d="M4.50315 14.0036C4.70173 14.5987 5.25872 15 5.88604 15H7.35227C8.14805 15 8.7968 14.3619 8.80993 13.5662L8.88307 9.13477L8.49774 10.4516C8.3159 11.073 7.74601 11.5 7.09855 11.5L4.20863 11.5L2.97828 10.4147L2.07037 11.5H2.61725C3.24457 11.5 3.80155 11.9013 4.00014 12.4964L4.50315 14.0036Z"
+                                fill="url(#paint1_radial_copilot_icon)"
+                              />
+                              <path
+                                d="M10.0004 1H4.16755C2.50102 1 1.50109 3.20235 0.834479 5.40471C0.044714 8.01392 -0.988711 11.5035 2.00105 11.5035H4.69024C5.34194 11.5035 5.91403 11.0727 6.09306 10.4461C6.52129 8.94725 7.32308 6.15282 7.94795 4.04403C8.25428 3.01026 8.50944 2.12243 8.90103 1.56954C9.12058 1.25958 9.48649 1 10.0004 1Z"
+                                fill="url(#paint2_radial_copilot_icon)"
+                              />
+                              <path
+                                d="M10.0004 1H4.16755C2.50102 1 1.50109 3.20235 0.834479 5.40471C0.044714 8.01392 -0.988711 11.5035 2.00105 11.5035H4.69024C5.34194 11.5035 5.91403 11.0727 6.09306 10.4461C6.52129 8.94725 7.32308 6.15282 7.94795 4.04403C8.25428 3.01026 8.50944 2.12243 8.90103 1.56954C9.12058 1.25958 9.48649 1 10.0004 1Z"
+                                fill="url(#paint3_linear_copilot_icon)"
+                              />
+                              <path
+                                d="M5.99957 14.9999H11.8325C13.499 14.9999 14.4989 12.7978 15.1655 10.5957C15.9553 7.98677 16.9887 4.49756 13.999 4.49756H11.3097C10.658 4.49756 10.086 4.92836 9.90692 5.55496C9.47868 7.05365 8.67692 9.8477 8.05205 11.9562C7.74573 12.9899 7.49057 13.8776 7.09897 14.4304C6.87943 14.7404 6.51352 14.9999 5.99957 14.9999Z"
+                                fill="url(#paint4_radial_copilot_icon)"
+                              />
+                              <path
+                                d="M5.99957 14.9999H11.8325C13.499 14.9999 14.4989 12.7978 15.1655 10.5957C15.9553 7.98677 16.9887 4.49756 13.999 4.49756H11.3097C10.658 4.49756 10.086 4.92836 9.90692 5.55496C9.47868 7.05365 8.67692 9.8477 8.05205 11.9562C7.74573 12.9899 7.49057 13.8776 7.09897 14.4304C6.87943 14.7404 6.51352 14.9999 5.99957 14.9999Z"
+                                fill="url(#paint5_linear_copilot_icon)"
+                              />
+                              <defs>
+                                <radialGradient
+                                  id="paint0_radial_copilot_icon"
+                                  cx="0"
+                                  cy="0"
+                                  r="1"
+                                  gradientTransform="matrix(-4.01994 -5.00476 -4.34022 4.19783 13.0847 7.1729)"
+                                  gradientUnits="userSpaceOnUse"
+                                >
+                                  <stop offset="0.0955758" stopColor="#00AEFF" />
+                                  <stop offset="0.773185" stopColor="#2253CE" />
+                                  <stop offset="1" stopColor="#0736C4" />
+                                </radialGradient>
+                                <radialGradient
+                                  id="paint1_radial_copilot_icon"
+                                  cx="0"
+                                  cy="0"
+                                  r="1"
+                                  gradientTransform="matrix(3.56222 4.42321 4.20512 -3.61031 3.30634 11.0661)"
+                                  gradientUnits="userSpaceOnUse"
+                                >
+                                  <stop stopColor="#FFB657" />
+                                  <stop offset="0.633728" stopColor="#FF5F3D" />
+                                  <stop offset="0.923392" stopColor="#C02B3C" />
+                                </radialGradient>
+                                <radialGradient
+                                  id="paint2_radial_copilot_icon"
+                                  cx="0"
+                                  cy="0"
+                                  r="1"
+                                  gradientTransform="matrix(-0.528444 -9.30665 52.2779 -2.96789 4.023 11.4998)"
+                                  gradientUnits="userSpaceOnUse"
+                                >
+                                  <stop offset="0.03" stopColor="#FFC800" />
+                                  <stop offset="0.31" stopColor="#98BD42" />
+                                  <stop offset="0.49" stopColor="#52B471" />
+                                  <stop offset="0.843838" stopColor="#0D91E1" />
+                                </radialGradient>
+                                <linearGradient
+                                  id="paint3_linear_copilot_icon"
+                                  x1="4.54577"
+                                  y1="1"
+                                  x2="5.00014"
+                                  y2="11.5035"
+                                  gradientUnits="userSpaceOnUse"
+                                >
+                                  <stop stopColor="#3DCBFF" />
+                                  <stop offset="0.246674" stopColor="#0588F7" stopOpacity="0" />
+                                </linearGradient>
+                                <radialGradient
+                                  id="paint4_radial_copilot_icon"
+                                  cx="0"
+                                  cy="0"
+                                  r="1"
+                                  gradientTransform="matrix(-4.60802 13.1726 -15.6828 -5.81373 14.2986 3.4693)"
+                                  gradientUnits="userSpaceOnUse"
+                                >
+                                  <stop offset="0.0661714" stopColor="#8C48FF" />
+                                  <stop offset="0.5" stopColor="#F2598A" />
+                                  <stop offset="0.895833" stopColor="#FFB152" />
+                                </radialGradient>
+                                <linearGradient
+                                  id="paint5_linear_copilot_icon"
+                                  x1="14.7594"
+                                  y1="3.85637"
+                                  x2="14.7534"
+                                  y2="6.71683"
+                                  gradientUnits="userSpaceOnUse"
+                                >
+                                  <stop offset="0.0581535" stopColor="#F8ADFA" />
+                                  <stop offset="0.708063" stopColor="#A86EDD" stopOpacity="0" />
+                                </linearGradient>
+                              </defs>
+                            </svg>
+                            <span className="cai-wireframe-panel__title">For Your Immediate Action (6)</span>
                             <span className="cai-wireframe-line cai-wireframe-line--xs" />
                             <span className="cai-wireframe-line cai-wireframe-line--xs" />
                             <span className="cai-wireframe-panel__dot" />
@@ -353,35 +446,34 @@ export function ContextualAIWorkflowsPage() {
 
           <section className="cai-section cai-section--pre-hypothesis">
             <SectionHeading
-              index="REDESIGN & DISCOVERY"
-              title="Homepage redesign"
-              subtitle="Reframing the homepage around opportunity discovery"
+              index="PROACTIVE AI SURFACE"
+              title="Contextual AI Homepage design"
+              subtitle="A proactive CopilotHome drawer for contextual, action-ready assistance"
             />
-            <div className="cai-walkthrough-grid">
-              <article className="cai-structured-panel cai-structured-panel--clean">
-                <p className="cai-structured-lead">
-                  The homepage became the entry point for AI-generated sales recommendations, organized to help sellers
-                  quickly understand where to focus.
-                </p>
-                <p className="cai-structured-label">Key improvements</p>
-                <ul className="cai-structured-list">
-                  <li>Solution-area organization</li>
-                  <li>Clear recommendation categories</li>
-                  <li>Stronger entry points</li>
-                  <li>Reduced clutter</li>
-                  <li>More direct path into details</li>
-                </ul>
-              </article>
-              <div className="cai-product-mock" aria-label="homepage redesign annotated mock">
-                <img
-                  className="cai-product-mock__image"
-                  src={caiHomeImage}
-                  alt="CAI Homepage showing AI-generated opportunity recommendations and grouped discovery modules"
-                />
-                <p className="cai-product-mock__caption">
-                  Opportunity groups, role-aware entry points, and clearer priority cues reframe the homepage around action.
-                </p>
+            <div className="cai-homepage-spotlight__meta">
+              <p className="cai-section-text cai-homepage-spotlight__intro">
+                The Contextual AI Homepage is an AI-powered insights drawer that surfaces recommendations, actions, and
+                upcoming events tied to the user&apos;s current work context. It centralizes Copilot-driven assistance so
+                users can quickly see what needs attention, what changed, and what&apos;s next without leaving their workflow.
+              </p>
+              <ul className="cai-homepage-spotlight__points">
+                <li>Centralized entry point for AI guidance</li>
+                <li>Live context from current account and workflow state</li>
+                <li>Recommendations linked to immediate next actions</li>
+              </ul>
+              <div className="cai-homepage-spotlight__chips" aria-label="homepage design characteristics">
+                <span className="ep-tag">Proactive</span>
+                <span className="ep-tag">Contextual</span>
+                <span className="ep-tag">Action-ready</span>
+                <span className="ep-tag ep-tag-subtle">CopilotHome Pattern</span>
               </div>
+            </div>
+            <div className="cai-homepage-spotlight" aria-label="contextual ai homepage design">
+              <img
+                className="cai-homepage-spotlight__image"
+                src={caiHomeImage}
+                alt="Contextual AI Homepage drawer showing recommendations, actions, and upcoming events"
+              />
             </div>
           </section>
 
@@ -399,7 +491,7 @@ export function ContextualAIWorkflowsPage() {
             </div>
           </section>
 
-          <section className="cai-section">
+          <section className="cai-section cai-section--hypothesis-extension">
             <SectionHeading
               index="MODEL & WORKFLOW"
               title="List-detail interaction model"
@@ -524,6 +616,35 @@ export function ContextualAIWorkflowsPage() {
                   className="cai-product-mock__image cai-product-mock__image--short"
                   src={caiGridLayoutImage}
                   alt="Responsive grid layout showing desktop and tablet behavior"
+                />
+              </div>
+            </div>
+          </section>
+
+          <section className="cai-section cai-section--guideline-break">
+            <SectionHeading index="SYSTEM THINKING" title="Scaling Beyond the Feature" />
+            <div className="cai-guideline-break">
+              <article className="cai-guideline-break__copy">
+                <p className="cai-structured-lead">
+                  To scale CAI, I created a simple design guideline system.
+                </p>
+                <ul className="cai-structured-list">
+                  <li>Standard recommendation pattern</li>
+                  <li>Decision confidence framework</li>
+                  <li>Reusable interaction models</li>
+                  <li>Shared playbook for design and PM</li>
+                </ul>
+                <div className="cai-guideline-global" aria-label="global component scope">
+                  <span>Global Component</span>
+                  <span>Multi-tool</span>
+                  <span>Multi-workflow</span>
+                </div>
+              </article>
+              <div className="cai-guideline-break__visual">
+                <img
+                  className="cai-guideline-break__image"
+                  src={caiDesignGuidelineImage}
+                  alt="Design Guideline reference showing reusable CAI interaction and content patterns"
                 />
               </div>
             </div>
