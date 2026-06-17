@@ -31,6 +31,11 @@ const lazyTimeTrackingPage = async () => {
   return { Component: TimeTrackingPage };
 };
 
+const lazyContextualAIWorkflowsPage = async () => {
+  const { ContextualAIWorkflowsPage } = await import("./pages/ContextualAIWorkflowsPage");
+  return { Component: ContextualAIWorkflowsPage };
+};
+
 const lazyComingSoonPage = async () => {
   const { ComingSoonPage } = await import("./pages/ComingSoonPage");
   return { Component: ComingSoonPage };
@@ -68,7 +73,7 @@ export const router = createBrowserRouter(
         },
         {
           path: "contextual-ai-workflows",
-          lazy: lazyComingSoonPage,
+          lazy: lazyContextualAIWorkflowsPage,
         },
         {
           path: "work",
@@ -87,7 +92,7 @@ export const router = createBrowserRouter(
             },
             {
               path: "contextual-ai-workflows",
-              lazy: lazyComingSoonPage,
+              lazy: lazyContextualAIWorkflowsPage,
             },
             {
               path: "copilot-insight-driven-workflows-cai",

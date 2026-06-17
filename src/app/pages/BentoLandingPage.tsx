@@ -249,7 +249,7 @@ function CardRole() {
   const isHovered = isMobile ? true : hovered;
 
   return (
-    <div style={{ minHeight: isMobile ? "auto" : 264, position: "relative", zIndex: 2 }} {...handlers}>
+    <div style={{ minHeight: isMobile ? "auto" : 286, position: "relative", zIndex: 2 }} {...handlers}>
       <motion.div
         animate={{ rotate: isMobile ? 0 : hovered ? 0 : -2.5, y: isMobile ? 0 : hovered ? -2 : 0 }}
         transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
@@ -326,7 +326,7 @@ function CardRole() {
           </motion.div>
         </div>
 
-        <div style={{ flex: isMobile ? "0 0 auto" : 1, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: isMobile ? "flex-start" : "space-between", gap: 14 }}>
+        <div style={{ flex: isMobile ? "0 0 auto" : 1, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: "flex-start", gap: 14 }}>
           <div style={{ minHeight: 0, display: "grid", rowGap: 8 }}>
             <p style={{ fontSize: 11, letterSpacing: "0.14em", color: "var(--muted-foreground)", opacity: 0.72, ...MONO }}>
               PROFILE
@@ -360,7 +360,7 @@ function CardRole() {
             </div>
           </div>
 
-          <div style={{ minHeight: isMobile ? "auto" : 24, display: "flex", alignItems: "flex-end" }}>
+          <div style={{ minHeight: isMobile ? "auto" : 24, display: "flex", alignItems: "flex-start", marginTop: isMobile ? 0 : 4 }}>
             <AnimatePresence mode="wait">
               {isHovered ? (
                 <motion.div
@@ -878,7 +878,7 @@ function CardContact() {
           className="ep-button ep-button-tertiary ep-button-lg"
           style={{ textDecoration: "none" }}
         >EMAIL →</a>
-        <a href="https://linkedin.com/in/manisankar" target="_blank" rel="noopener noreferrer"
+          <a href="https://www.linkedin.com/in/mani-sankar/" target="_blank" rel="noopener noreferrer"
           className="ep-button ep-button-tertiary ep-button-lg"
           style={{ textDecoration: "none" }}
         >LINKEDIN →</a>

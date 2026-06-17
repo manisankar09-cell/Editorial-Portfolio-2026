@@ -145,7 +145,7 @@ function Hero() {
           {/* Left */}
           <div style={{ gridColumn: "1 / 7" }} className="flex flex-col justify-center">
             <p style={{ fontSize: 11, letterSpacing: "0.18em", fontFamily: "'DM Mono', monospace", color: "var(--muted-foreground)", marginBottom: 28 }}>
-              CXP DESIGN SYSTEM
+              01 - CXP DESIGN SYSTEM
             </p>
             <h1
               style={{
