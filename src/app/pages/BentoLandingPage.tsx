@@ -511,7 +511,7 @@ function CardAIWork() {
           className="ep-button ep-button-hyperlink"
           style={{ display: "inline-flex" }}
         >
-          VIEW →
+          View case study →
         </Link>
       </div>
     </div>

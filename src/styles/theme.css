@@ -212,7 +212,7 @@
   --hover-contact:   rgba(196, 72,  30, 0.06);
   --home-card-surface: var(--card);
   --home-secondary-surface: var(--secondary);
-  --home-contact-surface: var(--secondary);
+  --home-contact-surface: var(--hover-identity);
 }
 
 /* Paper theme — textured warm cream */
@@ -280,6 +280,7 @@ body.theme-paper {
   --hover-clock-muted-fg: rgba(238, 240, 242, 0.78);
   --hover-gallery:   rgba( 92,  74,  26, 0.09);
   --hover-contact:   rgba( 26,  92,  74, 0.07);
+  --home-contact-surface: var(--hover-identity);
 }
 
 [data-theme="dusk"] {

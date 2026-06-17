@@ -293,14 +293,21 @@ function HeroBlock() {
           </div>
         </div>
       </div>
-      <div className="border-t border-border" style={{ marginTop: 56, width: "100%" }} />
     </section>
   );
 }
 
 function NarrativeBlock() {
   return (
-    <section id="thinking" className="section-pad">
+    <section
+      id="thinking"
+      className="section-pad"
+      style={{
+        paddingTop: 52,
+        paddingBottom: 52,
+        backgroundColor: "color-mix(in srgb, var(--hover-identity) 26%, transparent)",
+      }}
+    >
       <div className="site-container">
         <div className="responsive-grid-12">
           <div style={{ gridColumn: "1 / 4" }}>
@@ -581,6 +588,7 @@ function ContactBlock() {
       id="contact"
       className="border-t border-border section-pad"
       style={{
+        backgroundColor: "color-mix(in srgb, var(--hover-contact) 22%, transparent)",
         backgroundImage: [
           "radial-gradient(circle at 16% 18%, color-mix(in srgb, var(--accent) 12%, transparent) 0%, transparent 44%)",
           "radial-gradient(circle at 88% 84%, color-mix(in srgb, var(--accent) 9%, transparent) 0%, transparent 40%)",
@@ -630,7 +638,6 @@ export function AboutPage() {
       <main style={{ flex: 1 }}>
         <HeroBlock />
         <NarrativeBlock />
-        <Divider />
         <HowIThinkBlock />
         <HowIWorkBlock />
         <Divider />
