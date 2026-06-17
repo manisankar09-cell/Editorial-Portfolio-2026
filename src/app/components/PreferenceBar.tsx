@@ -42,6 +42,14 @@ const MODES: { id: LayoutMode; label: string; icon: React.ReactNode }[] = [
 
 export function PreferenceBar() {
   const { layout, setLayout, a11y, setA11y } = usePreference();
+  const panelBorder = "color-mix(in srgb, var(--primary-foreground) 8%, transparent)";
+  const activeBg = "color-mix(in srgb, var(--primary-foreground) 12%, transparent)";
+  const activeFg = "color-mix(in srgb, var(--primary-foreground) 92%, transparent)";
+  const idleFg = "color-mix(in srgb, var(--primary-foreground) 38%, transparent)";
+  const hoverFg = "color-mix(in srgb, var(--primary-foreground) 65%, transparent)";
+  const focusRing = "color-mix(in srgb, var(--primary-foreground) 50%, transparent)";
+  const divider = "color-mix(in srgb, var(--primary-foreground) 12%, transparent)";
+  const indicator = "color-mix(in srgb, var(--primary-foreground) 70%, transparent)";
 
   return (
     <motion.div
@@ -60,7 +68,7 @@ export function PreferenceBar() {
         alignItems: "center",
         gap: 2,
         background: "var(--foreground)",
-        border: "1px solid rgba(255,255,255,0.08)",
+        border: `1px solid ${panelBorder}`,
         padding: "5px 6px",
         backdropFilter: "blur(12px)",
         boxShadow: "0 4px 24px rgba(0,0,0,0.18)",
@@ -82,16 +90,16 @@ export function PreferenceBar() {
               alignItems: "center",
               gap: 6,
               padding: "6px 10px",
-              background: active ? "rgba(245,244,240,0.12)" : "transparent",
-              color: active ? "rgba(245,244,240,0.92)" : "rgba(245,244,240,0.38)",
+              background: active ? activeBg : "transparent",
+              color: active ? activeFg : idleFg,
               border: "none",
               cursor: "pointer",
               transition: "color 0.15s, background 0.15s",
               outline: "none",
             }}
-            onMouseEnter={e => { if (!active) e.currentTarget.style.color = "rgba(245,244,240,0.65)"; }}
-            onMouseLeave={e => { if (!active) e.currentTarget.style.color = "rgba(245,244,240,0.38)"; }}
-            onFocus={e => { e.currentTarget.style.outline = "2px solid rgba(245,244,240,0.5)"; e.currentTarget.style.outlineOffset = "2px"; }}
+            onMouseEnter={e => { if (!active) e.currentTarget.style.color = hoverFg; }}
+            onMouseLeave={e => { if (!active) e.currentTarget.style.color = idleFg; }}
+            onFocus={e => { e.currentTarget.style.outline = `2px solid ${focusRing}`; e.currentTarget.style.outlineOffset = "2px"; }}
             onBlur={e => { e.currentTarget.style.outline = "none"; }}
           >
             {mode.icon}
@@ -113,7 +121,7 @@ export function PreferenceBar() {
                     width: 3,
                     height: 3,
                     borderRadius: "50%",
-                    background: "rgba(245,244,240,0.7)",
+                    background: indicator,
                   }}
                 />
               )}
@@ -123,7 +131,7 @@ export function PreferenceBar() {
       })}
 
       {/* Divider */}
-      <div style={{ width: 1, height: 20, background: "rgba(245,244,240,0.12)", margin: "0 4px" }} aria-hidden="true" />
+      <div style={{ width: 1, height: 20, background: divider, margin: "0 4px" }} aria-hidden="true" />
 
       {/* A11y toggle */}
       <button
@@ -136,16 +144,16 @@ export function PreferenceBar() {
           alignItems: "center",
           gap: 6,
           padding: "6px 10px",
-          background: a11y ? "rgba(245,244,240,0.12)" : "transparent",
-          color: a11y ? "rgba(245,244,240,0.92)" : "rgba(245,244,240,0.38)",
+          background: a11y ? activeBg : "transparent",
+          color: a11y ? activeFg : idleFg,
           border: "none",
           cursor: "pointer",
           transition: "color 0.15s, background 0.15s",
           outline: "none",
         }}
-        onMouseEnter={e => { if (!a11y) e.currentTarget.style.color = "rgba(245,244,240,0.65)"; }}
-        onMouseLeave={e => { if (!a11y) e.currentTarget.style.color = "rgba(245,244,240,0.38)"; }}
-        onFocus={e => { e.currentTarget.style.outline = "2px solid rgba(245,244,240,0.5)"; e.currentTarget.style.outlineOffset = "2px"; }}
+        onMouseEnter={e => { if (!a11y) e.currentTarget.style.color = hoverFg; }}
+        onMouseLeave={e => { if (!a11y) e.currentTarget.style.color = idleFg; }}
+        onFocus={e => { e.currentTarget.style.outline = `2px solid ${focusRing}`; e.currentTarget.style.outlineOffset = "2px"; }}
         onBlur={e => { e.currentTarget.style.outline = "none"; }}
       >
         <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">

@@ -304,12 +304,12 @@ function CardRole() {
                 <motion.div
                   animate={isHovered ? { scale: [1, 1.4, 1], opacity: [0.6, 1, 0.6] } : { scale: 1 }}
                   transition={{ duration: 1.2, repeat: isHovered ? Infinity : 0 }}
-                  style={{ width: 7, height: 7, borderRadius: "50%", background: "#4caf50" }}
+                  style={{ width: 7, height: 7, borderRadius: "50%", background: "var(--accent)" }}
                 />
                 <motion.span
                   animate={isHovered ? { opacity: 1, x: 0 } : { opacity: 0, x: -4 }}
                   transition={{ duration: 0.2 }}
-                  style={{ fontSize: 11, letterSpacing: "0.1em", color: "#4caf50", ...MONO }}
+                  style={{ fontSize: 11, letterSpacing: "0.1em", color: "var(--accent)", ...MONO }}
                 >
                   OPEN
                 </motion.span>

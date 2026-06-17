@@ -165,7 +165,7 @@ function SystemComposition() {
           <div className="flex items-center gap-2 mb-2">
             <div
               className="rounded-full bg-accent/80 flex items-center justify-center"
-              style={{ width: 14, height: 14, fontSize: 8, color: "#fff" }}
+              style={{ width: 14, height: 14, fontSize: 8, color: "var(--accent-foreground)" }}
             >
               ✦
             </div>
@@ -174,7 +174,7 @@ function SystemComposition() {
                 fontSize: 10,
                 letterSpacing: "0.12em",
                 fontFamily: "'DM Mono', monospace",
-                color: "rgba(245,244,240,0.5)",
+                color: "color-mix(in srgb, var(--primary-foreground) 52%, transparent)",
               }}
             >
               COPILOT PANEL
@@ -184,7 +184,7 @@ function SystemComposition() {
           <div className="bg-white/8 h-1.5 w-3/4 mb-2" />
           <div
             className="border border-white/20 px-2 py-0.5 inline-block"
-            style={{ fontSize: 10, color: "rgba(245,244,240,0.7)" }}
+            style={{ fontSize: 10, color: "color-mix(in srgb, var(--primary-foreground) 72%, transparent)" }}
           >
             Generate response →
           </div>

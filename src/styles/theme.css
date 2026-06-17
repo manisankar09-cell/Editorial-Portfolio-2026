@@ -341,9 +341,9 @@ body.theme-paper {
   --hover-clock-muted-fg: rgba(240, 236, 230, 0.78);
   --hover-gallery:   rgba(201, 125, 42, 0.12);
   --hover-contact:   rgba(201, 125, 42, 0.10);
-  --home-card-surface: #221f1b;
-  --home-secondary-surface: #2a2622;
-  --home-contact-surface: #2a2622;
+  --home-card-surface: var(--card);
+  --home-secondary-surface: var(--secondary);
+  --home-contact-surface: var(--secondary);
 }
 
 /* ── Accessibility mode overrides ────────────────────────────────────────── */

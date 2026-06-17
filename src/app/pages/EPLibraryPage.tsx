@@ -17,7 +17,7 @@ const MONO: React.CSSProperties = { fontFamily: "'DM Mono', monospace" };
 const SANS: React.CSSProperties = { fontFamily: "'Inter', sans-serif" };
 
 const PANEL: React.CSSProperties = {
-  background: "color-mix(in srgb, var(--card) 88%, white 12%)",
+  background: "color-mix(in srgb, var(--card) 88%, var(--background) 12%)",
   border: "1px solid color-mix(in srgb, var(--border) 92%, transparent)",
   borderRadius: 8,
   backdropFilter: "blur(8px)",

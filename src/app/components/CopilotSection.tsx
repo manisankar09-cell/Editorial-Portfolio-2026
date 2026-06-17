@@ -55,7 +55,7 @@ export function CopilotSection() {
             {/* Panel header */}
             <div
               className="border-b flex items-center justify-between px-6 py-4"
-              style={{ borderColor: "rgba(245,244,240,0.1)" }}
+              style={{ borderColor: "color-mix(in srgb, var(--primary-foreground) 10%, transparent)" }}
             >
               <div className="flex items-center gap-2.5">
                 <div
@@ -65,7 +65,7 @@ export function CopilotSection() {
                     height: 18,
                     background: "var(--accent)",
                     fontSize: 10,
-                    color: "#fff",
+                    color: "var(--accent-foreground)",
                   }}
                 >
                   ✦
@@ -75,7 +75,7 @@ export function CopilotSection() {
                     fontSize: 11,
                     letterSpacing: "0.14em",
                     fontFamily: "'DM Mono', monospace",
-                    color: "rgba(245,244,240,0.6)",
+                    color: "color-mix(in srgb, var(--primary-foreground) 62%, transparent)",
                   }}
                 >
                   COPILOT
@@ -85,7 +85,7 @@ export function CopilotSection() {
                 style={{
                   fontSize: 10,
                   fontFamily: "'DM Mono', monospace",
-                  color: "rgba(245,244,240,0.3)",
+                  color: "color-mix(in srgb, var(--primary-foreground) 36%, transparent)",
                   letterSpacing: "0.1em",
                 }}
               >
@@ -102,7 +102,7 @@ export function CopilotSection() {
                     fontSize: 10,
                     letterSpacing: "0.14em",
                     fontFamily: "'DM Mono', monospace",
-                    color: "rgba(245,244,240,0.35)",
+                    color: "color-mix(in srgb, var(--primary-foreground) 38%, transparent)",
                     marginBottom: 12,
                   }}
                 >
@@ -119,7 +119,7 @@ export function CopilotSection() {
                       style={{
                         width: line.w,
                         height: 10,
-                        background: `rgba(245,244,240,${line.opacity})`,
+                        background: `color-mix(in srgb, var(--primary-foreground) ${Math.round(line.opacity * 100)}%, transparent)`,
                       }}
                     />
                   ))}
@@ -127,7 +127,7 @@ export function CopilotSection() {
               </div>
 
               {/* Divider */}
-              <div style={{ height: 1, background: "rgba(245,244,240,0.08)" }} />
+              <div style={{ height: 1, background: "color-mix(in srgb, var(--primary-foreground) 8%, transparent)" }} />
 
               {/* Suggestions */}
               <div>
@@ -136,7 +136,7 @@ export function CopilotSection() {
                     fontSize: 10,
                     letterSpacing: "0.14em",
                     fontFamily: "'DM Mono', monospace",
-                    color: "rgba(245,244,240,0.35)",
+                    color: "color-mix(in srgb, var(--primary-foreground) 38%, transparent)",
                     marginBottom: 10,
                   }}
                 >
@@ -148,7 +148,7 @@ export function CopilotSection() {
                       key={s}
                       className="flex items-center gap-3"
                       style={{
-                        border: "1px solid rgba(245,244,240,0.1)",
+                        border: "1px solid color-mix(in srgb, var(--primary-foreground) 10%, transparent)",
                         padding: "8px 14px",
                       }}
                     >
@@ -166,7 +166,7 @@ export function CopilotSection() {
                         style={{
                           fontSize: 12,
                           fontFamily: "'Inter', sans-serif",
-                          color: "rgba(245,244,240,0.65)",
+                          color: "color-mix(in srgb, var(--primary-foreground) 66%, transparent)",
                         }}
                       >
                         {s}
@@ -177,19 +177,19 @@ export function CopilotSection() {
               </div>
 
               {/* Divider */}
-              <div style={{ height: 1, background: "rgba(245,244,240,0.08)" }} />
+              <div style={{ height: 1, background: "color-mix(in srgb, var(--primary-foreground) 8%, transparent)" }} />
 
               {/* Input row */}
               <div
                 className="flex items-center gap-3"
-                style={{ border: "1px solid rgba(245,244,240,0.15)", padding: "10px 14px" }}
+                style={{ border: "1px solid color-mix(in srgb, var(--primary-foreground) 15%, transparent)", padding: "10px 14px" }}
               >
                 <span
                   style={{
                     flex: 1,
                     fontSize: 12,
                     fontFamily: "'Inter', sans-serif",
-                    color: "rgba(245,244,240,0.3)",
+                    color: "color-mix(in srgb, var(--primary-foreground) 34%, transparent)",
                   }}
                 >
                   Ask Copilot something…
@@ -198,9 +198,9 @@ export function CopilotSection() {
                   style={{
                     fontSize: 11,
                     fontFamily: "'DM Mono', monospace",
-                    color: "rgba(245,244,240,0.5)",
+                    color: "color-mix(in srgb, var(--primary-foreground) 54%, transparent)",
                     background: "transparent",
-                    border: "1px solid rgba(245,244,240,0.2)",
+                    border: "1px solid color-mix(in srgb, var(--primary-foreground) 20%, transparent)",
                     padding: "4px 12px",
                     cursor: "pointer",
                     letterSpacing: "0.08em",

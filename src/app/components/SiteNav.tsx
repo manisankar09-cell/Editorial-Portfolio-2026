@@ -9,7 +9,7 @@ const PREVIOUS_PATH_KEY = "ep-previous-path";
 // ── Theme palette colours ─────────────────────────────────────────────────
 
 const THEMES: { id: ColorTheme; bg: string; accent: string; label: string }[] = [
-  { id: "paper", bg: "#f2e6d4", accent: "#c4481e", label: "Paper" },
+  { id: "paper", bg: "#f4f1ec", accent: "#c4481e", label: "Paper" },
   { id: "slate", bg: "#f0f2f5", accent: "#1a5c4a", label: "Slate" },
   { id: "dusk",  bg: "#1a1714", accent: "#c97d2a", label: "Dusk"  },
 ];
@@ -120,7 +120,7 @@ function DesktopControls() {
               cursor: "pointer", background: t.bg, padding: 0, flexShrink: 0,
               boxShadow: colorTheme === t.id
                 ? "0 0 0 2px var(--foreground), inset 0 0 0 3px " + t.accent
-                : "0 0 0 1px rgba(0,0,0,0.15)",
+                : "0 0 0 1px var(--border)",
               transition: "box-shadow 0.15s",
             }}
           />
