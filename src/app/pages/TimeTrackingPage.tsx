@@ -213,7 +213,7 @@ function ClassicView() {
           <div className="tt-hero-layout" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }}>
             <div className="tt-hero-copy">
               <p className="tt-section-eyebrow" style={{ fontSize: 10, letterSpacing: "0.2em", color: "var(--muted-foreground)", ...MONO, marginBottom: 16 }}>
-                CASE STUDY
+                  03 - CASE STUDY
               </p>
               <h1 style={{ fontSize: "clamp(32px, 4vw, 54px)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1.05, ...SANS, marginBottom: 20 }}>
                 Time Tracking Agent

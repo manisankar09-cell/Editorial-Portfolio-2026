@@ -249,9 +249,9 @@ function CardRole() {
   const isHovered = isMobile ? true : hovered;
 
   return (
-    <div style={{ minHeight: isMobile ? "auto" : 286, position: "relative", zIndex: 2 }} {...handlers}>
+    <div style={{ height: "100%", minHeight: 0, position: "relative", zIndex: 2 }} {...handlers}>
       <motion.div
-        animate={{ rotate: isMobile ? 0 : hovered ? 0 : -2.5, y: isMobile ? 0 : hovered ? -2 : 0 }}
+        animate={{ rotate: isMobile ? 0 : hovered ? 0 : -2.5, y: 0 }}
         transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
         style={{ height: isMobile ? "auto" : "100%", transformOrigin: "center center", borderColor: isHovered ? ACCENT_BORDER : "var(--border)" }}
         className="border border-border overflow-hidden"
@@ -260,11 +260,11 @@ function CardRole() {
           style={{
             background: isHovered ? "var(--hover-identity)" : ACCENT_SECONDARY_WASH,
             transition: "background 0.35s cubic-bezier(0.4,0,0.2,1)",
-            padding: "22px 22px 20px", height: isMobile ? "auto" : "100%",
+            padding: isMobile ? "22px 22px 20px" : "20px 20px 18px", height: isMobile ? "auto" : "100%",
             display: "flex", flexDirection: "column", gap: 18,
           }}
         >
-        <div style={{ display: "flex", alignItems: isHovered ? "flex-end" : "flex-start", gap: 14, minHeight: isMobile ? "auto" : 96 }}>
+        <div style={{ display: "flex", alignItems: isHovered ? "flex-end" : "flex-start", gap: 14, minHeight: isMobile ? "auto" : 88 }}>
           <motion.div
             animate={{ width: 96, height: 96 }}
             transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
@@ -326,12 +326,12 @@ function CardRole() {
           </motion.div>
         </div>
 
-        <div style={{ flex: isMobile ? "0 0 auto" : 1, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: "flex-start", gap: 14 }}>
+        <div style={{ flex: isMobile ? "0 0 auto" : 1, minHeight: 0, display: "flex", flexDirection: "column", justifyContent: "space-between", gap: 12 }}>
           <div style={{ minHeight: 0, display: "grid", rowGap: 8 }}>
-            <p style={{ fontSize: 11, letterSpacing: "0.14em", color: "var(--muted-foreground)", opacity: 0.72, ...MONO }}>
+            <p style={{ fontSize: 11, letterSpacing: "0.14em", color: "color-mix(in srgb, var(--accent) 76%, var(--foreground) 24%)", opacity: 0.82, ...MONO }}>
               PROFILE
             </p>
-            <div style={{ minHeight: isMobile ? "auto" : 68 }}>
+            <div style={{ minHeight: isMobile ? "auto" : 60 }}>
               <AnimatePresence mode="wait">
                 {isHovered ? (
                   <motion.p
@@ -380,7 +380,7 @@ function CardRole() {
                 </motion.div>
               ) : !isMobile ? (
                 <motion.p key="hint-rest" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                  style={{ fontSize: 11, color: "var(--muted-foreground)", opacity: 0.35, ...MONO, letterSpacing: "0.1em" }}>
+                  style={{ fontSize: 11, color: "color-mix(in srgb, var(--accent) 72%, var(--foreground) 28%)", opacity: 0.55, ...MONO, letterSpacing: "0.1em" }}>
                   TAP OR HOVER
                 </motion.p>
               ) : null}
@@ -505,26 +505,14 @@ function CardAIWork() {
         </h2>
         <p style={{ fontSize: 11, lineHeight: 1.55, color: "var(--muted-foreground)", ...SANS }}>{p.tagline}</p>
       </div>
-      {/* Fixed height bottom */}
-      <div style={{ position: "relative", height: 44 }}>
-        <AnimatePresence>
-          {hovered ? (
-            <motion.div key="impact" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              style={{ position: "absolute", inset: 0 }}>
-              {p.impact.slice(0, 2).map(s => (
-                <div key={s.stat} style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 4 }}>
-                  <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: "-0.02em", ...SANS, color: "var(--accent)" }}>{s.stat}</span>
-                  <span style={{ fontSize: 11, color: "var(--muted-foreground)", ...SANS }}>{s.label}</span>
-                </div>
-              ))}
-          </motion.div>
-        ) : (
-            <motion.span key="soon" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", fontSize: 11, letterSpacing: "0.14em", color: "var(--muted-foreground)", ...MONO }}>
-              COMING SOON
-            </motion.span>
-          )}
-        </AnimatePresence>
+      <div style={{ minHeight: 24, display: "flex", alignItems: "flex-start", marginTop: isMobile ? 0 : 8 }}>
+        <Link
+          to={p.detailHref ?? `/${p.slug}`}
+          className="ep-button ep-button-hyperlink"
+          style={{ display: "inline-flex" }}
+        >
+          VIEW →
+        </Link>
       </div>
     </div>
   );
@@ -628,7 +616,7 @@ function CardTimeTracker() {
           background: hovered ? "var(--hover-project3)" : ACCENT_CARD_WASH,
           borderColor: hovered ? ACCENT_BORDER : "var(--border)",
           transition: "background 0.35s cubic-bezier(0.4,0,0.2,1)",
-          padding: 24, minHeight: isMobile ? "auto" : 168,
+          padding: 24, minHeight: isMobile ? "auto" : 224,
           display: "flex", flexDirection: "column", justifyContent: isMobile ? "flex-start" : "space-between", gap: isMobile ? 16 : 0,
           cursor: "pointer", height: "100%",
         }}
