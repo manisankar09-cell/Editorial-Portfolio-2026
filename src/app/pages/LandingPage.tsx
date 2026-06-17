@@ -6,6 +6,11 @@ import { SiteNav } from "../components/SiteNav";
 import { PROJECTS } from "../data/projects";
 
 const ACCENT_META = "color-mix(in srgb, var(--accent) 72%, var(--foreground) 28%)";
+const DIAGRAM_GRID = "color-mix(in srgb, var(--foreground) 10%, transparent)";
+const DIAGRAM_DARK_SURFACE = "color-mix(in srgb, #171924 84%, var(--background) 16%)";
+const DIAGRAM_DARK_STROKE = "color-mix(in srgb, white 26%, transparent)";
+const DIAGRAM_DARK_STROKE_SOFT = "color-mix(in srgb, white 16%, transparent)";
+const DIAGRAM_DARK_TEXT = "color-mix(in srgb, white 68%, transparent)";
 
 // ─── Magnetic CTA Button ───────────────────────────────────────────────────
 
@@ -129,7 +134,7 @@ function SystemVisual() {
         className="absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(17,17,16,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(17,17,16,0.05) 1px, transparent 1px)",
+            `linear-gradient(${DIAGRAM_GRID} 1px, transparent 1px), linear-gradient(90deg, ${DIAGRAM_GRID} 1px, transparent 1px)`,
           backgroundSize: "24px 24px",
         }}
       />
@@ -137,11 +142,14 @@ function SystemVisual() {
         {["FOUNDATIONS", "COMPONENTS", "PATTERNS", "TEMPLATES"].map((layer, i) => (
           <div
             key={layer}
-            className="border border-border bg-card flex items-center px-3 py-1.5"
-            style={{ background: `rgba(17,17,16,${0.02 + i * 0.03})` }}
+            className="border border-border flex items-center px-3 py-1.5"
+            style={{
+              background: `color-mix(in srgb, var(--card) ${84 - i * 6}%, var(--accent) ${16 + i * 6}%)`,
+              borderColor: "color-mix(in srgb, var(--accent) 16%, var(--border))",
+            }}
           >
             <span
-              style={{ fontSize: 11, fontFamily: "'DM Mono', monospace", letterSpacing: "0.1em", color: "var(--muted-foreground)" }}
+              style={{ fontSize: 11, fontFamily: "'DM Mono', monospace", letterSpacing: "0.1em", color: ACCENT_META }}
             >
               {layer}
             </span>
@@ -156,7 +164,7 @@ function AgentVisual() {
   return (
     <div
       className="relative overflow-hidden border-l border-border"
-      style={{ width: 280, flexShrink: 0, minHeight: 200, background: "var(--foreground)" }}
+      style={{ width: 280, flexShrink: 0, minHeight: 200, background: DIAGRAM_DARK_SURFACE }}
     >
       <div className="absolute inset-0 flex flex-col justify-center gap-3 px-6">
         <div className="flex items-center gap-2">
@@ -164,12 +172,12 @@ function AgentVisual() {
             className="rounded-full"
             style={{ width: 14, height: 14, background: "var(--accent)", opacity: 0.8, flexShrink: 0 }}
           />
-          <div style={{ height: 1, flex: 1, background: "rgba(245,244,240,0.15)" }} />
+          <div style={{ height: 1, flex: 1, background: DIAGRAM_DARK_STROKE }} />
         </div>
         {[80, 64, 48].map((w, i) => (
           <div
             key={i}
-            style={{ width: `${w}%`, height: 8, background: `rgba(245,244,240,${0.18 - i * 0.04})` }}
+            style={{ width: `${w}%`, height: 8, background: i === 0 ? DIAGRAM_DARK_STROKE : i === 1 ? "color-mix(in srgb, white 20%, transparent)" : DIAGRAM_DARK_STROKE_SOFT }}
           />
         ))}
         <div className="flex gap-2 mt-1">
@@ -180,8 +188,9 @@ function AgentVisual() {
                 fontSize: 11,
                 fontFamily: "'DM Mono', monospace",
                 padding: "3px 10px",
-                border: `1px solid rgba(245,244,240,${i === 0 ? 0.35 : 0.12})`,
-                color: `rgba(245,244,240,${i === 0 ? 0.6 : 0.3})`,
+                border: `1px solid ${i === 0 ? DIAGRAM_DARK_STROKE : DIAGRAM_DARK_STROKE_SOFT}`,
+                color: i === 0 ? DIAGRAM_DARK_TEXT : "color-mix(in srgb, white 44%, transparent)",
+                background: i === 0 ? "color-mix(in srgb, var(--accent) 12%, transparent)" : "transparent",
               }}
             >
               {a}
@@ -203,7 +212,7 @@ function PlatformVisual() {
         className="absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(17,17,16,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(17,17,16,0.04) 1px, transparent 1px)",
+            `linear-gradient(${DIAGRAM_GRID} 1px, transparent 1px), linear-gradient(90deg, ${DIAGRAM_GRID} 1px, transparent 1px)`,
           backgroundSize: "32px 32px",
         }}
       />
@@ -212,18 +221,37 @@ function PlatformVisual() {
           {[40, 56, 32].map((w, i) => (
             <div
               key={i}
-              className="border border-border bg-card"
-              style={{ width: w, height: 20, opacity: 0.8 }}
+              className="border"
+              style={{
+                width: w,
+                height: 20,
+                borderColor: "color-mix(in srgb, var(--foreground) 14%, var(--border))",
+                background: "color-mix(in srgb, var(--card) 88%, var(--background) 12%)",
+              }}
             />
           ))}
         </div>
-        <div className="border border-border bg-card" style={{ height: 48, opacity: 0.6 }} />
+        <div
+          className="border"
+          style={{
+            height: 48,
+            borderColor: "color-mix(in srgb, var(--foreground) 14%, var(--border))",
+            background: "color-mix(in srgb, var(--card) 82%, var(--secondary) 18%)",
+          }}
+        />
         <div className="flex gap-2">
           {[60, 40].map((w, i) => (
             <div
               key={i}
-              className="border border-border bg-card"
-              style={{ flex: w, height: 28, opacity: 0.5 }}
+              className="border"
+              style={{
+                flex: w,
+                height: 28,
+                borderColor: "color-mix(in srgb, var(--foreground) 14%, var(--border))",
+                background: i === 0
+                  ? "color-mix(in srgb, var(--card) 78%, var(--secondary) 22%)"
+                  : "color-mix(in srgb, var(--card) 72%, var(--secondary) 28%)",
+              }}
             />
           ))}
         </div>
@@ -501,14 +529,6 @@ function SelectedWork() {
                           </span>
                         ))}
                       </div>
-                      {!project.available && (
-                        <span
-                          className="text-muted-foreground"
-                          style={{ fontSize: 11, fontFamily: "'DM Mono', monospace", letterSpacing: "0.1em", opacity: 0.5 }}
-                        >
-                          COMING SOON
-                        </span>
-                      )}
                     </div>
                     <h3
                       className="text-foreground mb-4"
