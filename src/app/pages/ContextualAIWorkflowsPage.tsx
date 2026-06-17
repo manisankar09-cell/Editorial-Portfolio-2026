@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import { ProjectPagination } from "../components/CaseStudyNav";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteNav } from "../components/SiteNav";
@@ -8,21 +7,6 @@ import caiFilteringImage from "../../imports/slide-06.png";
 import caiGridLayoutImage from "../../imports/Grid layout.png";
 import caiExistingImage from "../../imports/Existing.png";
 import "../../styles/contextual-ai-case-study.css";
-
-const WHY_CARDS = [
-  {
-    title: "What changed",
-    body: "From recommendation carousel to scalable list-detail discovery.",
-  },
-  {
-    title: "Who it served",
-    body: "ATU sellers needing account-wide visibility and STU sellers needing focused solution-area recommendations.",
-  },
-  {
-    title: "Why it mattered",
-    body: "Better discovery, prioritization, and actionability for cross-sell and upsell opportunities.",
-  },
-];
 
 const ROLE_COMPARISON = [
   {
@@ -71,20 +55,24 @@ const SORTS = ["Estimated revenue", "Account", "Opportunity priority"];
 
 const IMPACT = [
   {
-    title: "Improved discoverability",
-    body: "Recommendations became easier to browse and filter.",
+    metric: "+200%",
+    title: "increase in recommendation actions",
+    body: "Users moved from browsing recommendations to taking action.",
   },
   {
-    title: "Faster prioritization",
-    body: "Sellers could identify relevant opportunities more quickly.",
+    metric: "+400%",
+    title: "improvement in workflow visibility",
+    body: "Critical opportunities became easier to discover.",
   },
   {
-    title: "Better actionability",
-    body: "Reasons to Believe and Next Best Action made recommendations more useful.",
+    metric: "33%",
+    title: "adoption in early rollout",
+    body: "Validated the need for AI-guided opportunity discovery.",
   },
   {
-    title: "Balanced visibility",
-    body: "The redesigned structure reduced over-reliance on a few visible carousel cards.",
+    metric: "~5x",
+    title: "increase in partner co-sell conversion potential",
+    body: "Better surfaced recommendations contributed to higher-value seller engagement.",
   },
 ];
 
@@ -103,29 +91,22 @@ const FILTER_FEATURES = [
   },
 ];
 
-const RESPONSIBILITIES = [
-  "Defined the recommendation discovery experience",
-  "Reframed carousel browsing into a scalable list-detail model",
-  "Designed filtering and sorting interactions",
-  "Created decision-support patterns for Reasons to Believe and Next Best Action",
-  "Aligned the experience to ATU and STU seller needs",
-  "Produced design artifacts and prototype flows for stakeholder review",
-];
-
-const SYSTEMS = [
-  "CAI Homepage",
-  "Recommendation cards",
-  "Filtering model",
-  "Detail view architecture",
-  "Responsive layout behavior",
-];
-
-const REFLECTION_POINTS = [
-  "AI output needs explanation",
-  "Sellers need flexible control",
-  "Familiar patterns reduce cognitive load",
-  "Decision support matters more than information density",
-  "Homepage experiences should trigger action, not just awareness",
+const ROLE_CARDS = [
+  {
+    n: "01",
+    title: "Interaction Model Design",
+    desc: "Defined the end-to-end recommendation workflow by shifting carousel browsing into a scalable list-detail model for decision-first selling.",
+  },
+  {
+    n: "02",
+    title: "Decision Support Patterns",
+    desc: "Designed filtering, sorting, Reasons to Believe, and Next Best Action patterns to make AI recommendations easier to evaluate and act on.",
+  },
+  {
+    n: "03",
+    title: "Cross-functional Delivery",
+    desc: "Aligned product, design, and engineering stakeholders through structured artifacts and prototype flows to support rollout and adoption.",
+  },
 ];
 
 function SectionHeading({
@@ -242,12 +223,33 @@ export function ContextualAIWorkflowsPage() {
           </section>
 
           <section id="overview" className="cai-section cai-section--summary">
-            <SectionHeading index="01 — CONTEXT & OVERVIEW" title="Project overview" />
-            <div className="cai-summary-grid">
-              {WHY_CARDS.map((card) => (
-                <article key={card.title} className="cai-card">
+            <SectionHeading index="CONTEXT & OVERVIEW" title="Project overview" />
+            <p className="cai-section-text" style={{ maxWidth: 980 }}>
+              <strong>Contextual AI Workflows</strong> reimagined how sellers discover and act on AI-driven
+              opportunities. By redesigning the CAI Homepage, recommendation architecture, and Cross-sell/Upsell
+              workflows, the experience transformed fragmented signals into clear next-best actions—improving
+              discoverability, increasing recommendation engagement, and creating a more scalable decision-support
+              system for enterprise sales teams.
+            </p>
+            <ul className="cai-structured-list" style={{ maxWidth: 980, marginTop: 16 }}>
+              <li>
+                <strong>Upsell:</strong> Encourages customers to expand or upgrade products they already use.
+              </li>
+              <li>
+                <strong>Cross-sell:</strong> Surfaces related products or services that complement the customer&apos;s
+                current footprint.
+              </li>
+            </ul>
+          </section>
+
+          <section className="cai-section">
+            <SectionHeading index="ROLE & CONTRIBUTION" title="My Role & Contribution" />
+            <div className="cai-role-contrib-grid">
+              {ROLE_CARDS.map((card) => (
+                <article key={card.n} className="cai-role-contrib-card">
+                  <span className="cai-role-contrib-card__n">{card.n}</span>
                   <h3>{card.title}</h3>
-                  <p>{card.body}</p>
+                  <p>{card.desc}</p>
                 </article>
               ))}
             </div>
@@ -255,7 +257,7 @@ export function ContextualAIWorkflowsPage() {
 
           <section className="cai-section">
             <SectionHeading
-              index="02 — PROBLEM & NEED"
+              index="PROBLEM & NEED"
               title="Why this mattered"
               subtitle="Information existed. Action did not."
             />
@@ -290,25 +292,7 @@ export function ContextualAIWorkflowsPage() {
 
           <section className="cai-section">
             <SectionHeading
-              index="03 — DOMAIN & FOUNDATIONS"
-              title="Understanding the domain"
-              subtitle="Understanding cross-sell and upsell"
-            />
-            <div className="cai-domain-grid">
-              <article className="cai-card">
-                <h3>Upsell</h3>
-                <p>Encourages customers to expand or upgrade products they already use.</p>
-              </article>
-              <article className="cai-card">
-                <h3>Cross-sell</h3>
-                <p>Surfaces related products or services that complement the customer’s current footprint.</p>
-              </article>
-            </div>
-          </section>
-
-          <section className="cai-section">
-            <SectionHeading
-              index="04 — USERS & ROLES"
+              index="USERS & ROLES"
               title="Users and roles"
               subtitle="Designing for two seller mindsets"
             />
@@ -331,7 +315,7 @@ export function ContextualAIWorkflowsPage() {
 
           <section className="cai-section">
             <SectionHeading
-              index="05 — CHALLENGES & GAPS"
+              index="CHALLENGES & GAPS"
               title="Existing experience challenges"
               subtitle="Recommendations were hidden in plain sight."
             />
@@ -367,9 +351,9 @@ export function ContextualAIWorkflowsPage() {
             </div>
           </section>
 
-          <section className="cai-section">
+          <section className="cai-section cai-section--pre-hypothesis">
             <SectionHeading
-              index="06 — REDESIGN & DISCOVERY"
+              index="REDESIGN & DISCOVERY"
               title="Homepage redesign"
               subtitle="Reframing the homepage around opportunity discovery"
             />
@@ -401,9 +385,9 @@ export function ContextualAIWorkflowsPage() {
             </div>
           </section>
 
-          <section className="cai-section cai-section--highlight">
+          <section className="cai-section cai-section--hypothesis">
             <div className="cai-highlight-panel">
-              <SectionHeading index="07 — HYPOTHESIS & SHIFT" title="Design hypothesis" />
+              <SectionHeading index="HYPOTHESIS & SHIFT" title="Design hypothesis" />
               <p className="cai-highlight-eyebrow">Pivot moment</p>
               <p className="cai-highlight-quote">
                 What if recommendations behaved more like a work queue than a carousel?
@@ -413,32 +397,11 @@ export function ContextualAIWorkflowsPage() {
                 through high-priority tasks.
               </p>
             </div>
-            <div className="cai-shift-grid">
-              <article className="cai-shift-card cai-shift-card--before">
-                <h3>Before</h3>
-                <ul>
-                  <li>Carousel</li>
-                  <li>Hidden cards</li>
-                  <li>Low scanability</li>
-                  <li>Limited control</li>
-                </ul>
-              </article>
-              <article className="cai-shift-card cai-shift-card--after">
-                <h3>After</h3>
-                <ul>
-                  <li>List-detail view</li>
-                  <li>Visible queue</li>
-                  <li>Filters and sorting</li>
-                  <li>Clear action path</li>
-                </ul>
-              </article>
-            </div>
-            <p className="cai-shift-note">From passive recommendation display to active decision workflow.</p>
           </section>
 
           <section className="cai-section">
             <SectionHeading
-              index="08 — MODEL & WORKFLOW"
+              index="MODEL & WORKFLOW"
               title="List-detail interaction model"
               subtitle="From browsing cards to working through decisions"
             />
@@ -452,16 +415,35 @@ export function ContextualAIWorkflowsPage() {
                 src={caiListDetailImage}
                 alt="List-detail recommendation workflow showing prioritized recommendation list, decision context, and action area"
               />
-              <p className="cai-list-detail-mock__caption">
-                The list-detail model turns recommendation browsing into a clearer decision workflow with persistent
-                context, stronger explanation, and a more direct path to action.
-              </p>
+              <div className="cai-list-detail-mock__shift" aria-label="before and after workflow comparison">
+                <div className="cai-shift-grid">
+                  <article className="cai-shift-card cai-shift-card--before">
+                    <h3>Before</h3>
+                    <ul>
+                      <li>Carousel</li>
+                      <li>Hidden cards</li>
+                      <li>Low scanability</li>
+                      <li>Limited control</li>
+                    </ul>
+                  </article>
+                  <article className="cai-shift-card cai-shift-card--after">
+                    <h3>After</h3>
+                    <ul>
+                      <li>List-detail view</li>
+                      <li>Visible queue</li>
+                      <li>Filters and sorting</li>
+                      <li>Clear action path</li>
+                    </ul>
+                  </article>
+                </div>
+                <p className="cai-shift-note">From passive recommendation display to active decision workflow.</p>
+              </div>
             </div>
           </section>
 
           <section className="cai-section">
             <SectionHeading
-              index="09 — FILTERS & SORTING"
+              index="FILTERS & SORTING"
               title="Filtering and sorting"
               subtitle="Helping sellers find the right opportunity faster"
             />
@@ -492,7 +474,7 @@ export function ContextualAIWorkflowsPage() {
 
           <section className="cai-section">
             <SectionHeading
-              index="10 — TRUST & DECISION"
+              index="TRUST & DECISION"
               title="Designing for decision confidence"
               subtitle="Helping sellers act, not just browse"
             />
@@ -525,7 +507,7 @@ export function ContextualAIWorkflowsPage() {
           </section>
 
           <section className="cai-section">
-            <SectionHeading index="11 — RESPONSIVE & LAYOUT" title="Responsive layout strategy" />
+            <SectionHeading index="RESPONSIVE & LAYOUT" title="Responsive layout strategy" />
             <div className="cai-responsive-layout">
               <div className="cai-responsive-layout__stack">
                 <article className="cai-card">
@@ -551,105 +533,75 @@ export function ContextualAIWorkflowsPage() {
         <section className="cai-impact" id="impact">
           <div className="cai-page__container">
             <SectionHeading
-              index="12 — IMPACT & OUTCOMES"
+              index="IMPACT & OUTCOMES"
               title="Impact and outcomes"
               subtitle="Turning recommendation visibility into seller action"
             />
             <div className="cai-impact__grid">
               {IMPACT.map((item) => (
-                <article key={item.title} className="cai-impact__card">
+                <article key={`${item.metric}-${item.title}`} className="cai-impact__card">
+                  <p className="cai-impact__metric">{item.metric}</p>
                   <h3>{item.title}</h3>
                   <p>{item.body}</p>
                 </article>
               ))}
             </div>
-            <p className="cai-impact__metrics-label">Optional metrics when available</p>
-            <ul className="cai-impact__metrics">
-              <li>Increased recommendation actions (placeholder)</li>
-              <li>Improved workflow visibility (placeholder)</li>
-              <li>Early adoption signals (placeholder)</li>
-            </ul>
           </div>
         </section>
 
         <div className="cai-page__container">
-          <section className="cai-section">
-            <SectionHeading index="13 — ROLE & CONTRIBUTION" title="My role" />
-            <p className="cai-section-text">
-              As lead product designer, I shaped the end-to-end interaction model for surfacing cross-sell and upsell
-              recommendations through the CAI Homepage.
-            </p>
-            <div className="cai-role-grid">
-              <article className="cai-card">
-                <h3>Responsibilities</h3>
-                <ul>
-                  {RESPONSIBILITIES.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </article>
-              <article className="cai-card">
-                <h3>Systems influenced</h3>
-                <ul>
-                  {SYSTEMS.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </article>
-            </div>
-          </section>
-
-          <section className="cai-section cai-section--reflection">
-            <SectionHeading index="14 — REFLECTION & LEARNINGS" title="Reflection" subtitle="What I learned" />
-            <blockquote className="cai-reflection-quote">Designing AI workflows means designing confidence.</blockquote>
-            <p className="cai-section-text">
-              A recommendation is only useful when the user can understand why it matters and what to do with it. This
-              project shifted my thinking from displaying AI output to designing the decision system around it.
-            </p>
-            <ul className="cai-reflection-list">
-              {REFLECTION_POINTS.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
-          </section>
-
-          <section className="cai-section">
-            <SectionHeading index="15 — RELATED & CONTEXT" title="Related projects" />
-            <div className="cai-related-grid">
-              <Link to="/cxp-design-system" className="cai-related-card">
-                <p>01 · CXP Design System</p>
-                <h3>Scaling a unified UX standard for enterprise products</h3>
-                <span>View case study →</span>
-              </Link>
-              <Link to="/time-tracking-agent" className="cai-related-card">
-                <p>03 · Time Tracking Agent</p>
-                <h3>Agent-assisted workflows for daily enterprise execution</h3>
-                <span>View case study →</span>
-              </Link>
-            </div>
-          </section>
-
-          <section className="cai-section cai-section--cta" id="cta">
-            <SectionHeading index="16 — NEXT & CONTACT" title="CTA" />
-            <h2 className="cai-cta-title">Designing AI systems that help people act with confidence.</h2>
-            <p className="cai-section-text">
-              If you are building AI-native enterprise workflows and need a decision-first product strategy, I would be
-              happy to collaborate.
-            </p>
-            <div className="cai-cta-actions">
-              <a className="ep-button ep-button-tertiary ep-button-lg" href="mailto:manisankar09@gmail.com">
-                Email
-              </a>
-              <a
-                className="ep-button ep-button-tertiary ep-button-lg"
-                href="https://www.linkedin.com/in/mani-sankar/"
-                target="_blank"
-                rel="noopener noreferrer"
+          <section id="reflection" className="cai-section" style={{ paddingTop: 96, paddingBottom: 96 }}>
+            <div className="mx-auto" style={{ maxWidth: 760 }}>
+              <p
+                className="text-muted-foreground"
+                style={{
+                  fontSize: 11,
+                  letterSpacing: "0.18em",
+                  fontFamily: "'DM Mono', monospace",
+                  marginBottom: 20,
+                }}
               >
-                LinkedIn
-              </a>
+                WHAT I LEARNED
+              </p>
+              <h2
+                style={{
+                  fontSize: "clamp(20px, 2.2vw, 28px)",
+                  fontWeight: 600,
+                  letterSpacing: "-0.02em",
+                  fontFamily: "'Inter', sans-serif",
+                  marginBottom: 32,
+                }}
+              >
+                Reflection
+              </h2>
+              <div style={{ width: 40, height: 2, background: "var(--accent)", opacity: 0.4, marginBottom: 32 }} />
+              <p
+                style={{
+                  fontSize: 16,
+                  lineHeight: 1.85,
+                  fontFamily: "'Inter', sans-serif",
+                  color: "var(--foreground)",
+                  marginBottom: 24,
+                }}
+              >
+                This project reinforced that design systems are not just libraries of components — they are operating
+                models for scale. By connecting foundations, patterns, AI surfaces, and engineering workflows, the
+                system helped teams move faster while maintaining consistency, accessibility, and product quality.
+              </p>
+              <p
+                style={{
+                  fontSize: 15,
+                  lineHeight: 1.8,
+                  fontFamily: "'Inter', sans-serif",
+                  color: "var(--muted-foreground)",
+                }}
+              >
+                It also shaped my perspective on designing for AI: the future is not just smarter interfaces, but
+                adaptable systems that understand context and drive meaningful action.
+              </p>
             </div>
           </section>
+
         </div>
       </main>
 
