@@ -70,7 +70,7 @@ export const PROJECTS: Project[] = [
       { stat: "↑",    label: "seller focus & decision speed" },
       { stat: "WCAG", label: "2.2 AA accessibility" },
     ],
-    available: false,
+    available: true,
   },
   {
     slug: "time-tracking-agent",
@@ -94,6 +94,6 @@ export const PROJECTS: Project[] = [
       { stat: "↑ 3×",  label: "Increased daily adoption rate by 3x" },
       { stat: "↑ 94%", label: "Increased entry accuracy to 94%" },
     ],
-    available: false,
+    available: true,
   },
 ];

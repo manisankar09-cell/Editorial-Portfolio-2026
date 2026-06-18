@@ -716,6 +716,8 @@ function AboutShort() {
 // ─── Signals ──────────────────────────────────────────────────────────────
 
 function Signals() {
+  const isMobile = useIsMobile();
+
   return (
     <section className="border-t border-border" style={{ paddingTop: "clamp(48px, 8vw, 72px)", paddingBottom: "clamp(48px, 8vw, 72px)" }}>
       <div className="site-container">
@@ -723,6 +725,7 @@ function Signals() {
           className="landing-signals-grid"
           style={{
             display: "grid",
+            gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)",
             gap: 0,
           }}
         >
@@ -730,7 +733,21 @@ function Signals() {
             <div
               key={s.stat}
               className="landing-signal-item flex flex-col gap-2 px-8 py-6"
-              style={{ borderLeft: i > 0 ? "1px solid var(--border)" : "none" }}
+              style={{
+                borderLeft: isMobile
+                  ? i % 2 === 1
+                    ? "1px solid var(--border)"
+                    : "none"
+                  : i > 0
+                    ? "1px solid var(--border)"
+                    : "none",
+                borderTop: isMobile
+                  ? i >= 2
+                    ? "1px solid var(--border)"
+                    : "none"
+                  : "none",
+                padding: isMobile ? "20px 16px" : "24px 32px",
+              }}
             >
               <span
                 className="text-foreground"

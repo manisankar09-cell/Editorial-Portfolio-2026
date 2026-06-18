@@ -163,14 +163,6 @@ export function CaseStudyNav({ projectSlug }: { projectSlug: string }) {
                           {p.tags}
                         </span>
                       </div>
-                      {!p.available && (
-                        <span
-                          className="ml-auto"
-                          style={{ fontSize: 9, fontFamily: "'DM Mono', monospace", color: "var(--muted-foreground)", letterSpacing: "0.1em", opacity: 0.5 }}
-                        >
-                          COMING SOON
-                        </span>
-                      )}
                       {isActive && (
                         <span
                           className="ml-auto"
@@ -246,7 +238,6 @@ export function ProjectPagination({ projectSlug }: { projectSlug: string }) {
                 <div className="flex flex-col gap-2">
                   <span style={{ fontSize: 10, fontFamily: "'DM Mono', monospace", letterSpacing: "0.14em", color: "var(--foreground)" }}>← PREVIOUS</span>
                   <span style={{ fontSize: 16, fontWeight: 500, fontFamily: "'Inter', sans-serif" }}>{prev.title}</span>
-                  <span style={{ fontSize: 10, fontFamily: "'DM Mono', monospace", color: "var(--foreground)", letterSpacing: "0.08em" }}>COMING SOON</span>
                 </div>
               )
             ) : (
@@ -270,7 +261,6 @@ export function ProjectPagination({ projectSlug }: { projectSlug: string }) {
                 <div className="flex flex-col gap-2 items-end text-right">
                   <span style={{ fontSize: 10, fontFamily: "'DM Mono', monospace", letterSpacing: "0.14em", color: "var(--foreground)" }}>NEXT →</span>
                   <span style={{ fontSize: 16, fontWeight: 500, fontFamily: "'Inter', sans-serif" }}>{next.title}</span>
-                  <span style={{ fontSize: 10, fontFamily: "'DM Mono', monospace", color: "var(--foreground)", letterSpacing: "0.08em" }}>COMING SOON</span>
                 </div>
               )
             ) : (
