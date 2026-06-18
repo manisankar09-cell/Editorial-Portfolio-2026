@@ -87,6 +87,9 @@
   .bento-grid > div > * {
     height: auto !important;
   }
+  .landing-hero-mark-wrap {
+    display: none !important;
+  }
 }
 
 /* ── 12-column grid (About, CXP pages) ───────────────────────────────────── */

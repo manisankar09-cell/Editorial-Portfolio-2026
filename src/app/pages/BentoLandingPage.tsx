@@ -930,6 +930,7 @@ function CardGallery() {
 
 export function BentoLandingPage() {
   const { a11y, colorTheme } = usePreference();
+  const isMobile = useIsMobile();
 
   // Apply paper texture class to body
   useEffect(() => {
@@ -940,7 +941,10 @@ export function BentoLandingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground" style={{ ...SANS, perspective: "1400px" }}>
       <SiteNav variant="home" />
-      <main id="bento-main" style={{ width: "100%", padding: "12px 0 56px" }}>
+      <main
+        id="bento-main"
+        style={{ width: "100%", padding: "12px 0 16px" }}
+      >
         <div className="site-container">
           <div className="bento-grid">
             <div className="bento-card-headline"><CardHeadline /></div>
@@ -958,7 +962,7 @@ export function BentoLandingPage() {
         </div>
       </main>
 
-      <SiteFooter fixed={!a11y} />
+      <SiteFooter fixed={!a11y && !isMobile} />
     </div>
   );
 }

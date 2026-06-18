@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteNav } from "../components/SiteNav";
+import resumePdf from "../../imports/Mani_Sankar_Choudhury_Product_Designer.pdf";
 
 // ─── Data ─────────────────────────────────────────────────────────────────
 
@@ -157,7 +158,7 @@ function ExperienceItem({ item, defaultOpen }: { item: typeof EXPERIENCE[0]; def
         background: accordionSurface,
         border: `1px solid ${accordionBorder}`,
         borderRadius: 8,
-        marginBottom: 10,
+        marginBottom: 8,
         boxShadow: open ? "0 0 0 1px color-mix(in srgb, var(--accent) 14%, transparent) inset" : "none",
         overflow: "hidden",
       }}
@@ -168,7 +169,7 @@ function ExperienceItem({ item, defaultOpen }: { item: typeof EXPERIENCE[0]; def
         aria-expanded={open}
         style={{
           width: "100%", display: "flex", alignItems: "baseline", justifyContent: "space-between",
-          padding: "18px 20px", background: "none", border: "none", cursor: "pointer",
+          padding: "16px 18px", background: "none", border: "none", cursor: "pointer",
           textAlign: "left", gap: 16,
         }}
       >
@@ -219,14 +220,14 @@ function ExperienceItem({ item, defaultOpen }: { item: typeof EXPERIENCE[0]; def
             transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
             style={{ overflow: "hidden", borderTop: `1px solid ${accordionBorder}` }}
           >
-            <div style={{ padding: "18px 20px 24px 37px" }}>
+            <div style={{ padding: "16px 18px 22px 34px" }}>
               {/* Location */}
                   <p style={{ fontSize: 11, letterSpacing: "0.14em", color: META_TEXT, ...MONO, marginBottom: 16 }}>
                 {item.location}
               </p>
 
               {/* Bullets */}
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 9 }}>
                 {item.bullets.map((b, i) => (
                   <li key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
                     <span style={{ color: "var(--accent)", opacity: 0.7, flexShrink: 0, marginTop: 2, fontSize: 12 }}>—</span>
@@ -237,7 +238,7 @@ function ExperienceItem({ item, defaultOpen }: { item: typeof EXPERIENCE[0]; def
 
               {/* Tags */}
               {item.tags && (
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 16 }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 14 }}>
                   {item.tags.map(tag => (
                     <span key={tag} className="ep-tag ep-tag-subtle" style={{ letterSpacing: "0.06em", ...MONO }}>
                       {tag}
@@ -467,14 +468,14 @@ function ExperienceBlock() {
   return (
     <section id="experience" className="section-pad">
       <div className="site-container">
-        <div className="responsive-grid-12">
-          <div style={{ gridColumn: "1 / 4", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 12 }}>
+        <div className="responsive-grid-12" style={{ rowGap: 14 }}>
+          <div style={{ gridColumn: "1 / 4", display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 10 }}>
             <SectionLabel index="05" text="EXPERIENCE" marginBottom={0} />
             {/* Resume download */}
             <a
-              href="/resume.pdf"
-              download="ManiSankar_Resume.pdf"
-              className="ep-button ep-button-tertiary ep-button-sm"
+              href={resumePdf}
+              download="Mani_Sankar_Choudhury_Product_Designer.pdf"
+              className="ep-button ep-button-tertiary ep-button-md"
               style={{
                 textDecoration: "none",
               }}
@@ -490,7 +491,6 @@ function ExperienceBlock() {
               {EXPERIENCE.map((item, i) => (
                 <ExperienceItem key={item.company + item.period} item={item} defaultOpen={i === 0} />
               ))}
-              <div style={{ borderTop: "1px solid var(--border)" }} />
             </div>
           </div>
         </div>
@@ -613,7 +613,7 @@ function ContactBlock() {
                 style={{ textDecoration: "none" }}>
                 EMAIL →
               </a>
-              <a href="https://linkedin.com/in/manisankar" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.linkedin.com/in/mani-sankar/" target="_blank" rel="noopener noreferrer"
                 className="ep-button ep-button-tertiary ep-button-lg"
                 style={{ textDecoration: "none" }}>
                 LINKEDIN →

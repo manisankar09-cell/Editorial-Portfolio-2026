@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring } from "motion/react";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteNav } from "../components/SiteNav";
 import { PROJECTS } from "../data/projects";
+import { useIsMobile } from "../components/ui/use-mobile";
 
 const ACCENT_META = "color-mix(in srgb, var(--accent) 72%, var(--foreground) 28%)";
 const DIAGRAM_GRID = "color-mix(in srgb, var(--foreground) 10%, transparent)";
@@ -124,11 +125,19 @@ const signals = [
 
 // ─── System visual for CXP card ───────────────────────────────────────────
 
-function SystemVisual() {
+function SystemVisual({ stacked = false, stackedOnTop = false }: { stacked?: boolean; stackedOnTop?: boolean }) {
   return (
     <div
-      className="relative overflow-hidden border-l border-border"
-      style={{ width: 280, flexShrink: 0, minHeight: 200, background: "var(--secondary)" }}
+      className="landing-work-visual relative overflow-hidden border-border"
+      style={{
+        width: stacked ? "100%" : 280,
+        flexShrink: 0,
+        minHeight: stacked ? 150 : 200,
+        background: "var(--secondary)",
+        borderLeft: stacked ? "none" : "1px solid var(--border)",
+        borderTop: stacked ? (stackedOnTop ? "none" : "1px solid var(--border)") : "none",
+        borderBottom: stacked ? (stackedOnTop ? "1px solid var(--border)" : "none") : "none",
+      }}
     >
       <div
         className="absolute inset-0"
@@ -160,11 +169,19 @@ function SystemVisual() {
   );
 }
 
-function AgentVisual() {
+function AgentVisual({ stacked = false, stackedOnTop = false }: { stacked?: boolean; stackedOnTop?: boolean }) {
   return (
     <div
-      className="relative overflow-hidden border-l border-border"
-      style={{ width: 280, flexShrink: 0, minHeight: 200, background: DIAGRAM_DARK_SURFACE }}
+      className="landing-work-visual relative overflow-hidden border-border"
+      style={{
+        width: stacked ? "100%" : 280,
+        flexShrink: 0,
+        minHeight: stacked ? 150 : 200,
+        background: DIAGRAM_DARK_SURFACE,
+        borderLeft: stacked ? "none" : "1px solid var(--border)",
+        borderTop: stacked ? (stackedOnTop ? "none" : "1px solid var(--border)") : "none",
+        borderBottom: stacked ? (stackedOnTop ? "1px solid var(--border)" : "none") : "none",
+      }}
     >
       <div className="absolute inset-0 flex flex-col justify-center gap-3 px-6">
         <div className="flex items-center gap-2">
@@ -202,11 +219,19 @@ function AgentVisual() {
   );
 }
 
-function PlatformVisual() {
+function PlatformVisual({ stacked = false, stackedOnTop = false }: { stacked?: boolean; stackedOnTop?: boolean }) {
   return (
     <div
-      className="relative overflow-hidden border-l border-border"
-      style={{ width: 280, flexShrink: 0, minHeight: 200, background: "var(--muted)" }}
+      className="landing-work-visual relative overflow-hidden border-border"
+      style={{
+        width: stacked ? "100%" : 280,
+        flexShrink: 0,
+        minHeight: stacked ? 150 : 200,
+        background: "var(--muted)",
+        borderLeft: stacked ? "none" : "1px solid var(--border)",
+        borderTop: stacked ? (stackedOnTop ? "none" : "1px solid var(--border)") : "none",
+        borderBottom: stacked ? (stackedOnTop ? "1px solid var(--border)" : "none") : "none",
+      }}
     >
       <div
         className="absolute inset-0"
@@ -216,55 +241,101 @@ function PlatformVisual() {
           backgroundSize: "32px 32px",
         }}
       />
-      <div className="absolute inset-0 flex flex-col justify-center gap-2 px-6">
-        <div className="flex gap-2 mb-1">
-          {[40, 56, 32].map((w, i) => (
-            <div
-              key={i}
-              className="border"
-              style={{
-                width: w,
-                height: 20,
-                borderColor: "color-mix(in srgb, var(--foreground) 14%, var(--border))",
-                background: "color-mix(in srgb, var(--card) 88%, var(--background) 12%)",
-              }}
-            />
-          ))}
-        </div>
+      <div className="absolute inset-0 flex items-center px-5">
         <div
           className="border"
           style={{
-            height: 48,
-            borderColor: "color-mix(in srgb, var(--foreground) 14%, var(--border))",
-            background: "color-mix(in srgb, var(--card) 82%, var(--secondary) 18%)",
+            width: "100%",
+            borderColor: "color-mix(in srgb, var(--foreground) 16%, var(--border))",
+            background: "color-mix(in srgb, var(--card) 92%, var(--background) 8%)",
           }}
-        />
-        <div className="flex gap-2">
-          {[60, 40].map((w, i) => (
+        >
+          <div
+            className="border-b"
+            style={{
+              borderColor: "color-mix(in srgb, var(--foreground) 14%, var(--border))",
+              padding: "6px 10px",
+              background: "color-mix(in srgb, var(--card) 86%, var(--secondary) 14%)",
+            }}
+          >
+            <div className="flex items-center gap-2">
+              <div style={{ width: 6, height: 6, borderRadius: "50%", background: "color-mix(in srgb, var(--foreground) 24%, var(--border))" }} />
+              <div style={{ height: 1, width: 94, background: "color-mix(in srgb, var(--foreground) 20%, var(--border))" }} />
+            </div>
+          </div>
+
+          <div style={{ padding: "10px" }}>
             <div
-              key={i}
               className="border"
               style={{
-                flex: w,
-                height: 28,
+                height: 18,
+                marginBottom: 8,
                 borderColor: "color-mix(in srgb, var(--foreground) 14%, var(--border))",
-                background: i === 0
-                  ? "color-mix(in srgb, var(--card) 78%, var(--secondary) 22%)"
-                  : "color-mix(in srgb, var(--card) 72%, var(--secondary) 28%)",
+                background: "color-mix(in srgb, var(--card) 90%, var(--background) 10%)",
               }}
             />
-          ))}
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+              {[52, 40, 46].map((line, i) => (
+                <div
+                  key={i}
+                  className="border"
+                  style={{
+                    borderColor: "color-mix(in srgb, var(--foreground) 14%, var(--border))",
+                    background: "color-mix(in srgb, var(--card) 88%, var(--secondary) 12%)",
+                    padding: "5px 7px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div style={{ height: 1, width: `${line}%`, background: "color-mix(in srgb, var(--foreground) 20%, var(--border))" }} />
+                  <div
+                    className="border"
+                    style={{
+                      width: 28,
+                      height: 12,
+                      borderColor: "color-mix(in srgb, var(--foreground) 14%, var(--border))",
+                      background: "color-mix(in srgb, var(--card) 90%, var(--background) 10%)",
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+
+            <div className="flex gap-2" style={{ marginTop: 8 }}>
+              <div
+                className="border"
+                style={{
+                  flex: 1,
+                  height: 16,
+                  borderColor: "color-mix(in srgb, var(--foreground) 14%, var(--border))",
+                  background: "color-mix(in srgb, var(--card) 84%, var(--secondary) 16%)",
+                }}
+              />
+              <div
+                className="border"
+                style={{
+                  width: 40,
+                  height: 16,
+                  borderColor: "color-mix(in srgb, var(--foreground) 14%, var(--border))",
+                  background: "transparent",
+                }}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
 
-const visuals: Record<string, React.ReactNode> = {
-  "cxp-design-system": <SystemVisual />,
-  "contextual-ai-workflows": <AgentVisual />,
-  "time-tracking-agent": <PlatformVisual />,
-};
+function getProjectVisual(slug: string, stacked: boolean, stackedOnTop = false) {
+  if (slug === "cxp-design-system") return <SystemVisual stacked={stacked} stackedOnTop={stackedOnTop} />;
+  if (slug === "contextual-ai-workflows") return <AgentVisual stacked={stacked} stackedOnTop={stackedOnTop} />;
+  if (slug === "time-tracking-agent") return <PlatformVisual stacked={stacked} stackedOnTop={stackedOnTop} />;
+  return null;
+}
 
 // ─── Nav ──────────────────────────────────────────────────────────────────
 
@@ -328,11 +399,11 @@ function Nav() {
 
 function Hero() {
   return (
-    <section style={{ paddingTop: 128, paddingBottom: 104 }}>
+    <section className="landing-hero-section" style={{ paddingTop: "clamp(72px, 12vw, 128px)", paddingBottom: "clamp(56px, 10vw, 104px)" }}>
       <div className="site-container">
         <div className="editorial-grid">
           {/* Label */}
-          <div style={{ gridColumn: "1 / 13" }} className="mb-8">
+          <div style={{ gridColumn: "1 / 13" }} className="landing-hero-label-row mb-8">
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -352,10 +423,10 @@ function Hero() {
               transition={{ duration: 0.6, delay: 0.05 }}
               className="text-foreground"
               style={{
-                fontSize: "clamp(40px, 5.5vw, 76px)",
+                fontSize: "clamp(32px, 11vw, 76px)",
                 fontWeight: 700,
                 letterSpacing: "-0.03em",
-                lineHeight: 1.0,
+                lineHeight: 1.02,
                 fontFamily: "'Inter', sans-serif",
               }}
             >
@@ -364,12 +435,12 @@ function Hero() {
           </div>
 
           {/* Supporting + CTAs */}
-          <div style={{ gridColumn: "1 / 7" }} className="mt-10">
+          <div style={{ gridColumn: "1 / 7", marginTop: "clamp(20px, 4vw, 40px)" }}>
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="text-muted-foreground mb-10"
+              className="text-muted-foreground"
               style={{ fontSize: 16, lineHeight: 1.75, fontFamily: "'Inter', sans-serif" }}
             >
               12+ years building AI-driven workflows, design systems, and enterprise
@@ -380,7 +451,8 @@ function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.4 }}
-              className="flex gap-3"
+              className="flex gap-3 flex-wrap"
+              style={{ marginTop: "clamp(20px, 4vw, 40px)" }}
             >
               <MagneticButton
                 href="#work"
@@ -406,9 +478,9 @@ function Hero() {
           {/* Right — Bauhaus geometric */}
           <div
             style={{ gridColumn: "10 / 13" }}
-            className="flex items-end justify-end pb-4"
+            className="landing-hero-mark-wrap flex items-end justify-end pb-4"
           >
-            <div className="relative" style={{ width: 140, height: 140 }}>
+            <div className="landing-hero-mark relative" style={{ width: 140, height: 140 }}>
               {/* Outer square */}
               <div className="absolute inset-0 border border-border" />
               {/* Horizontal divider */}
@@ -449,7 +521,7 @@ function Hero() {
         </div>
 
         {/* Baseline rule */}
-        <div className="mt-20 border-t border-border" />
+        <div className="landing-hero-baseline mt-20 border-t border-border" />
       </div>
     </section>
   );
@@ -464,10 +536,12 @@ const cardColors: Record<string, string> = {
 };
 
 function SelectedWork() {
+  const isMobile = useIsMobile();
+
   return (
-    <section id="work" style={{ paddingTop: 80, paddingBottom: 80 }}>
+    <section id="work" style={{ paddingTop: "clamp(56px, 9vw, 80px)", paddingBottom: "clamp(56px, 9vw, 80px)" }}>
       <div className="site-container">
-        <div className="flex items-baseline justify-between mb-12">
+        <div className="landing-section-heading flex items-baseline justify-between mb-12">
           <p
             className="text-muted-foreground"
             style={{
@@ -491,6 +565,76 @@ function SelectedWork() {
           {PROJECTS.map((project, i) => {
             const href = project.detailHref ?? `/work/${project.slug}`;
             const ctaLabel = project.available ? "VIEW CASE STUDY" : "OPEN PROJECT";
+            const visualBlock = getProjectVisual(project.slug, isMobile, isMobile);
+            const textBlock = (
+              <div className="landing-work-text flex flex-col justify-between p-8 flex-1">
+                <div>
+                  <div
+                    className="landing-work-meta flex items-center gap-4 mb-5"
+                    style={{
+                      flexDirection: isMobile ? "column" : "row",
+                      alignItems: isMobile ? "flex-start" : "center",
+                      gap: isMobile ? 8 : 16,
+                      marginBottom: isMobile ? 14 : 20,
+                    }}
+                  >
+                    <span
+                      className="text-muted-foreground"
+                      style={{ fontSize: 12, fontFamily: "'DM Mono', monospace", letterSpacing: "0.1em", color: ACCENT_META }}
+                    >
+                      {project.index}
+                    </span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="border border-border text-muted-foreground"
+                          style={{ fontSize: 11, fontFamily: "'DM Mono', monospace", letterSpacing: "0.08em", padding: "2px 8px", color: ACCENT_META, borderColor: "color-mix(in srgb, var(--accent) 28%, var(--border))" }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <h3
+                    className="text-foreground mb-4"
+                    style={{
+                      fontSize: "clamp(20px, 2.2vw, 28px)",
+                      fontWeight: 600,
+                      letterSpacing: "-0.02em",
+                      lineHeight: 1.15,
+                      fontFamily: "'Inter', sans-serif",
+                    }}
+                  >
+                    {project.title}
+                  </h3>
+                  <p
+                    className="text-muted-foreground"
+                    style={{
+                      fontSize: 14,
+                      lineHeight: 1.7,
+                      fontFamily: "'Inter', sans-serif",
+                      maxWidth: 520,
+                    }}
+                  >
+                    {project.tagline}
+                  </p>
+                </div>
+                <span
+                  className="text-foreground mt-6 self-start"
+                  style={{
+                    fontSize: 12,
+                    fontFamily: "'DM Mono', monospace",
+                    letterSpacing: "0.1em",
+                    color: ACCENT_META,
+                    borderBottom: "1px solid color-mix(in srgb, var(--accent) 55%, transparent)",
+                    paddingBottom: 2,
+                  }}
+                >
+                  {ctaLabel} →
+                </span>
+              </div>
+            );
             const inner = (
               <motion.div
                 key={project.slug}
@@ -500,77 +644,17 @@ function SelectedWork() {
                   backgroundColor: cardColors[project.index],
                   transition: { duration: 0.2 },
                 }}
-                className="border border-border group overflow-hidden"
+                    className="landing-work-card border border-border group overflow-hidden"
                 style={{
                   display: "flex",
+                      flexDirection: isMobile ? "column" : "row",
                   cursor: "pointer",
                   minHeight: 200,
                   backgroundColor: "rgba(0,0,0,0)",
                 }}
               >
-                {/* Text block */}
-                <div className="flex flex-col justify-between p-8 flex-1">
-                  <div>
-                    <div className="flex items-center gap-4 mb-5">
-                      <span
-                        className="text-muted-foreground"
-                        style={{ fontSize: 12, fontFamily: "'DM Mono', monospace", letterSpacing: "0.1em", color: ACCENT_META }}
-                      >
-                        {project.index}
-                      </span>
-                      <div className="flex flex-wrap items-center gap-2">
-                        {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="border border-border text-muted-foreground"
-                            style={{ fontSize: 11, fontFamily: "'DM Mono', monospace", letterSpacing: "0.08em", padding: "2px 8px", color: ACCENT_META, borderColor: "color-mix(in srgb, var(--accent) 28%, var(--border))" }}
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <h3
-                      className="text-foreground mb-4"
-                      style={{
-                        fontSize: "clamp(20px, 2.2vw, 28px)",
-                        fontWeight: 600,
-                        letterSpacing: "-0.02em",
-                        lineHeight: 1.15,
-                        fontFamily: "'Inter', sans-serif",
-                      }}
-                    >
-                      {project.title}
-                    </h3>
-                    <p
-                      className="text-muted-foreground"
-                      style={{
-                        fontSize: 14,
-                        lineHeight: 1.7,
-                        fontFamily: "'Inter', sans-serif",
-                        maxWidth: 520,
-                      }}
-                    >
-                      {project.tagline}
-                    </p>
-                  </div>
-                  <span
-                    className="text-foreground mt-6 self-start"
-                    style={{
-                      fontSize: 12,
-                      fontFamily: "'DM Mono', monospace",
-                      letterSpacing: "0.1em",
-                      color: ACCENT_META,
-                      borderBottom: "1px solid color-mix(in srgb, var(--accent) 55%, transparent)",
-                      paddingBottom: 2,
-                    }}
-                  >
-                    {ctaLabel} →
-                  </span>
-                </div>
-
-                {/* Right — mini visual */}
-                {visuals[project.slug]}
+                {textBlock}
+                {!isMobile && visualBlock}
               </motion.div>
             );
 
@@ -590,7 +674,7 @@ function SelectedWork() {
 
 function AboutShort() {
   return (
-    <section className="border-t border-border" style={{ paddingTop: 80, paddingBottom: 80 }}>
+    <section className="border-t border-border" style={{ paddingTop: "clamp(56px, 9vw, 80px)", paddingBottom: "clamp(56px, 9vw, 80px)" }}>
       <div className="site-container">
         <div className="editorial-grid items-start">
           <div style={{ gridColumn: "1 / 4" }}>
@@ -633,19 +717,19 @@ function AboutShort() {
 
 function Signals() {
   return (
-    <section className="border-t border-border" style={{ paddingTop: 72, paddingBottom: 72 }}>
+    <section className="border-t border-border" style={{ paddingTop: "clamp(48px, 8vw, 72px)", paddingBottom: "clamp(48px, 8vw, 72px)" }}>
       <div className="site-container">
         <div
+          className="landing-signals-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
             gap: 0,
           }}
         >
           {signals.map((s, i) => (
             <div
               key={s.stat}
-              className="flex flex-col gap-2 px-8 py-6"
+              className="landing-signal-item flex flex-col gap-2 px-8 py-6"
               style={{ borderLeft: i > 0 ? "1px solid var(--border)" : "none" }}
             >
               <span
@@ -681,7 +765,7 @@ function Signals() {
 
 function Personal() {
   return (
-    <section className="border-t border-border" style={{ paddingTop: 80, paddingBottom: 80 }}>
+    <section className="border-t border-border" style={{ paddingTop: "clamp(56px, 9vw, 80px)", paddingBottom: "clamp(56px, 9vw, 80px)" }}>
       <div className="site-container">
         <div className="editorial-grid items-center">
           <div style={{ gridColumn: "1 / 4" }}>
@@ -739,7 +823,7 @@ function Contact() {
     <section
       id="contact"
       className="border-t border-border"
-      style={{ paddingTop: 112, paddingBottom: 112 }}
+      style={{ paddingTop: "clamp(64px, 10vw, 112px)", paddingBottom: "clamp(64px, 10vw, 112px)" }}
     >
       <div className="site-container">
         <div className="flex flex-col items-center text-center">
@@ -773,7 +857,7 @@ function Contact() {
               EMAIL →
             </a>
             <a
-              href="https://linkedin.com/in/manisankar"
+              href="https://www.linkedin.com/in/mani-sankar/"
               target="_blank"
               rel="noopener noreferrer"
               className="ep-button ep-button-tertiary ep-button-lg"

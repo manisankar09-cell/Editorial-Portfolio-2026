@@ -216,7 +216,14 @@ function MobileMenu({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -16 }}
           transition={{ duration: 0.22 }}
-          style={{ background: overlayBackground }}
+          style={{
+            background: overlayBackground,
+            height: "100dvh",
+            overflow: "hidden",
+            display: "grid",
+            gridTemplateRows: "auto minmax(0, 1fr) auto",
+            paddingBottom: "max(20px, env(safe-area-inset-bottom))",
+          }}
         >
           {/* Header */}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 48 }}>
@@ -240,7 +247,7 @@ function MobileMenu({
           </div>
 
           {/* Nav links */}
-          <nav aria-label="Mobile navigation" style={{ flex: 1 }}>
+          <nav aria-label="Mobile navigation" style={{ minHeight: 0, overflowY: "auto" }}>
             {PRIMARY_NAV_LINKS.map((link, i) => {
               const active = isNavLinkActive(location.pathname, link.to);
 
@@ -276,7 +283,14 @@ function MobileMenu({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.28 }}
-            style={{ marginTop: 40, display: "flex", flexDirection: "column", gap: 22 }}
+            style={{
+              marginTop: 20,
+              paddingTop: 14,
+              borderTop: `1px solid ${overlayRule}`,
+              display: "flex",
+              flexDirection: "column",
+              gap: 22,
+            }}
           >
             {/* Layout switcher */}
             <div>
