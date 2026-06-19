@@ -433,6 +433,42 @@ main img:not([data-no-shadow="true"]) {
   width: 100%;
 }
 
+.tt-final-solution-section {
+  isolation: isolate;
+}
+
+.tt-final-solution-section::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  transform: translateX(-50%);
+  background: color-mix(in srgb, var(--secondary) 72%, var(--background) 28%);
+  z-index: -1;
+}
+
+.tt-impact-section {
+  isolation: isolate;
+}
+
+.tt-impact-section::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  transform: translateX(-50%);
+  background: color-mix(in srgb, var(--accent) 6%, var(--background) 94%);
+  z-index: -1;
+}
+
+.tt-final-solution-notification-image {
+  justify-self: end;
+}
+
 @media (max-width: 767px) {
   .tt-hero-layout,
   .tt-context-layout,
@@ -469,6 +505,33 @@ main img:not([data-no-shadow="true"]) {
   .tt-flow-diagram {
     flex-direction: column;
     gap: 10px !important;
+  }
+
+  .tt-final-solution-notification {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .tt-final-solution-capabilities {
+    grid-template-columns: 1fr !important;
+  }
+
+  .tt-system-scale-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .tt-system-scale-detail {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .tt-my-role-grid,
+  .tt-approach-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .tt-final-solution-notification-image {
+    justify-self: start;
   }
 
   .tt-flow-segment {

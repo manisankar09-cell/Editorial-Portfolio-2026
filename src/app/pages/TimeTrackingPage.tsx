@@ -11,6 +11,8 @@ import oldTt3 from "../../imports/Old TT 3.png";
 import oldTt4 from "../../imports/Old TT 4.png";
 import dailyEntryVideo from "../../imports/Adobe Express - Daily entry.mp4";
 import dailyEntryPoster from "../../imports/poster image.png";
+import dailyPopupImage from "../../imports/Daily popup.png";
+import teamsAdaptiveCardImage from "../../imports/Teams Adaptive card.png";
 
 const SLUG = "time-tracking-agent";
 const PROJECT = PROJECTS.find((project) => project.slug === SLUG) ?? PROJECTS[0];
@@ -297,7 +299,6 @@ function FlowDiagram() {
         <div key={step.n} className="tt-flow-segment" style={{ display: "flex", alignItems: "stretch", flex: 1, minWidth: 0 }}>
           <div style={{
             flex: 1, padding: "20px 16px", border: "1px solid var(--border)",
-            borderRight: i < FLOW_STEPS.length - 1 ? "none" : "1px solid var(--border)",
             background: i === 0 ? "var(--secondary)" : "var(--card)",
           }}>
             <p style={{ fontSize: 8, ...MONO, color: "var(--accent)", letterSpacing: "0.12em", marginBottom: 8 }}>{step.n}</p>
@@ -305,8 +306,8 @@ function FlowDiagram() {
             <p style={{ fontSize: 11, color: "var(--muted-foreground)", ...SANS, lineHeight: 1.5 }}>{step.desc}</p>
           </div>
           {i < FLOW_STEPS.length - 1 && (
-            <div className="tt-flow-arrow-wrap" style={{ display: "flex", alignItems: "center", padding: "0 4px", background: "var(--border)", opacity: 0.5 }}>
-              <span style={{ fontSize: 10, color: "var(--muted-foreground)" }}>→</span>
+            <div className="tt-flow-arrow-wrap" style={{ display: "flex", alignItems: "center", padding: "0 4px", background: "transparent" }}>
+              <span style={{ fontSize: 10, color: "var(--accent)" }}>→</span>
             </div>
           )}
         </div>
@@ -395,7 +396,7 @@ function ClassicView() {
         {/* 12. MY ROLE */}
         <section style={{ paddingTop: 80, paddingBottom: 80, borderBottom: "1px solid var(--border)" }}>
           <SectionLabel index="12" text="MY ROLE" />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+          <div className="tt-my-role-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
             {[
               { role: "Lead UX", desc: "End-to-end product thinking — from research framing to final interaction design and delivery." },
               { role: "Eng & DS Partnership", desc: "Collaborated with engineering on adaptive card schemas and with data science on AI confidence scoring." },
@@ -492,7 +493,7 @@ function ClassicView() {
           <p style={{ fontSize: 15, lineHeight: 1.75, color: "var(--muted-foreground)", maxWidth: 600, marginBottom: 32, ...SANS }}>
             Instead of improving data entry, we designed an agent that observes context — calendar, meeting patterns, project signals — and does the entry for you. The user's job shifts from reconstruction to review.
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+          <div className="tt-approach-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
             {[
               { concept: "Daily nudges", desc: "A Teams notification at end of day — not a weekly deadline." },
               { concept: "Contextual suggestions", desc: "AI pre-fills entries from calendar, meetings, and project signals." },
@@ -577,32 +578,56 @@ function ClassicView() {
           </div>
         </section>
 
-        {/* 9. SYSTEM & SCALE */}
-        <section style={{ paddingTop: 80, paddingBottom: 80, borderBottom: "1px solid var(--border)" }}>
-          <SectionLabel index="09" text="SYSTEM & SCALE" />
-          <h2 style={{ fontSize: "clamp(22px, 2.5vw, 32px)", fontWeight: 600, letterSpacing: "-0.02em", ...SANS, marginBottom: 24 }}>
-            Beyond feature — platform capability
-          </h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-            {[
-              { title: "Adaptive Card System", desc: "Defined card schemas reusable across CEAI platform — entry cards, summary views, edit states." },
-              { title: "Notifications Framework", desc: "Consistent Teams notification patterns with escalation, cadence, and snooze logic." },
-              { title: "ESXP Integration", desc: "Seamless sync to backend time system with conflict detection and reconciliation UI." },
-            ].map(s => (
-              <div key={s.title} style={{ padding: 24, border: "1px solid var(--border)", background: "var(--card)" }}>
-                <p style={{ fontSize: 14, fontWeight: 600, ...SANS, marginBottom: 8 }}>{s.title}</p>
-                <p style={{ fontSize: 12, color: "var(--muted-foreground)", lineHeight: 1.6, ...SANS }}>{s.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* 10. FINAL SOLUTION */}
-        <section style={{ paddingTop: 80, paddingBottom: 80, borderBottom: "1px solid var(--border)" }}>
+        <section className="tt-final-solution-section" style={{ paddingTop: 80, paddingBottom: 80, borderBottom: "1px solid var(--border)" }}>
           <SectionLabel index="10" text="FINAL SOLUTION" />
           <h2 style={{ fontSize: "clamp(22px, 2.5vw, 32px)", fontWeight: 600, letterSpacing: "-0.02em", ...SANS, marginBottom: 32 }}>
             AI-assisted time entry in the flow of work
           </h2>
+          <div style={{ marginBottom: 30, maxWidth: 980 }}>
+            <p style={{ fontSize: 15, lineHeight: 1.75, color: "var(--muted-foreground)", ...SANS, marginBottom: 16 }}>
+              An AI-native, chat-based agent in M365 Copilot helps CAMs and SAs enter, review, and submit daily or weekly timesheets directly in Teams, while ESXP remains the system of record.
+            </p>
+            <div className="tt-final-solution-capabilities" style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 10 }}>
+              {[
+                "Chat-based agentic experience inside M365 Copilot (Teams)",
+                "Proactive daily and weekly notifications in-flow",
+                "AI-generated labor recommendations from meetings, activity, and prior patterns",
+                "Adaptive Cards for fast review, edit, and submit",
+                "Weekly summaries for compliance visibility",
+                "Missed and late-entry flows with reason capture",
+                "Bi-directional sync with ESXP as the source of truth",
+              ].map((item) => (
+                <div key={item} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+                  <span style={{ color: "var(--accent)", fontSize: 10, marginTop: 2, flexShrink: 0 }}>•</span>
+                  <p style={{ fontSize: 12, lineHeight: 1.6, color: "var(--foreground)", ...SANS }}>{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="tt-final-solution-notification" style={{
+            display: "grid",
+            gridTemplateColumns: "minmax(0, 1fr) minmax(300px, 360px)",
+            gap: 20,
+            alignItems: "start",
+            marginBottom: 28,
+          }}>
+            <div>
+              <p style={{ fontSize: 10, letterSpacing: "0.14em", color: "var(--accent)", ...MONO, marginBottom: 10 }}>
+                NOTIFICATION CARDS
+              </p>
+              <p style={{ fontSize: 14, lineHeight: 1.7, color: "var(--muted-foreground)", ...SANS, maxWidth: 620 }}>
+                Daily popup prompts bring users back in the flow of work. Instead of weekly reconstruction,
+                the system nudges a lightweight review moment that users can confirm in under two minutes.
+              </p>
+            </div>
+            <ImageWithFallback
+              className="tt-final-solution-notification-image"
+              src={dailyPopupImage}
+              alt="Daily popup notification card"
+              style={{ width: "100%", maxWidth: 360, height: "auto", display: "block" }}
+            />
+          </div>
           <div style={{ display: "flex", justifyContent: "center", background: "#0e0e1a", borderRadius: 8, overflow: "hidden" }}>
             <video
               controls
@@ -629,8 +654,67 @@ function ClassicView() {
           </p>
         </section>
 
-        {/* 11. IMPACT */}
+        {/* 9. SYSTEM & SCALE */}
         <section style={{ paddingTop: 80, paddingBottom: 80, borderBottom: "1px solid var(--border)" }}>
+          <SectionLabel index="09" text="SYSTEM & SCALE" />
+          <h2 style={{ fontSize: "clamp(22px, 2.5vw, 32px)", fontWeight: 600, letterSpacing: "-0.02em", ...SANS, marginBottom: 24 }}>
+            Beyond feature — platform capability
+          </h2>
+          <div className="tt-system-scale-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
+            {[
+              { title: "Adaptive Card System", desc: "Defined card schemas reusable across CEAI platform — entry cards, summary views, edit states." },
+              { title: "Notifications Framework", desc: "Consistent Teams notification patterns with escalation, cadence, and snooze logic." },
+              { title: "ESXP Integration", desc: "Seamless sync to backend time system with conflict detection and reconciliation UI." },
+            ].map(s => (
+              <div key={s.title} style={{ padding: 24, border: "1px solid var(--border)", background: "var(--card)" }}>
+                <p style={{ fontSize: 14, fontWeight: 600, ...SANS, marginBottom: 8 }}>{s.title}</p>
+                <p style={{ fontSize: 12, color: "var(--muted-foreground)", lineHeight: 1.6, ...SANS }}>{s.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="tt-system-scale-detail" style={{
+            marginTop: 32,
+            display: "grid",
+            gridTemplateColumns: "minmax(0, 1fr) minmax(420px, 760px)",
+            gap: 28,
+            alignItems: "center",
+          }}>
+            <div>
+              <h3 style={{ fontSize: 14, fontWeight: 600, letterSpacing: "-0.02em", lineHeight: 1.5, ...SANS, marginBottom: 16 }}>
+                From handoff to hand-built
+              </h3>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 620 }}>
+                {[
+                  "Built production-ready Teams Adaptive Card JSON directly in the Adaptive Card Designer to match delivery constraints early.",
+                  "Paired card payload specs with visual guidance so engineering could implement with minimal interpretation overhead.",
+                  "Documented reusable patterns in the CXP library so adjacent CEAI workflows could adopt the same foundation quickly.",
+                ].map((item) => (
+                  <div key={item} style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                    <span style={{ color: "var(--accent)", fontSize: 11, marginTop: 2, flexShrink: 0 }}>•</span>
+                    <p style={{ fontSize: 13, lineHeight: 1.65, color: "var(--muted-foreground)", ...SANS }}>{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div style={{
+              width: "100%",
+              border: "1px solid var(--border)",
+              borderRadius: 12,
+              overflow: "hidden",
+              background: "var(--card)",
+              aspectRatio: "16 / 9",
+            }}>
+              <ImageWithFallback
+                src={teamsAdaptiveCardImage}
+                alt="Teams Adaptive Card Designer implementation and JSON"
+                style={{ width: "100%", height: "100%", display: "block", objectFit: "cover", objectPosition: "center", transform: "scale(1.01)" }}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* 11. IMPACT */}
+        <section className="tt-impact-section" style={{ paddingTop: 80, paddingBottom: 80, borderBottom: "1px solid var(--border)" }}>
           <SectionLabel index="11" text="IMPACT" />
           <div className="tt-impact-grid">
             {IMPACT.map((m, i) => (
@@ -643,11 +727,18 @@ function ClassicView() {
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 48, padding: 28, border: "1px solid var(--border)", background: "var(--secondary)" }}>
-            <p style={{ fontSize: 15, lineHeight: 1.75, ...SANS, fontStyle: "italic", color: "var(--muted-foreground)" }}>
-              "Helped shift CSAs from dreading Friday entry to a lightweight daily habit — with measurably higher data quality."
-            </p>
-          </div>
+          <blockquote style={{
+            fontSize: 12,
+            lineHeight: 1.6,
+            color: "var(--muted-foreground)",
+            ...SANS,
+            borderLeft: "2px solid var(--accent)",
+            paddingLeft: 12,
+            margin: "48px 0 0",
+            fontStyle: "italic",
+          }}>
+            "Helped shift CSAs from dreading Friday entry to a lightweight daily habit — with measurably higher data quality."
+          </blockquote>
         </section>
 
         {/* 13. REFLECTION */}
