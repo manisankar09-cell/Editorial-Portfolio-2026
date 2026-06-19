@@ -1,8 +1,16 @@
 import { SiteNav } from "../components/SiteNav";
 import { ProjectPagination } from "../components/CaseStudyNav";
 import { SiteFooter } from "../components/SiteFooter";
+import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { useState } from "react";
 import { motion } from "motion/react";
 import { PROJECTS } from "../data/projects";
+import oldTt1 from "../../imports/Old TT 1.png";
+import oldTt2 from "../../imports/Old TT 2.png";
+import oldTt3 from "../../imports/Old TT 3.png";
+import oldTt4 from "../../imports/Old TT 4.png";
+import dailyEntryVideo from "../../imports/Adobe Express - Daily entry.mp4";
+import dailyEntryPoster from "../../imports/poster image.png";
 
 const SLUG = "time-tracking-agent";
 const PROJECT = PROJECTS.find((project) => project.slug === SLUG) ?? PROJECTS[0];
@@ -132,42 +140,151 @@ function TeamsAgentMock() {
 }
 
 function BeforeGrid() {
+  const slides = [
+    { src: oldTt1, alt: "Old TT 1" },
+    { src: oldTt2, alt: "Old TT 2" },
+    { src: oldTt3, alt: "Old TT 3" },
+    { src: oldTt4, alt: "Old TT 4" },
+  ];
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const goPrev = () => {
+    setActiveIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  };
+
+  const goNext = () => {
+    setActiveIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  };
+
   return (
     <div style={{ border: "1px solid var(--border)", borderRadius: 4, overflow: "hidden", opacity: 0.8 }}>
       <div style={{ background: "var(--muted)", padding: "6px 10px", borderBottom: "1px solid var(--border)" }}>
-        <p style={{ fontSize: 9, ...MONO, color: "var(--muted-foreground)", letterSpacing: "0.1em" }}>WEEKLY TIME ENTRY — BEFORE</p>
+        <p style={{ fontSize: 9, ...MONO, color: "var(--muted-foreground)", letterSpacing: "0.1em" }}>WEEKLY TIME ENTRY — BEFORE SCREENS</p>
       </div>
-      <div style={{ overflowX: "auto" }}>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 10 }}>
-          <thead>
-            <tr style={{ background: "var(--secondary)" }}>
-              {["Project", "Mon", "Tue", "Wed", "Thu", "Fri", "Total"].map(h => (
-                <th key={h} style={{ padding: "5px 10px", textAlign: "left", ...MONO, fontSize: 8, color: "var(--muted-foreground)", letterSpacing: "0.08em", fontWeight: 400, borderBottom: "1px solid var(--border)" }}>{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {[
-              ["CXP Design System", "?", "3.5", "?", "4", "2.5", "~10"],
-              ["Stakeholder Sync",   "1", "—",  "1", "—", "1",   "3"],
-              ["Team Meetings",      "2", "1",   "2", "1", "1",   "7"],
-              ["Other",              "?", "?",   "?", "?", "?",   "?"],
-            ].map((row, i) => (
-              <tr key={i} style={{ borderBottom: "1px solid var(--border)", background: i % 2 === 0 ? "transparent" : "var(--secondary)" }}>
-                {row.map((cell, j) => (
-                  <td key={j} style={{
-                    padding: "6px 10px", ...SANS,
-                    color: cell === "?" ? "rgba(220,60,60,0.7)" : "var(--foreground)",
-                    fontWeight: j === 0 ? 500 : 400,
-                  }}>{cell}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div style={{ padding: "6px 10px", background: "var(--muted)" }}>
-        <p style={{ fontSize: 8, color: "var(--muted-foreground)", ...SANS }}>⚠ 5–30 min to complete · Heavy weekly recall burden · Low confidence in accuracy</p>
+      <div
+        style={{
+          position: "relative",
+          background: "var(--secondary)",
+          minHeight: 340,
+          padding: 12,
+        }}
+      >
+        <div style={{
+          border: "1px solid var(--border)",
+          background: "var(--background)",
+          borderRadius: 4,
+          overflow: "hidden",
+          minHeight: 300,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}>
+          <motion.div
+            key={slides[activeIndex].alt}
+            initial={{ opacity: 0, x: 24 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.24, ease: "easeOut" }}
+            style={{
+              width: "100%",
+              padding: 8,
+            }}
+          >
+            <ImageWithFallback
+              src={slides[activeIndex].src}
+              alt={slides[activeIndex].alt}
+              style={{
+                width: "100%",
+                maxHeight: 284,
+                objectFit: "contain",
+              }}
+            />
+          </motion.div>
+        </div>
+
+        <button
+          type="button"
+          onClick={goPrev}
+          aria-label="Previous image"
+          style={{
+            position: "absolute",
+            left: 18,
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: 30,
+            height: 30,
+            borderRadius: "50%",
+            border: "1px solid var(--border)",
+            background: "color-mix(in srgb, var(--background) 82%, var(--secondary) 18%)",
+            color: "var(--foreground)",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: 14,
+            lineHeight: 1,
+          }}
+        >
+          ←
+        </button>
+        <button
+          type="button"
+          onClick={goNext}
+          aria-label="Next image"
+          style={{
+            position: "absolute",
+            right: 18,
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: 30,
+            height: 30,
+            borderRadius: "50%",
+            border: "1px solid var(--border)",
+            background: "color-mix(in srgb, var(--background) 82%, var(--secondary) 18%)",
+            color: "var(--foreground)",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: 14,
+            lineHeight: 1,
+          }}
+        >
+          →
+        </button>
+
+        <div style={{
+          position: "absolute",
+          bottom: 16,
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          padding: "4px 8px",
+          borderRadius: 999,
+          background: "color-mix(in srgb, var(--background) 82%, var(--secondary) 18%)",
+          border: "1px solid var(--border)",
+        }}>
+          {slides.map((slide, idx) => (
+            <button
+              key={slide.alt}
+              type="button"
+              onClick={() => setActiveIndex(idx)}
+              aria-label={`Show ${slide.alt}`}
+              aria-current={idx === activeIndex}
+              style={{
+                width: idx === activeIndex ? 14 : 8,
+                height: 8,
+                borderRadius: 99,
+                border: "none",
+                background: idx === activeIndex ? "var(--accent)" : "var(--muted-foreground)",
+                opacity: idx === activeIndex ? 0.92 : 0.45,
+                cursor: "pointer",
+                transition: "all 140ms ease",
+              }}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -486,8 +603,26 @@ function ClassicView() {
           <h2 style={{ fontSize: "clamp(22px, 2.5vw, 32px)", fontWeight: 600, letterSpacing: "-0.02em", ...SANS, marginBottom: 32 }}>
             AI-assisted time entry in the flow of work
           </h2>
-          <div style={{ display: "flex", justifyContent: "center", padding: "48px 0", background: "#0e0e1a", borderRadius: 8 }}>
-            <TeamsAgentMock />
+          <div style={{ display: "flex", justifyContent: "center", background: "#0e0e1a", borderRadius: 8, overflow: "hidden" }}>
+            <video
+              controls
+              playsInline
+              preload="metadata"
+              poster={dailyEntryPoster}
+              style={{
+                width: "100%",
+                height: "100%",
+                maxHeight: 640,
+                borderRadius: 0,
+                border: "none",
+                boxShadow: "none",
+                background: "transparent",
+                objectFit: "cover",
+              }}
+            >
+              <source src={dailyEntryVideo} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
           <p style={{ fontSize: 12, textAlign: "center", color: "var(--muted-foreground)", marginTop: 12, ...MONO, letterSpacing: "0.06em" }}>
             DAILY ADAPTIVE CARD IN MICROSOFT TEAMS — TIME TRACKING AGENT

@@ -1,0 +1,1 @@
+var e=`/Editorial-Portfolio-2026/assets/Mani_Sankar_Choudhury_Product_Designer-VguZoDfc.pdf`;export{e as t};
