@@ -34,7 +34,7 @@ export const PROJECTS: Project[] = [
     tags: ["Design System", "AI UX", "Enterprise"],
     tagline: "Unifying fragmented toolkits into a scalable, AI-ready enterprise system.",
     role: "Senior Product Designer — System Architect",
-    period: "2020 — Present",
+    period: "Jan 2026 - Apr 2026",
     context: "Microsoft CXP · Enterprise Platform",
     contributions: [
       "Consolidated 6+ fragmented design libraries into a single Fluent-aligned source of truth",
