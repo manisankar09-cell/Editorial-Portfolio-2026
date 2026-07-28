@@ -58,7 +58,7 @@ export const PROJECTS: Project[] = [
     tags: ["AI UX", "Agentic Workflows", "Copilot"],
     tagline: "Designing how Copilot and agents integrate into real enterprise workflows.",
     role: "Senior Product Designer — AI Experience Lead",
-    period: "2022 — Present",
+    period: "Feb 2026 - May 2026",
     context: "Microsoft CXP · Sales & Customer Success",
     contributions: [
       "Designed Contextual AI (CAI) experiences restructuring fragmented seller journeys into cohesive systems",
