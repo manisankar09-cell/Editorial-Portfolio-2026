@@ -134,6 +134,156 @@ function Divider() {
   return <div className="border-t border-border" style={{ marginTop: 72, marginBottom: 72 }} />;
 }
 
+// ─── Project accordion item ───────────────────────────────────────────────
+
+function ProjectItem({ project, defaultOpen }: { project: typeof PROJECTS[0]; defaultOpen?: boolean }) {
+  const [open, setOpen] = useState(defaultOpen ?? false);
+  const accordionSurface = open
+    ? "color-mix(in srgb, var(--card) 82%, var(--accent) 18%)"
+    : "transparent";
+  const accordionBorder = open
+    ? "color-mix(in srgb, var(--accent) 30%, var(--border))"
+    : "color-mix(in srgb, var(--border) 92%, transparent)";
+
+  return (
+    <div
+      style={{
+        background: accordionSurface,
+        border: `1px solid ${accordionBorder}`,
+        marginBottom: 12,
+        overflow: "hidden",
+        transition: "background-color 0.2s",
+      }}
+    >
+      {/* Header row — always visible */}
+      <button
+        onClick={() => setOpen(v => !v)}
+        aria-expanded={open}
+        style={{
+          width: "100%", display: "flex", alignItems: "flex-start", justifyContent: "space-between",
+          padding: "20px 16px 18px", background: "none", border: "none", cursor: "pointer",
+          textAlign: "left", gap: 20,
+        }}
+      >
+        {/* Left — index + period + title */}
+        <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 8, flex: 1, minWidth: 0, flexWrap: "wrap" }}>
+          <span style={{ fontSize: 10.5, letterSpacing: "0.18em", color: "color-mix(in srgb, var(--accent) 72%, var(--foreground) 28%)", ...MONO }}>
+            {project.index}
+          </span>
+          <span style={{ fontSize: 10.5, letterSpacing: "0.18em", color: "color-mix(in srgb, var(--accent) 72%, var(--foreground) 28%)", ...MONO }}>
+            {project.period}
+          </span>
+        </div>
+
+        {/* Right — toggle */}
+        <div style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
+          <span style={{ fontSize: 14, color: open ? "var(--foreground)" : "var(--muted-foreground)", ...MONO, transition: "color 0.2s" }}>
+            {open ? "−" : "+"}
+          </span>
+        </div>
+      </button>
+
+      {/* Title and tagline — always visible */}
+      <div style={{ paddingLeft: 16, paddingRight: 16, marginBottom: open ? 0 : 0 }}>
+        <h3
+          style={{
+            fontSize: 18,
+            fontWeight: 600,
+            letterSpacing: "-0.024em",
+            color: "var(--foreground)",
+            ...SANS,
+            marginBottom: 10,
+          }}
+        >
+          {project.title}
+        </h3>
+        <p style={{ fontSize: 13, lineHeight: 1.75, color: "var(--muted-foreground)", ...SANS, marginBottom: 12, maxWidth: 520 }}>
+          {project.tagline}
+        </p>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: open ? 0 : 0 }}>
+          {project.tags.slice(0, 3).map((tag) => (
+            <span key={tag} className="ep-tag" style={{ ...MONO }}>
+              {tag}
+            </span>
+          ))}
+          {project.tags.length > 3 && (
+            <span className="ep-tag ep-tag-subtle" style={{ ...MONO }}>
+              +{project.tags.length - 3}
+            </span>
+          )}
+        </div>
+      </div>
+
+      {/* Expandable detail */}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="detail"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
+            style={{ overflow: "hidden", borderTop: `1px solid ${accordionBorder}` }}
+          >
+            <div style={{ padding: "0px 16px 28px" }}>
+              <div style={{ display: "grid", gap: 16 }}>
+                {/* Role */}
+                <div style={{ display: "grid", gridTemplateColumns: "minmax(80px, 92px) minmax(0px, 1fr)", columnGap: 16, alignItems: "start" }}>
+                  <span style={{ fontSize: 10.5, letterSpacing: "0.18em", color: "color-mix(in srgb, var(--accent) 72%, var(--foreground) 28%)", ...MONO, paddingTop: 2 }}>
+                    ROLE
+                  </span>
+                  <p style={{ fontSize: 14, lineHeight: 1.8, color: "var(--foreground)", ...SANS }}>
+                    {getProjectCardRole(project.role)}
+                  </p>
+                </div>
+
+                {/* Contributions */}
+                <div style={{ display: "grid", gridTemplateColumns: "minmax(80px, 92px) minmax(0px, 1fr)", columnGap: 16, alignItems: "start" }}>
+                  <span style={{ fontSize: 10.5, letterSpacing: "0.18em", color: "color-mix(in srgb, var(--accent) 72%, var(--foreground) 28%)", ...MONO, paddingTop: 2 }}>
+                    CONTRIBUTION
+                  </span>
+                  <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
+                    {project.contributions.map((c, i) => (
+                      <li key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+                        <span style={{ fontSize: 11, color: "var(--muted-foreground)", flexShrink: 0, marginTop: 2 }}>—</span>
+                        <span style={{ fontSize: 14, lineHeight: 1.8, color: "var(--foreground)", ...SANS }}>{c}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Impact */}
+                <div style={{ display: "grid", gridTemplateColumns: "minmax(80px, 92px) minmax(0px, 1fr)", columnGap: 16, alignItems: "start" }}>
+                  <span style={{ fontSize: 10.5, letterSpacing: "0.18em", color: "color-mix(in srgb, var(--accent) 72%, var(--foreground) 28%)", ...MONO, paddingTop: 2 }}>
+                    IMPACT
+                  </span>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                    {project.impact.map((item, i) => (
+                      <div key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+                        <span style={{ fontSize: 11, color: "var(--muted-foreground)", flexShrink: 0, marginTop: 2 }}>—</span>
+                        <p style={{ fontSize: 14, lineHeight: 1.8, color: "var(--foreground)", ...SANS }}>{item.label}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <div style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center", marginTop: 22, paddingLeft: 0 }}>
+                <Link to={project.detailHref ?? `/work/${project.slug}`} style={{ textDecoration: "none" }}>
+                  <span className="ep-button ep-button-hyperlink">
+                    view details →
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 // ─── Experience accordion item ────────────────────────────────────────────
 
 function ExperienceItem({ item, defaultOpen }: { item: typeof EXPERIENCE[0]; defaultOpen?: boolean }) {
@@ -424,126 +574,32 @@ function SelectedWorkBlock() {
   return (
     <section className="section-pad">
       <div className="site-container">
-        <div className="responsive-grid-12" style={{ rowGap: 16 }}>
+        <div className="responsive-grid-12">
           <div style={{ gridColumn: "1 / 4" }}>
             <SectionLabel index="04" text="SELECTED WORK" />
           </div>
           <div style={{ gridColumn: "1 / 13" }} className="col-content">
-            <div className="responsive-grid-12" style={{ rowGap: 16 }}>
-              {PROJECTS.map((project) => {
-                const href = project.detailHref ?? `/work/${project.slug}`;
-                const visibleTags = project.tags.slice(0, 2);
-                const hiddenTagCount = Math.max(project.tags.length - visibleTags.length, 0);
-                const ctaLabel = project.available ? "View case study" : "Open project";
-
-                return (
-                  <div key={project.slug} style={{ gridColumn: "span 4" }}>
-                    <Link to={href} style={{ textDecoration: "none", color: "inherit", display: "block", height: "100%" }}>
-                      <article
-                        className="group border border-border transition-colors hover:border-accent/45"
-                        style={{
-                          background: "transparent",
-                          padding: "24px 24px 22px",
-                          display: "flex",
-                          flexDirection: "column",
-                          gap: 18,
-                          minHeight: 320,
-                          height: "100%",
-                          transition: "background 0.2s ease, border-color 0.2s ease",
-                        }}
-                      >
-                        <div style={{ display: "flex", justifyContent: "space-between", gap: 16, alignItems: "flex-start" }}>
-                          <p
-                            style={{
-                              fontSize: 11,
-                              letterSpacing: "0.14em",
-                              color: "var(--accent)",
-                              ...MONO,
-                            }}
-                          >
-                            {project.index} PROJECT
-                          </p>
-                        </div>
-
-                        <div style={{ display: "flex", flexDirection: "column", gap: 20, minWidth: 0, flex: 1 }}>
-                          <div>
-                            <h2
-                              style={{
-                                fontSize: "clamp(24px, 2.1vw, 30px)",
-                                lineHeight: 1.12,
-                                letterSpacing: "-0.02em",
-                                fontWeight: 600,
-                                marginBottom: 10,
-                              }}
-                            >
-                              {project.title}
-                            </h2>
-                            <p style={{ fontSize: 14, lineHeight: 1.7, color: "var(--muted-foreground)", maxWidth: 340 }}>
-                              {project.tagline}
-                            </p>
-                          </div>
-
-                          <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                            {visibleTags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="ep-tag"
-                                style={{
-                                  ...MONO,
-                                }}
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                            {hiddenTagCount > 0 && (
-                              <span
-                                className="ep-tag ep-tag-subtle"
-                                style={{
-                                  ...MONO,
-                                }}
-                              >
-                                +{hiddenTagCount}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: 12,
-                            paddingTop: 16,
-                            borderTop: "1px solid var(--border)",
-                            marginTop: "auto",
-                          }}
-                        >
-                          <p style={{ fontSize: 11, letterSpacing: "0.14em", color: "var(--muted-foreground)", ...MONO }}>
-                            {project.period}
-                          </p>
-                          <p style={{ fontSize: 13, lineHeight: 1.65, color: "var(--foreground)", maxWidth: 240 }}>
-                            {getProjectCardRole(project.role)}
-                          </p>
-                          <div style={{ paddingTop: 6 }}>
-                            <span
-                              className="ep-button ep-button-tertiary ep-button-sm transition-transform duration-200 group-hover:translate-x-1"
-                            >
-                              {ctaLabel.toUpperCase()}
-                              <span
-                                aria-hidden="true"
-                                className="transition-transform duration-200 group-hover:translate-x-0.5"
-                                style={{ lineHeight: 1 }}
-                              >
-                                →
-                              </span>
-                            </span>
-                          </div>
-                        </div>
-                      </article>
-                    </Link>
-                  </div>
-                );
-              })}
+            <div
+              style={{
+                marginLeft: "clamp(12px, 2vw, 24px)",
+                borderLeft: "1px solid color-mix(in srgb, var(--border) 92%, transparent)",
+              }}
+            >
+              {PROJECTS.map((project, index) => (
+                <div key={project.slug} style={{ position: "relative", padding: "0px 16px", marginBottom: 12 }}>
+                  <div
+                    aria-hidden="true"
+                    style={{
+                      position: "absolute",
+                      top: 32,
+                      left: 0,
+                      width: 16,
+                      borderTop: "1px solid color-mix(in srgb, var(--border) 92%, transparent)",
+                    }}
+                  />
+                  <ProjectItem project={project} defaultOpen={index === 0} />
+                </div>
+              ))}
             </div>
           </div>
         </div>
