@@ -184,7 +184,7 @@ function ProjectItem({ project, defaultOpen }: { project: typeof PROJECTS[0]; de
       </button>
 
       {/* Title and tagline — always visible */}
-      <div style={{ paddingLeft: 16, paddingRight: 16, marginBottom: open ? 0 : 0 }}>
+      <div style={{ paddingLeft: 16, paddingRight: 16, paddingBottom: open ? 0 : 16, marginBottom: 0 }}>
         <h3
           style={{
             fontSize: 18,
@@ -200,7 +200,7 @@ function ProjectItem({ project, defaultOpen }: { project: typeof PROJECTS[0]; de
         <p style={{ fontSize: 13, lineHeight: 1.75, color: "var(--muted-foreground)", ...SANS, marginBottom: 12, maxWidth: 520 }}>
           {project.tagline}
         </p>
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: open ? 0 : 0 }}>
+        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 0 }}>
           {project.tags.slice(0, 3).map((tag) => (
             <span key={tag} className="ep-tag" style={{ ...MONO }}>
               {tag}
