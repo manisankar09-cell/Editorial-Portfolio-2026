@@ -578,10 +578,10 @@ function SelectedWorkBlock() {
           <div style={{ gridColumn: "1 / 4" }}>
             <SectionLabel index="04" text="SELECTED WORK" />
           </div>
-          <div style={{ gridColumn: "1 / 13" }} className="col-content">
+          <div style={{ gridColumn: "4 / 13" }} className="col-content">
             <div
               style={{
-                marginLeft: "clamp(12px, 2vw, 24px)",
+                marginLeft: 0,
                 borderLeft: "1px solid color-mix(in srgb, var(--border) 92%, transparent)",
               }}
             >
