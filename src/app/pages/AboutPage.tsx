@@ -223,7 +223,7 @@ function ProjectItem({ project, defaultOpen }: { project: typeof PROJECTS[0]; de
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
-            style={{ overflow: "hidden", borderTop: `1px solid ${accordionBorder}` }}
+            style={{ overflow: "hidden" }}
           >
             <div style={{ padding: "16px 16px 28px" }}>
               <div style={{ display: "grid", gap: 16 }}>
