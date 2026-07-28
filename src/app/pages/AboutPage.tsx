@@ -225,7 +225,7 @@ function ProjectItem({ project, defaultOpen }: { project: typeof PROJECTS[0]; de
             transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
             style={{ overflow: "hidden", borderTop: `1px solid ${accordionBorder}` }}
           >
-            <div style={{ padding: "0px 16px 28px" }}>
+            <div style={{ padding: "16px 16px 28px" }}>
               <div style={{ display: "grid", gap: 16 }}>
                 {/* Role */}
                 <div style={{ display: "grid", gridTemplateColumns: "minmax(80px, 92px) minmax(0px, 1fr)", columnGap: 16, alignItems: "start" }}>
