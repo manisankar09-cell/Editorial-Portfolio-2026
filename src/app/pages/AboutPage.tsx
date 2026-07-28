@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteNav } from "../components/SiteNav";
+import { getProjectCardRole, PROJECTS } from "../data/projects";
 import resumePdf from "../../imports/Mani_Sankar_Choudhury_Product_Designer.pdf";
 
 // ─── Data ─────────────────────────────────────────────────────────────────
@@ -103,15 +104,7 @@ const achievements = [
   { title: "OzChi '17", award: "First Place", detail: "Research on adaptive enterprise interfaces." },
 ];
 
-const projects = [
-  {
-    label: "Case Study",
-    title: "CXP Design System",
-    desc: "Scaling a unified UX standard for AI-powered enterprise experiences across Microsoft platforms.",
-    tags: ["Design Systems", "AI UX", "Enterprise"],
-    href: "/cxp-design-system",
-  },
-];
+
 
 // ─── Shared primitives ────────────────────────────────────────────────────
 
@@ -431,32 +424,127 @@ function SelectedWorkBlock() {
   return (
     <section className="section-pad">
       <div className="site-container">
-        <div className="responsive-grid-12">
+        <div className="responsive-grid-12" style={{ rowGap: 16 }}>
           <div style={{ gridColumn: "1 / 4" }}>
             <SectionLabel index="04" text="SELECTED WORK" />
           </div>
-          <div style={{ gridColumn: "4 / 13" }} className="col-content">
-            {projects.map((project) => (
-              <Link key={project.title} to={project.href} style={{ textDecoration: "none", display: "block" }}>
-                <div className="border border-border p-8 group transition-colors hover:border-foreground/30" style={{ ...PANEL, cursor: "pointer" }}>
-                  <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 32 }}>
-                    <div style={{ flex: 1 }}>
-                      <p style={{ fontSize: 11, letterSpacing: "0.14em", ...MONO, marginBottom: 10, color: META_TEXT }}>{project.label}</p>
-                      <h2 className="text-foreground" style={{ fontSize: 22, fontWeight: 600, letterSpacing: "-0.01em", ...SANS, marginBottom: 10 }}>{project.title}</h2>
-                      <p className="text-muted-foreground" style={{ fontSize: 14, lineHeight: 1.7, ...SANS, maxWidth: 480, marginBottom: 20 }}>{project.desc}</p>
-                      <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                        {project.tags.map(tag => (
-                          <span key={tag} className="ep-tag">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="text-muted-foreground group-hover:text-accent transition-colors" style={{ fontSize: 20, flexShrink: 0, paddingTop: 4 }}>→</div>
+          <div style={{ gridColumn: "1 / 13" }} className="col-content">
+            <div className="responsive-grid-12" style={{ rowGap: 16 }}>
+              {PROJECTS.map((project) => {
+                const href = project.detailHref ?? `/work/${project.slug}`;
+                const visibleTags = project.tags.slice(0, 2);
+                const hiddenTagCount = Math.max(project.tags.length - visibleTags.length, 0);
+                const ctaLabel = project.available ? "View case study" : "Open project";
+
+                return (
+                  <div key={project.slug} style={{ gridColumn: "span 4" }}>
+                    <Link to={href} style={{ textDecoration: "none", color: "inherit", display: "block", height: "100%" }}>
+                      <article
+                        className="group border border-border transition-colors hover:border-accent/45"
+                        style={{
+                          background: "transparent",
+                          padding: "24px 24px 22px",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: 18,
+                          minHeight: 320,
+                          height: "100%",
+                          transition: "background 0.2s ease, border-color 0.2s ease",
+                        }}
+                      >
+                        <div style={{ display: "flex", justifyContent: "space-between", gap: 16, alignItems: "flex-start" }}>
+                          <p
+                            style={{
+                              fontSize: 11,
+                              letterSpacing: "0.14em",
+                              color: "var(--accent)",
+                              ...MONO,
+                            }}
+                          >
+                            {project.index} PROJECT
+                          </p>
+                        </div>
+
+                        <div style={{ display: "flex", flexDirection: "column", gap: 20, minWidth: 0, flex: 1 }}>
+                          <div>
+                            <h2
+                              style={{
+                                fontSize: "clamp(24px, 2.1vw, 30px)",
+                                lineHeight: 1.12,
+                                letterSpacing: "-0.02em",
+                                fontWeight: 600,
+                                marginBottom: 10,
+                              }}
+                            >
+                              {project.title}
+                            </h2>
+                            <p style={{ fontSize: 14, lineHeight: 1.7, color: "var(--muted-foreground)", maxWidth: 340 }}>
+                              {project.tagline}
+                            </p>
+                          </div>
+
+                          <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                            {visibleTags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="ep-tag"
+                                style={{
+                                  ...MONO,
+                                }}
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                            {hiddenTagCount > 0 && (
+                              <span
+                                className="ep-tag ep-tag-subtle"
+                                style={{
+                                  ...MONO,
+                                }}
+                              >
+                                +{hiddenTagCount}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: 12,
+                            paddingTop: 16,
+                            borderTop: "1px solid var(--border)",
+                            marginTop: "auto",
+                          }}
+                        >
+                          <p style={{ fontSize: 11, letterSpacing: "0.14em", color: "var(--muted-foreground)", ...MONO }}>
+                            {project.period}
+                          </p>
+                          <p style={{ fontSize: 13, lineHeight: 1.65, color: "var(--foreground)", maxWidth: 240 }}>
+                            {getProjectCardRole(project.role)}
+                          </p>
+                          <div style={{ paddingTop: 6 }}>
+                            <span
+                              className="ep-button ep-button-tertiary ep-button-sm transition-transform duration-200 group-hover:translate-x-1"
+                            >
+                              {ctaLabel.toUpperCase()}
+                              <span
+                                aria-hidden="true"
+                                className="transition-transform duration-200 group-hover:translate-x-0.5"
+                                style={{ lineHeight: 1 }}
+                              >
+                                →
+                              </span>
+                            </span>
+                          </div>
+                        </div>
+                      </article>
+                    </Link>
                   </div>
-                </div>
-              </Link>
-            ))}
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
