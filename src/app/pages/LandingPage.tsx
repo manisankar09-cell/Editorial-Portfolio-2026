@@ -553,12 +553,6 @@ function SelectedWork() {
           >
             SELECTED WORK
           </p>
-          <p
-            className="text-muted-foreground"
-            style={{ fontSize: 11, letterSpacing: "0.14em", fontFamily: "'DM Mono', monospace" }}
-          >
-            2020 — PRESENT
-          </p>
         </div>
 
         <div className="flex flex-col" style={{ gap: 16 }}>
@@ -566,8 +560,9 @@ function SelectedWork() {
             const href = project.detailHref ?? `/work/${project.slug}`;
             const ctaLabel = project.available ? "VIEW CASE STUDY" : "OPEN PROJECT";
             const visualBlock = getProjectVisual(project.slug, isMobile, isMobile);
+
             const textBlock = (
-              <div className="landing-work-text flex flex-col justify-between p-8 flex-1">
+              <div className="flex flex-col justify-between p-8 flex-1">
                 <div>
                   <div
                     className="landing-work-meta flex items-center gap-4 mb-5"
@@ -589,7 +584,14 @@ function SelectedWork() {
                         <span
                           key={tag}
                           className="border border-border text-muted-foreground"
-                          style={{ fontSize: 11, fontFamily: "'DM Mono', monospace", letterSpacing: "0.08em", padding: "2px 8px", color: ACCENT_META, borderColor: "color-mix(in srgb, var(--accent) 28%, var(--border))" }}
+                          style={{
+                            fontSize: 11,
+                            fontFamily: "'DM Mono', monospace",
+                            letterSpacing: "0.08em",
+                            padding: "2px 8px",
+                            color: ACCENT_META,
+                            borderColor: "color-mix(in srgb, var(--accent) 28%, var(--border))",
+                          }}
                         >
                           {tag}
                         </span>
@@ -635,6 +637,7 @@ function SelectedWork() {
                 </span>
               </div>
             );
+
             const inner = (
               <motion.div
                 key={project.slug}
@@ -644,10 +647,10 @@ function SelectedWork() {
                   backgroundColor: cardColors[project.index],
                   transition: { duration: 0.2 },
                 }}
-                    className="landing-work-card border border-border group overflow-hidden"
+                className="landing-work-card border border-border group overflow-hidden"
                 style={{
                   display: "flex",
-                      flexDirection: isMobile ? "column" : "row",
+                  flexDirection: isMobile ? "column" : "row",
                   cursor: "pointer",
                   minHeight: 200,
                   backgroundColor: "rgba(0,0,0,0)",
