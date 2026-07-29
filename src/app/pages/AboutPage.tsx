@@ -416,7 +416,7 @@ function ExperienceItem({ item, defaultOpen }: { item: typeof EXPERIENCE[0]; def
 
 function HeroBlock() {
   return (
-    <section className="section-pad" style={{ paddingTop: 96 }}>
+    <section className="section-pad" style={{ paddingTop: 64 }}>
       <div className="site-container">
         <div className="responsive-grid-12">
           <div style={{ gridColumn: "1 / 9" }}>

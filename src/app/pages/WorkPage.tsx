@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { motion } from "motion/react";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteNav } from "../components/SiteNav";
 import { getProjectCardRole, PROJECTS } from "../data/projects";
@@ -27,10 +28,18 @@ export function WorkPage() {
                 maxWidth: 620,
               }}
             >
-              <p style={{ fontSize: 11, letterSpacing: "0.18em", color: "var(--muted-foreground)", ...MONO }}>
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                style={{ fontSize: 11, letterSpacing: "0.18em", color: "var(--accent)", ...MONO }}
+              >
                 SELECTED WORK
-              </p>
-              <h1
+              </motion.p>
+              <motion.h1
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.05 }}
                 style={{
                   fontSize: "clamp(40px, 4.8vw, 64px)",
                   lineHeight: 1.02,
@@ -39,10 +48,15 @@ export function WorkPage() {
                 }}
               >
                 Projects
-              </h1>
-              <p style={{ fontSize: 13, lineHeight: 1.65, color: "var(--muted-foreground)", maxWidth: 520 }}>
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                style={{ fontSize: 13, lineHeight: 1.65, color: "var(--muted-foreground)", maxWidth: 520 }}
+              >
                 A small selection of projects that show how I approach systems, product thinking, and AI-powered workflow design.
-              </p>
+              </motion.p>
             </div>
 
             <div className="responsive-grid-12" style={{ rowGap: 16 }}>
