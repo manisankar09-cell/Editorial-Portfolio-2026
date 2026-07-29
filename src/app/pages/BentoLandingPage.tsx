@@ -419,27 +419,6 @@ function CardCXP() {
           opacity: hovered ? 0.9 : 0.35, transition: "opacity 0.35s",
         }} />
 
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            top: 16,
-            right: 16,
-            width: 20,
-            height: 20,
-            borderRadius: "50%",
-            border: `1px solid ${hovered ? ACCENT_BORDER : "color-mix(in srgb, var(--border) 92%, transparent)"}`,
-            background: "transparent",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
-            zIndex: 12,
-          }}
-        >
-          <span style={{ fontSize: 13, lineHeight: 1, color: "var(--muted-foreground)", marginTop: -1 }}>+</span>
-        </div>
-
         <div className="relative z-10 h-full flex flex-col justify-between">
           <div style={{ display: "flex", flexDirection: "column", gap: isMobile ? 16 : 0, minHeight: isMobile ? "auto" : "100%", justifyContent: isMobile ? "flex-start" : "space-between" }}>
             <div>
@@ -509,27 +488,6 @@ function CardAIWork() {
       }}
       {...handlers}
     >
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: 16,
-          right: 16,
-          width: 20,
-          height: 20,
-          borderRadius: "50%",
-          border: `1px solid ${hovered ? ACCENT_BORDER : "color-mix(in srgb, var(--border) 92%, transparent)"}`,
-          background: "transparent",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexShrink: 0,
-          zIndex: 2,
-        }}
-      >
-        <span style={{ fontSize: 13, lineHeight: 1, color: "var(--muted-foreground)", marginTop: -1 }}>+</span>
-      </div>
-
       <div>
         <div style={{ display: "flex", flexDirection: "column", gap: isMobile ? 10 : 0, marginBottom: 10 }}>
           <span style={{ fontSize: 11, letterSpacing: "0.12em", color: "var(--accent)", ...MONO }}>{p.index} PROJECT</span>
@@ -666,27 +624,6 @@ function CardTimeTracker() {
         }}
         {...handlers}
       >
-        <div
-          aria-hidden="true"
-          style={{
-            position: "absolute",
-            top: 16,
-            right: 16,
-            width: 20,
-            height: 20,
-            borderRadius: "50%",
-            border: `1px solid ${hovered ? ACCENT_BORDER : "color-mix(in srgb, var(--border) 92%, transparent)"}`,
-            background: "transparent",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
-            zIndex: 2,
-          }}
-        >
-          <span style={{ fontSize: 13, lineHeight: 1, color: "var(--muted-foreground)", marginTop: -1 }}>+</span>
-        </div>
-
         <div>
           <div style={{ display: "flex", flexDirection: "column", gap: isMobile ? 10 : 0, marginBottom: 10 }}>
             <span style={{ fontSize: 11, letterSpacing: "0.12em", color: "var(--accent)", ...MONO }}>{p.index} PROJECT</span>
