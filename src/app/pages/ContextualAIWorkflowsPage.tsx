@@ -4,8 +4,8 @@ import { SiteFooter } from "../components/SiteFooter";
 import { SiteNav } from "../components/SiteNav";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "../components/ui/dialog";
 import caiHomeImage from "../../imports/CAI Home.png";
-import caiSTUImage from "../../imports/STU.png";
-import caiATUImage from "../../imports/ATU.png";
+import caiSTUImage from "../../imports/STU impact.png";
+import caiATUImage from "../../imports/ATU impact.png";
 import caiListDetailImage from "../../imports/slide-05.png";
 import caiFilteringImage from "../../imports/slide-06.png";
 import caiGridLayoutImage from "../../imports/Grid layout.png";
@@ -158,13 +158,13 @@ export function ContextualAIWorkflowsPage() {
     {
       type: "image",
       src: caiSTUImage,
-      alt: "STU — Specialist Technology Unit outcome metrics",
+      alt: "STU impact metrics image",
       caption: "STU — Specialist Technology Unit",
     },
     {
       type: "image",
       src: caiATUImage,
-      alt: "ATU — Account Team Unit outcome metrics",
+      alt: "ATU impact metrics image",
       caption: "ATU — Account Team Unit",
     },
   ];
