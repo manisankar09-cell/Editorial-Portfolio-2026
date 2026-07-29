@@ -177,9 +177,24 @@ function ProjectItem({ project, defaultOpen }: { project: typeof PROJECTS[0]; de
 
         {/* Right — toggle */}
         <div style={{ display: "flex", alignItems: "center", gap: 12, flexShrink: 0 }}>
-          <span style={{ fontSize: 14, color: open ? "var(--foreground)" : "var(--muted-foreground)", ...MONO, transition: "color 0.2s" }}>
-            {open ? "−" : "+"}
-          </span>
+          <motion.div
+            animate={{ rotate: open ? 45 : 0 }}
+            transition={{ duration: 0.2 }}
+            style={{
+              width: 20,
+              height: 20,
+              borderRadius: "50%",
+              border: `1px solid ${accordionBorder}`,
+              background: open ? "color-mix(in srgb, var(--accent) 16%, transparent)" : "transparent",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
+            }}
+            aria-hidden="true"
+          >
+            <span style={{ fontSize: 13, lineHeight: 1, color: "var(--muted-foreground)", marginTop: -1 }}>+</span>
+          </motion.div>
         </div>
       </button>
 
@@ -407,7 +422,7 @@ function HeroBlock() {
           <div style={{ gridColumn: "1 / 9" }}>
             <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
               className="text-muted-foreground" style={{ fontSize: 11, letterSpacing: "0.18em", ...MONO, marginBottom: 20, color: ACCENT_META }}>
-              SENIOR PRODUCT DESIGNER · MICROSOFT
+              PRODUCT DESIGNER & SYSTEMS ARCHITECT
             </motion.p>
             <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55, delay: 0.05 }}
               className="text-foreground"
@@ -432,7 +447,7 @@ function HeroBlock() {
               className="text-muted-foreground"
               style={{ fontSize: 16, lineHeight: 1.75, ...SANS }}>
               I'm Mani Sankar Choudhury, a Senior Product Designer at Microsoft
-              working on AI-first workflows and enterprise platforms.
+              working on AI-first workflows and enterprise platforms. My focus is on designing agentic workflows, building reusable systems, and aligning design closely with engineering.
             </motion.p>
           </div>
         </div>
@@ -459,15 +474,10 @@ function NarrativeBlock() {
           </div>
           <div style={{ gridColumn: "4 / 10" }} className="col-content">
             <p className="text-foreground" style={{ fontSize: 17, lineHeight: 1.8, ...SANS, marginBottom: 24 }}>
-              With 12+ years building enterprise and platform-scale products, I currently
-              lead AI-first, agentic workflow design at Microsoft. I specialize in
-              transforming fragmented, multi-tool ecosystems into cohesive, scalable
-              systems through strong systems thinking, durable UX patterns, and deep
-              design-to-engineering alignment.
+              With 12+ years building enterprise and platform-scale products, I specialize in transforming fragmented, multi-tool ecosystems into cohesive, scalable systems. I champion strong systems thinking, durable UX patterns, and deep cross-functional alignment to drive business impact and improve user workflows.
             </p>
             <p className="text-muted-foreground" style={{ fontSize: 15, lineHeight: 1.8, ...SANS }}>
-              My focus is on designing agentic workflows, building reusable systems,
-              and aligning design closely with engineering.
+              When I'm not refining complex design systems, I'm deeply involved in personal creative experimentation. As a self-taught artist and photographer, I explore composition anckperception, which informs my interaction design. And occasionally, I find joy and rigor in the precise experimentation of cooking.
             </p>
           </div>
         </div>

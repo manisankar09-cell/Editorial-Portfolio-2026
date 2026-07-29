@@ -419,6 +419,27 @@ function CardCXP() {
           opacity: hovered ? 0.9 : 0.35, transition: "opacity 0.35s",
         }} />
 
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            top: 16,
+            right: 16,
+            width: 20,
+            height: 20,
+            borderRadius: "50%",
+            border: `1px solid ${hovered ? ACCENT_BORDER : "color-mix(in srgb, var(--border) 92%, transparent)"}`,
+            background: "transparent",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+            zIndex: 12,
+          }}
+        >
+          <span style={{ fontSize: 13, lineHeight: 1, color: "var(--muted-foreground)", marginTop: -1 }}>+</span>
+        </div>
+
         <div className="relative z-10 h-full flex flex-col justify-between">
           <div style={{ display: "flex", flexDirection: "column", gap: isMobile ? 16 : 0, minHeight: isMobile ? "auto" : "100%", justifyContent: isMobile ? "flex-start" : "space-between" }}>
             <div>
@@ -479,6 +500,7 @@ function CardAIWork() {
     <div
       className="border border-border"
       style={{
+        position: "relative",
         background: hovered ? "var(--hover-project2)" : ACCENT_CARD_WASH,
         borderColor: hovered ? ACCENT_BORDER : "var(--border)",
         transition: "background 0.35s cubic-bezier(0.4,0,0.2,1)",
@@ -487,6 +509,27 @@ function CardAIWork() {
       }}
       {...handlers}
     >
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: 16,
+          right: 16,
+          width: 20,
+          height: 20,
+          borderRadius: "50%",
+          border: `1px solid ${hovered ? ACCENT_BORDER : "color-mix(in srgb, var(--border) 92%, transparent)"}`,
+          background: "transparent",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+          zIndex: 2,
+        }}
+      >
+        <span style={{ fontSize: 13, lineHeight: 1, color: "var(--muted-foreground)", marginTop: -1 }}>+</span>
+      </div>
+
       <div>
         <div style={{ display: "flex", flexDirection: "column", gap: isMobile ? 10 : 0, marginBottom: 10 }}>
           <span style={{ fontSize: 11, letterSpacing: "0.12em", color: "var(--accent)", ...MONO }}>{p.index} PROJECT</span>
@@ -613,6 +656,7 @@ function CardTimeTracker() {
       <div
         className="border border-border"
         style={{
+          position: "relative",
           background: hovered ? "var(--hover-project3)" : ACCENT_CARD_WASH,
           borderColor: hovered ? ACCENT_BORDER : "var(--border)",
           transition: "background 0.35s cubic-bezier(0.4,0,0.2,1)",
@@ -622,6 +666,27 @@ function CardTimeTracker() {
         }}
         {...handlers}
       >
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            top: 16,
+            right: 16,
+            width: 20,
+            height: 20,
+            borderRadius: "50%",
+            border: `1px solid ${hovered ? ACCENT_BORDER : "color-mix(in srgb, var(--border) 92%, transparent)"}`,
+            background: "transparent",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+            zIndex: 2,
+          }}
+        >
+          <span style={{ fontSize: 13, lineHeight: 1, color: "var(--muted-foreground)", marginTop: -1 }}>+</span>
+        </div>
+
         <div>
           <div style={{ display: "flex", flexDirection: "column", gap: isMobile ? 10 : 0, marginBottom: 10 }}>
             <span style={{ fontSize: 11, letterSpacing: "0.12em", color: "var(--accent)", ...MONO }}>{p.index} PROJECT</span>
@@ -931,6 +996,7 @@ function CardGallery() {
 export function BentoLandingPage() {
   const { a11y, colorTheme } = usePreference();
   const isMobile = useIsMobile();
+  const hasFixedFooter = !a11y && !isMobile;
 
   // Apply paper texture class to body
   useEffect(() => {
@@ -943,7 +1009,11 @@ export function BentoLandingPage() {
       <SiteNav variant="home" />
       <main
         id="bento-main"
-        style={{ width: "100%", padding: "12px 0 16px" }}
+        style={{
+          width: "100%",
+          paddingTop: 12,
+          paddingBottom: hasFixedFooter ? 96 : 24,
+        }}
       >
         <div className="site-container">
           <div className="bento-grid">
@@ -962,7 +1032,7 @@ export function BentoLandingPage() {
         </div>
       </main>
 
-      <SiteFooter fixed={!a11y && !isMobile} />
+      <SiteFooter fixed={hasFixedFooter} />
     </div>
   );
 }
