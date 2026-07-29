@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { ProjectPagination } from "../components/CaseStudyNav";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteNav } from "../components/SiteNav";
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "../components/ui/dialog";
 import caiHomeImage from "../../imports/CAI Home.png";
+import caiSTUImage from "../../imports/STU.png";
+import caiATUImage from "../../imports/ATU.png";
 import caiListDetailImage from "../../imports/slide-05.png";
 import caiFilteringImage from "../../imports/slide-06.png";
 import caiGridLayoutImage from "../../imports/Grid layout.png";
@@ -129,6 +133,42 @@ function SectionHeading({
 }
 
 export function ContextualAIWorkflowsPage() {
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const impactDetailSlides = [
+    {
+      type: "text",
+      title: "Launch learnings",
+      caption: "Contextual AI onboarding review",
+      lines: [
+        "We onboarded 7600 STUs to Contextual AI and launched the enhanced experience & ML models for Cross Sell / Up Sell in the first 4 weeks.",
+        "For ATU, the data shows:",
+      ],
+      bullets: [
+        "200% increase in recommendation reviews in the first 4 weeks — indicates better user experience.",
+        "400% increase in MoM MW pipeline — good visibility of recommendations by solution area.",
+        "Conversion rate is steady at 13% and should continue to increase gradually.",
+        "Increased adoption, higher recommendation review rate, but low conversion directly points to the efficiency of the models and recommendation quality.",
+      ],
+      footerLabel: "For STU, the data shows:",
+      footerBullets: [
+        "33% adoption with STUs in the first 4 weeks.",
+        "1600 recommendations reviewed in first 3 weeks — strong interest in recommendations, while conversion can improve.",
+      ],
+    },
+    {
+      type: "image",
+      src: caiSTUImage,
+      alt: "STU — Specialist Technology Unit outcome metrics",
+      caption: "STU — Specialist Technology Unit",
+    },
+    {
+      type: "image",
+      src: caiATUImage,
+      alt: "ATU — Account Team Unit outcome metrics",
+      caption: "ATU — Account Team Unit",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground cai-page">
       <SiteNav variant="casestudy" title="ContextualAI Workflows" />
@@ -653,11 +693,83 @@ export function ContextualAIWorkflowsPage() {
 
         <section className="cai-impact" id="impact">
           <div className="cai-page__container">
-            <SectionHeading
-              index="IMPACT & OUTCOMES"
-              title="Impact and outcomes"
-              subtitle="Turning recommendation visibility into seller action"
-            />
+            <div className="cai-impact__header-row">
+              <SectionHeading
+                index="IMPACT & OUTCOMES"
+                title="Impact and outcomes"
+                subtitle="Turning recommendation visibility into seller action"
+              />
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button type="button" className="ep-button ep-button-secondary ep-button-sm cai-impact__details-trigger">
+                    View impact details
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="cai-impact-dialog">
+                  <DialogTitle>Impact details</DialogTitle>
+                  <DialogDescription>
+                    View the detailed STU and ATU outcome metrics for this CAI workflow.
+                  </DialogDescription>
+                  <div className="cai-impact-dialog__carousel">
+                    <div className="cai-impact-dialog__carousel-frame">
+                      {impactDetailSlides[carouselIndex].type === "image" ? (
+                        <img
+                          src={impactDetailSlides[carouselIndex].src}
+                          alt={impactDetailSlides[carouselIndex].alt}
+                          className="cai-impact-dialog__carousel-image"
+                        />
+                      ) : (
+                        <div className="cai-impact-dialog__text-slide">
+                          <h3>{impactDetailSlides[carouselIndex].title}</h3>
+                          <div className="cai-impact-dialog__text-block">
+                            {impactDetailSlides[carouselIndex].lines.map((line) => (
+                              <p key={line}>{line}</p>
+                            ))}
+                          </div>
+                          <ul className="cai-impact-dialog__text-list">
+                            {impactDetailSlides[carouselIndex].bullets.map((bullet) => (
+                              <li key={bullet}>{bullet}</li>
+                            ))}
+                          </ul>
+                          <div className="cai-impact-dialog__text-block">
+                            <p>{impactDetailSlides[carouselIndex].footerLabel}</p>
+                          </div>
+                          <ul className="cai-impact-dialog__text-list">
+                            {impactDetailSlides[carouselIndex].footerBullets.map((note) => (
+                              <li key={note}>{note}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                    <figcaption className="cai-impact-dialog__caption">
+                      {impactDetailSlides[carouselIndex].caption}
+                    </figcaption>
+                    <div className="cai-impact-dialog__carousel-controls">
+                      <button
+                        type="button"
+                        className="ep-button ep-button-tertiary ep-button-sm"
+                        onClick={() => setCarouselIndex((index) => (index - 1 + impactDetailSlides.length) % impactDetailSlides.length)}
+                        aria-label="Previous details"
+                      >
+                        ← Previous
+                      </button>
+                      <span className="cai-impact-dialog__carousel-counter">
+                        {carouselIndex + 1} / {impactDetailSlides.length}
+                      </span>
+                      <button
+                        type="button"
+                        className="ep-button ep-button-tertiary ep-button-sm"
+                        onClick={() => setCarouselIndex((index) => (index + 1) % impactDetailSlides.length)}
+                        aria-label="Next details"
+                      >
+                        Next →
+                      </button>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
             <div className="cai-impact__grid">
               {IMPACT.map((item) => (
                 <article key={`${item.metric}-${item.title}`} className="cai-impact__card">

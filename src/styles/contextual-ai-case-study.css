@@ -1293,6 +1293,95 @@
   padding: 80px 0;
 }
 
+.cai-impact__header-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.cai-impact__details-trigger {
+  align-self: start;
+}
+
+.cai-impact-dialog {
+  max-width: min(98vw, 1080px);
+}
+
+.cai-impact-dialog__carousel {
+  display: grid;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.cai-impact-dialog__carousel-frame {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  max-height: 72vh;
+  padding: 24px;
+}
+
+.cai-impact-dialog__carousel-image {
+  width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  display: block;
+}
+
+.cai-impact-dialog__text-slide {
+  display: grid;
+  gap: 18px;
+}
+
+.cai-impact-dialog__text-slide h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+}
+
+.cai-impact-dialog__text-block {
+  display: grid;
+  gap: 12px;
+  color: var(--foreground);
+  line-height: 1.7;
+}
+
+.cai-impact-dialog__text-list {
+  display: grid;
+  gap: 10px;
+  padding-left: 1.2rem;
+  color: var(--foreground);
+  list-style-type: disc;
+  list-style-position: outside;
+}
+
+.cai-impact-dialog__text-list li::marker {
+  color: var(--accent);
+}
+
+.cai-impact-dialog__caption {
+  font-size: 0.95rem;
+  color: var(--muted-foreground);
+}
+
+.cai-impact-dialog__carousel-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cai-impact-dialog__carousel-counter {
+  font-size: 0.9rem;
+  color: var(--muted-foreground);
+}
+
 .cai-impact .cai-section-heading__index,
 .cai-impact .cai-section-heading__subtitle {
   color: color-mix(in srgb, var(--primary-foreground) 72%, transparent);
