@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteNav } from "../components/SiteNav";
 import { getProjectCardRole, PROJECTS, type Project } from "../data/projects";
-import resumePdf from "../../imports/Mani_Sankar_Choudhury_Product_Designer.pdf";
+import resumePdf from "../../imports/ManiSankar_Product_Design.pdf";
 
 const MONO = { fontFamily: "'DM Mono', monospace" } as const;
 const SANS = { fontFamily: "'Inter', sans-serif" } as const;
@@ -221,7 +221,7 @@ export function FocusLandingPage() {
             SENIOR PRODUCT DESIGNER · MICROSOFT
           </p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center", marginTop: 22 }}>
-            <a href={resumePdf} download="Mani_Sankar_Choudhury_Product_Designer.pdf" className="ep-button ep-button-secondary ep-button-sm">
+            <a href={resumePdf} download="ManiSankar_Product_Design.pdf" className="ep-button ep-button-secondary ep-button-sm">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
                 <path d="M6 1.5V7.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
                 <path d="M3.75 5.75L6 8L8.25 5.75" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />

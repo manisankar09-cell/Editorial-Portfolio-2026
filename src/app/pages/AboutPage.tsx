@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteNav } from "../components/SiteNav";
 import { getProjectCardRole, PROJECTS } from "../data/projects";
-import resumePdf from "../../imports/Mani_Sankar_Choudhury_Product_Designer.pdf";
+import resumePdf from "../../imports/ManiSankar_Product_Design.pdf";
 
 // ─── Data ─────────────────────────────────────────────────────────────────
 
@@ -628,7 +628,7 @@ function ExperienceBlock() {
             {/* Resume download */}
             <a
               href={resumePdf}
-              download="Mani_Sankar_Choudhury_Product_Designer.pdf"
+              download="ManiSankar_Product_Design.pdf"
               className="ep-button ep-button-tertiary ep-button-md"
               style={{
                 textDecoration: "none",
